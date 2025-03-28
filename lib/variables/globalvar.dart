@@ -68,6 +68,7 @@ String get menuProfilerAdministratorFlashcardQuestionListTitle => languageStatus
 String get menuProfilerCustomerListTitle => languageStatus == 0 ? "USUARIO" : "USER";
 String get menuProfilerCustomerMyExamsTitle => languageStatus == 0 ? "Cuestionarios realizados" : "Completed Exams";
 String get menuProfilerCustomerFlashcardMyExamsTitle => languageStatus == 0 ? "Flashcards realizados" : "Completed Flashcards";
+String get menuProfilerCustomerProgressMyExamsTitle => languageStatus == 0 ? "Mi Progreso" : "My Progress";
 String get menuProfilerCustomerAboutUsTitle => languageStatus == 0 ? "Nosotros" : "About Us";
 String get menuProfilerCustomerFrequentQuestionsTitle => languageStatus == 0 ? "Preguntas frecuentes" : "FAQ";
 String get menuProfilerCustomerAgentContactForPhoneTitle => languageStatus == 0 ? "Contactar Agente por Teléfono" : "Contact Agent by Phone";

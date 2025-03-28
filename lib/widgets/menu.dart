@@ -313,6 +313,25 @@ class Menu extends Drawer {
                       },
                     )
                   : Container(),
+              
+
+              homePageState.isLogin && homePageState.loginIsCustomer
+                  ? createDrawerItem(
+                      icon: Icons.bar_chart,
+                      text: menuProfilerCustomerProgressMyExamsTitle,
+                      textColor: Colors.black,
+                      onTap: () {
+                        Navigator.push<void>(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) =>
+                                CustomerMyExamList(
+                                    loginUsername: homePageState.loginUsername),
+                          ),
+                        );
+                      },
+                    )
+                  : Container(),
 
 /* CPanel */
               const Divider(),
