@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+  "appTitle": "MD Exam",
+  "languageSwitched": "Language switched to English",
+  "menuHome": "Home",
+  "menuMyExams": "My Exams",
+  "menuLogout": "Logout",
+  "menuLogin": "Login",
+  "menuLanguagetitle": "Language",
+  "menuSettings": "Settings",
+  "menuAbout": "About Us"
+}
