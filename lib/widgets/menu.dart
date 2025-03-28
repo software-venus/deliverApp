@@ -6,6 +6,7 @@ import 'package:mdexam/pages/category_list.dart';
 import 'package:mdexam/pages/content_view.dart';
 import 'package:mdexam/pages/customer_flashcard_my_exam_list.dart';
 import 'package:mdexam/pages/customer_my_exam_list.dart';
+import 'package:mdexam/pages/customer_my_progress.dart';
 import 'package:mdexam/pages/flashcard_category_list.dart';
 import 'package:mdexam/pages/video_category_list.dart';
 import 'package:mdexam/pages/flashcard_question_list.dart';
@@ -325,7 +326,7 @@ class Menu extends Drawer {
                           context,
                           MaterialPageRoute<void>(
                             builder: (BuildContext context) =>
-                                CustomerMyExamList(
+                                CustomerMyProgress(
                                     loginUsername: homePageState.loginUsername),
                           ),
                         );
