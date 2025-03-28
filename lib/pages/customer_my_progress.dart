@@ -68,7 +68,7 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
     return Scaffold(
         appBar: ApplicationBar(
           context: context,
-          title: menuProfilerCustomerMyExamsTitle,
+          title: menuProfilerCustomerProgressMyExamsTitle,
           withShareButton: false,
         ),
         body: RefreshIndicator(
