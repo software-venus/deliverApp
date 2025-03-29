@@ -57,6 +57,7 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
       });
 
       myCategory
+          .orderBy("creationTime", descending: true)
           .get()
           .then((querySnapshot) {
         for (var result in querySnapshot.docs) {
@@ -87,68 +88,7 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
           context: context,
           title: menuProfilerCustomerProgressMyExamsTitle,
           withShareButton: false,
-        ),
-        body: RefreshIndicator(
-            key: const Key("refreshKey"),
-            onRefresh: () async {
-              refreshList();
-            },
-            child: ListView(children: [
-              const SizedBox(
-                height: 20,
-              ),
-              buildListView(context, list)
-            ])));
-  }
-
-  Widget buildListView(BuildContext context, List<UserExamModel> list) {
-    if (list.isNotEmpty) {
-      return ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          itemCount: list.length,
-          itemBuilder: (BuildContext context, int widgetIndex) {
-            return Padding(
-              padding: const EdgeInsets.all(10),
-              child: onlyItem(context, list, widgetIndex),
-            );
-          });
-    } else {
-      return Container();
-    }
-  }
-
-  Widget onlyItem(
-      BuildContext context, List<UserExamModel> list, int widgetIndex) {
-    final UserExamModel userExamModel = list[widgetIndex];
-
-    return GestureDetector(
-        onTap: () {
-//          Navigator.pop(context);
-
-          Navigator.push<void>(
-            context,
-            MaterialPageRoute<void>(
-              builder: (BuildContext context) =>
-                  QuestionReport(userExam: userExamModel),
-            ),
-          );
-        },
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.history_edu_outlined, size: 30),
-                Text(userExamModel.title(),
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold)),
-                const SizedBox(
-                  width: 15,
-                ),
-              ],
-            ),
-          ],
-        ));
+        )
+      );
   }
 }
