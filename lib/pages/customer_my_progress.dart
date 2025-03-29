@@ -84,55 +84,117 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ApplicationBar(
-        context: context,
-        title: menuProfilerCustomerProgressMyExamsTitle,
-        withShareButton: false,
-      ),
-      body: isFinishLoad
-          ? Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: BarChart(
-                BarChartData(
-                  alignment: BarChartAlignment.spaceBetween,
-                  maxY: 100,
-                  barTouchData: BarTouchData(enabled: true),
-                  titlesData: FlTitlesData(
-                    leftTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        interval: 20,
-                        getTitlesWidget: (value, meta) => Text('${value.toInt()}%'),
-                      ),
-                    ),
-                    bottomTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        getTitlesWidget: (value, meta) {
-                          final index = value.toInt();
-                          if (index < cateList.length) {
-                            return Text(
-                              cateList[index].title.length > 8
-                                  ? cateList[index].title.substring(0, 8) + '...'
-                                  : cateList[index].title,
-                              style: const TextStyle(fontSize: 10),
+  return Scaffold(
+    appBar: ApplicationBar(
+      context: context,
+      title: menuProfilerCustomerProgressMyExamsTitle,
+      withShareButton: false,
+    ),
+    body: isFinishLoad
+        ? SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                AspectRatio(
+                  aspectRatio: 1.3,
+                  child: BarChart(
+                    BarChartData(
+                      alignment: BarChartAlignment.spaceAround,
+                      maxY: 100,
+                      minY: 0,
+                      barTouchData: BarTouchData(
+                        enabled: true,
+                        touchTooltipData: BarTouchTooltipData(
+                          tooltipBgColor: Colors.grey[900],
+                          getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                            String label =
+                                rodIndex == 0 ? 'Last 30 Days' : 'All Time';
+                            return BarTooltipItem(
+                              '$label\n',
+                              const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                              children: [
+                                TextSpan(
+                                  text: '${rod.toY.toStringAsFixed(1)}%',
+                                  style: const TextStyle(
+                                      color: Colors.tealAccent,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
                             );
-                          }
-                          return const Text('');
-                        },
+                          },
+                        ),
                       ),
+                      titlesData: FlTitlesData(
+                        leftTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            interval: 20,
+                            reservedSize: 40,
+                            getTitlesWidget: (value, meta) => Text(
+                              '${value.toInt()}%',
+                              style: TextStyle(
+                                color: Colors.grey[700],
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                        bottomTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            getTitlesWidget: (value, meta) {
+                              final index = value.toInt();
+                              if (index < cateList.length) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text(
+                                    cateList[index].title.length > 10
+                                        ? cateList[index]
+                                                .title
+                                                .substring(0, 10) +
+                                            '…'
+                                        : cateList[index].title,
+                                    style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                );
+                              }
+                              return const SizedBox.shrink();
+                            },
+                          ),
+                        ),
+                        rightTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false)),
+                        topTitles:
+                            const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                      ),
+                      gridData: FlGridData(
+                        show: true,
+                        horizontalInterval: 20,
+                        drawVerticalLine: false,
+                        getDrawingHorizontalLine: (value) => FlLine(
+                          color: Colors.grey.withOpacity(0.2),
+                          strokeWidth: 1,
+                        ),
+                      ),
+                      borderData: FlBorderData(show: false),
+                      barGroups: _generateBarGroups(),
                     ),
-                    topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                    rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                   ),
-                  barGroups: _generateBarGroups(),
                 ),
-              ),
-            )
-          : const Center(child: CircularProgressIndicator()),
-    );
-  }
+                const SizedBox(height: 24),
+                _buildLegend(),
+              ],
+            ),
+          )
+        : const Center(child: CircularProgressIndicator()),
+  );
+}
 
   List<BarChartGroupData> _generateBarGroups() {
     final now = DateTime.now();
@@ -141,9 +203,8 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
     for (int i = 0; i < cateList.length; i++) {
       final category = cateList[i];
 
-      // Find all exams linked to this category
       final relevantExams = list.where(
-        (exam) => exam.categorys.any((c) => c.key == category.key)
+        (exam) => exam.categorys.any((c) => c.key == category.key),
       ).toList();
 
       double totalScore = 0;
@@ -153,11 +214,13 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
       int recentCount = 0;
 
       for (var exam in relevantExams) {
-        final questions = exam.questionAnswers;
-        if (questions.isEmpty) continue;
+        if (exam.questionAnswers.isEmpty) continue;
 
-        final correct = questions.where((qa) => qa.answer.isCorrect).length;
-        final percent = (correct / questions.length) * 100;
+        final correct = exam.questionAnswers
+            .where((qa) => qa.answer.isCorrect)
+            .length;
+        final percent =
+            (correct / exam.questionAnswers.length) * 100;
 
         totalScore += percent;
         totalCount++;
@@ -174,10 +237,30 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
       barGroups.add(
         BarChartGroupData(
           x: i,
-          barsSpace: 4,
+          barsSpace: 6,
           barRods: [
-            BarChartRodData(toY: avgRecent, width: 8, color: Colors.blue),
-            BarChartRodData(toY: avgTotal, width: 8, color: Colors.green),
+            BarChartRodData(
+              toY: avgRecent,
+              width: 10,
+              borderRadius: BorderRadius.circular(6),
+              color: Colors.tealAccent.shade400,
+              backDrawRodData: BackgroundBarChartRodData(
+                show: true,
+                toY: 100,
+                color: Colors.tealAccent.shade100.withOpacity(0.1),
+              ),
+            ),
+            BarChartRodData(
+              toY: avgTotal,
+              width: 10,
+              borderRadius: BorderRadius.circular(6),
+              color: Colors.blue.shade400,
+              backDrawRodData: BackgroundBarChartRodData(
+                show: true,
+                toY: 100,
+                color: Colors.blue.shade100.withOpacity(0.1),
+              ),
+            ),
           ],
         ),
       );
@@ -185,6 +268,41 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
 
     return barGroups;
   }
+
+  Widget _buildLegend() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _legendItem(Colors.tealAccent.shade400, 'Last 30 Days'),
+        const SizedBox(width: 24),
+        _legendItem(Colors.blue.shade400, 'Right Now'),
+      ],
+    );
+  }
+
+  Widget _legendItem(Color color, String label) {
+    return Row(
+      children: [
+        Container(
+          width: 14,
+          height: 14,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+        const SizedBox(width: 6),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+
 
 
 }
