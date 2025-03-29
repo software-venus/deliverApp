@@ -83,7 +83,8 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  @override
+Widget build(BuildContext context) {
   return Scaffold(
     appBar: ApplicationBar(
       context: context,
@@ -91,12 +92,12 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
       withShareButton: false,
     ),
     body: isFinishLoad
-        ? SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                AspectRatio(
-                  aspectRatio: 1.3,
+        ? Column(
+            children: [
+              const SizedBox(height: 16),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: BarChart(
                     BarChartData(
                       alignment: BarChartAlignment.spaceAround,
@@ -108,7 +109,7 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
                           tooltipBgColor: Colors.grey[900],
                           getTooltipItem: (group, groupIndex, rod, rodIndex) {
                             String label =
-                                rodIndex == 0 ? 'Last 30 Days' : 'All Time';
+                                rodIndex == 0 ? 'Last 30 Days' : 'Right Now';
                             return BarTooltipItem(
                               '$label\n',
                               const TextStyle(
@@ -134,8 +135,8 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
                             reservedSize: 40,
                             getTitlesWidget: (value, meta) => Text(
                               '${value.toInt()}%',
-                              style: TextStyle(
-                                color: Colors.grey[700],
+                              style: const TextStyle(
+                                color: Color.fromARGB(255, 71, 70, 70),
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
                               ),
@@ -145,21 +146,24 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
                         bottomTitles: AxisTitles(
                           sideTitles: SideTitles(
                             showTitles: true,
+                            reservedSize: 48,
                             getTitlesWidget: (value, meta) {
                               final index = value.toInt();
                               if (index < cateList.length) {
                                 return Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
-                                  child: Text(
-                                    cateList[index].title.length > 10
-                                        ? cateList[index]
-                                                .title
-                                                .substring(0, 10) +
-                                            '…'
-                                        : cateList[index].title,
-                                    style: const TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600,
+                                  child: SizedBox(
+                                    width: 50,
+                                    child: Text(
+                                      cateList[index].title,
+                                      textAlign: TextAlign.center,
+                                      softWrap: true,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                                 );
@@ -170,8 +174,8 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
                         ),
                         rightTitles: const AxisTitles(
                             sideTitles: SideTitles(showTitles: false)),
-                        topTitles:
-                            const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                        topTitles: const AxisTitles(
+                            sideTitles: SideTitles(showTitles: false)),
                       ),
                       gridData: FlGridData(
                         show: true,
@@ -187,14 +191,16 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
-                _buildLegend(),
-              ],
-            ),
+              ),
+              const SizedBox(height: 16),
+              _buildLegend(),
+              const SizedBox(height: 16),
+            ],
           )
         : const Center(child: CircularProgressIndicator()),
   );
 }
+
 
   List<BarChartGroupData> _generateBarGroups() {
     final now = DateTime.now();
@@ -204,35 +210,34 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
       final category = cateList[i];
 
       final relevantExams = list.where(
-        (exam) => exam.categorys.any((c) => c.key == category.key),
+        (exam) => exam.categorys.any((c) => c.title == category.title),
       ).toList();
-
       double totalScore = 0;
       int totalCount = 0;
 
-      double recentScore = 0;
-      int recentCount = 0;
+      double lastScore = 0;
+      int lastCount = 0;
 
       for (var exam in relevantExams) {
         if (exam.questionAnswers.isEmpty) continue;
 
         final correct = exam.questionAnswers
-            .where((qa) => qa.answer.isCorrect)
+            .where((qa) => qa.answer.isCorrect && qa.question.category.title == category.title)
             .length;
         final percent =
-            (correct / exam.questionAnswers.length) * 100;
+            (correct / category.maxQuestions) * 100;
 
         totalScore += percent;
         totalCount++;
 
-        if (now.difference(exam.creationTime).inDays <= 30) {
-          recentScore += percent;
-          recentCount++;
+        if (now.difference(exam.creationTime).inDays >= 30) {
+          lastScore += percent;
+          lastCount++;
         }
       }
 
-      double avgTotal = totalCount > 0 ? totalScore / totalCount : 0;
-      double avgRecent = recentCount > 0 ? recentScore / recentCount : 0;
+      double avgTotal = totalCount > 0 ? totalScore: 0;
+      double avgLast = lastCount > 0 ? lastScore: 0;
 
       barGroups.add(
         BarChartGroupData(
@@ -240,7 +245,7 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
           barsSpace: 6,
           barRods: [
             BarChartRodData(
-              toY: avgRecent,
+              toY: avgLast,
               width: 10,
               borderRadius: BorderRadius.circular(6),
               color: Colors.tealAccent.shade400,
@@ -302,6 +307,35 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
       ],
     );
   }
+
+  Widget _buildBarLabels() {
+  return LayoutBuilder(
+    builder: (context, constraints) {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: List.generate(cateList.length, (index) {
+          final barGroup = _generateBarGroups()[index];
+          final rod1 = barGroup.barRods[0]; // Last 30 days
+          final rod2 = barGroup.barRods[1]; // All time
+
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text('${rod1.toY.toStringAsFixed(0)}%',
+                  style: const TextStyle(fontSize: 10, color: Colors.teal)),
+              const SizedBox(height: 4),
+              Text('${rod2.toY.toStringAsFixed(0)}%',
+                  style: const TextStyle(fontSize: 10, color: Colors.blue)),
+              const SizedBox(height: 8), // space before bars
+            ],
+          );
+        }),
+      );
+    },
+  );
+}
+
 
 
 
