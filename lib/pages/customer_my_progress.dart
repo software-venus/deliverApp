@@ -1,3 +1,4 @@
+import 'package:mdexam/models/category_model.dart';
 import 'package:mdexam/models/user_exam_model.dart';
 import 'package:mdexam/pages/question_report.dart';
 import 'package:mdexam/variables/globalvar.dart';
@@ -18,6 +19,7 @@ class CustomerMyProgress extends StatefulWidget {
 
 class CustomerMyExamListState extends State<CustomerMyProgress> {
   List<UserExamModel> list = [];
+  List<CategoryModel> cateList = [];
 
   bool isFinishLoad = false;
 
@@ -36,6 +38,9 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
       CollectionReference myExams =
           firestoreInstance.collection(firebaseCustomUserExamKey);
 
+      CollectionReference myCategory = 
+          firestoreInstance.collection(firebaseCustomCategoryKey);
+
       myExams
           .where("username", isEqualTo: widget.loginUsername)
           .orderBy("creationTime", descending: true)
@@ -45,6 +50,18 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
         for (var result in querySnapshot.docs) {
           setState(() {
             list.add(UserExamModel.fromJSON(false, result.id, result.data()));
+          });
+        }
+
+        isFinishLoad = true;
+      });
+
+      myCategory
+          .get()
+          .then((querySnapshot) {
+        for (var result in querySnapshot.docs) {
+          setState(() {
+            cateList.add(CategoryModel.fromJSON(false, result.id, result.data()));
           });
         }
 
