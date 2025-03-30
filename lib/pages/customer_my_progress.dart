@@ -1,4 +1,5 @@
 import 'package:mdexam/models/category_model.dart';
+import 'package:mdexam/models/question_answer_model.dart';
 import 'package:mdexam/models/user_exam_model.dart';
 import 'package:mdexam/variables/globalvar.dart';
 import 'package:mdexam/widgets/application_bar.dart';
@@ -182,7 +183,7 @@ Widget build(BuildContext context) {
                         horizontalInterval: 20,
                         drawVerticalLine: false,
                         getDrawingHorizontalLine: (value) => FlLine(
-                          color: Colors.grey.withOpacity(0.2),
+                          color: const Color.fromARGB(255, 51, 51, 51).withOpacity(0.2),
                           strokeWidth: 1,
                         ),
                       ),
@@ -214,27 +215,30 @@ Widget build(BuildContext context) {
       ).toList();
       double totalScore = 0;
       int totalCount = 0;
+      List<QuestionAnswerModel> totalQA = [];
 
       double lastScore = 0;
       int lastCount = 0;
+      List<QuestionAnswerModel> lastQA = [];
 
       for (var exam in relevantExams) {
         if (exam.questionAnswers.isEmpty) continue;
 
         final correct = exam.questionAnswers
-            .where((qa) => qa.answer.isCorrect && qa.question.category.title == category.title)
-            .length;
-        final percent =
-            (correct / category.maxQuestions) * 100;
+            .where((qa) => qa.answer.isCorrect && qa.question.category.title == category.title);
 
-        totalScore += percent;
+        totalQA = {...totalQA, ...correct}.toList();
         totalCount++;
+        
 
         if (now.difference(exam.creationTime).inDays >= 30) {
-          lastScore += percent;
+          lastQA = {...totalQA, ...correct}.toList();
           lastCount++;
         }
       }
+
+      totalScore = totalQA.length/category.maxQuestions*100;
+      lastScore = lastQA.length/category.maxQuestions*100;
 
       double avgTotal = totalCount > 0 ? totalScore: 0;
       double avgLast = lastCount > 0 ? lastScore: 0;
@@ -246,24 +250,24 @@ Widget build(BuildContext context) {
           barRods: [
             BarChartRodData(
               toY: avgLast,
-              width: 10,
-              borderRadius: BorderRadius.circular(6),
-              color: Colors.tealAccent.shade400,
+              width: 20,
+              borderRadius: BorderRadius.circular(0),
+              color: const Color.fromARGB(255, 233, 29, 63),
               backDrawRodData: BackgroundBarChartRodData(
                 show: true,
                 toY: 100,
-                color: Colors.tealAccent.shade100.withOpacity(0.1),
+                color: const Color.fromARGB(255, 230, 124, 124).withOpacity(0.1),
               ),
             ),
             BarChartRodData(
               toY: avgTotal,
-              width: 10,
-              borderRadius: BorderRadius.circular(6),
+              width: 20,
+              borderRadius: BorderRadius.circular(0),
               color: Colors.blue.shade400,
               backDrawRodData: BackgroundBarChartRodData(
                 show: true,
                 toY: 100,
-                color: Colors.blue.shade100.withOpacity(0.1),
+                color: const Color.fromARGB(255, 131, 184, 228).withOpacity(0.1),
               ),
             ),
           ],
@@ -278,7 +282,7 @@ Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _legendItem(Colors.tealAccent.shade400, 'Last 30 Days'),
+        _legendItem(const Color.fromARGB(255, 233, 29, 63), 'Last 30 Days'),
         const SizedBox(width: 24),
         _legendItem(Colors.blue.shade400, 'Right Now'),
       ],
@@ -307,36 +311,5 @@ Widget build(BuildContext context) {
       ],
     );
   }
-
-  Widget _buildBarLabels() {
-  return LayoutBuilder(
-    builder: (context, constraints) {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(cateList.length, (index) {
-          final barGroup = _generateBarGroups()[index];
-          final rod1 = barGroup.barRods[0]; // Last 30 days
-          final rod2 = barGroup.barRods[1]; // All time
-
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text('${rod1.toY.toStringAsFixed(0)}%',
-                  style: const TextStyle(fontSize: 10, color: Colors.teal)),
-              const SizedBox(height: 4),
-              Text('${rod2.toY.toStringAsFixed(0)}%',
-                  style: const TextStyle(fontSize: 10, color: Colors.blue)),
-              const SizedBox(height: 8), // space before bars
-            ],
-          );
-        }),
-      );
-    },
-  );
-}
-
-
-
 
 }
