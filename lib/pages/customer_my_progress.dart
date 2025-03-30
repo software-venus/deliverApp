@@ -215,24 +215,29 @@ Widget build(BuildContext context) {
       ).toList();
       double totalScore = 0;
       int totalCount = 0;
-      List<QuestionAnswerModel> totalQA = [];
+      List<String> totalQA = [];
 
       double lastScore = 0;
       int lastCount = 0;
-      List<QuestionAnswerModel> lastQA = [];
+      List<String> lastQA = [];
 
       for (var exam in relevantExams) {
         if (exam.questionAnswers.isEmpty) continue;
 
         final correct = exam.questionAnswers
             .where((qa) => qa.answer.isCorrect && qa.question.category.title == category.title);
+        List<String> answerTitle = [];
 
-        totalQA = {...totalQA, ...correct}.toList();
+        for(var answer in correct) {
+          answerTitle.add(answer.answer.title);
+        }
+
+        totalQA = {...totalQA, ...answerTitle}.toList();
         totalCount++;
         
 
         if (now.difference(exam.creationTime).inDays >= 30) {
-          lastQA = {...totalQA, ...correct}.toList();
+          lastQA = {...totalQA, ...answerTitle}.toList();
           lastCount++;
         }
       }
