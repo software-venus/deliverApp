@@ -142,6 +142,8 @@ String get userABMFieldIsAdministratorLabel => languageStatus == 0 ? "Es Adminis
 String get userABMFieldIsCommerceLabel => languageStatus == 0 ? "Es Manager" : "Is Manager";
 String get userABMFieldIsDeliveryLabel => languageStatus == 0 ? "Es Delivery" : "Is Delivery";
 String get userABMFieldIsCustomerLabel => languageStatus == 0 ? "Es Cliente" : "Is Customer";
+String get userProgressBarNowTitle => languageStatus == 0 ? "Ahora" : "Now";
+String get userProgressBarAgoTitle => languageStatus == 0 ? "Hace 30 días" : "30 days ago";
 
 String get userDocumentListTitle => languageStatus == 0 ? "Documentos" : "Documents";
 String get userDocumentABMDocumentsTitle => languageStatus == 0 ? "Documentos" : "Documents";

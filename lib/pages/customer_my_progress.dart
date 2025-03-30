@@ -40,7 +40,7 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
       CollectionReference myExams =
           firestoreInstance.collection(firebaseCustomUserExamKey);
 
-      CollectionReference myCategory = 
+      CollectionReference myCategory =
           firestoreInstance.collection(firebaseCustomCategoryKey);
 
       myExams
@@ -64,7 +64,8 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
           .then((querySnapshot) {
         for (var result in querySnapshot.docs) {
           setState(() {
-            cateList.add(CategoryModel.fromJSON(false, result.id, result.data()));
+            cateList
+                .add(CategoryModel.fromJSON(false, result.id, result.data()));
           });
         }
 
@@ -85,130 +86,130 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
 
   @override
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: ApplicationBar(
-      context: context,
-      title: menuProfilerCustomerProgressMyExamsTitle,
-      withShareButton: false,
-    ),
-    body: isFinishLoad
-        ? Column(
-            children: [
-              const SizedBox(height: 16),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                  children: [
-                      BarChart(
-                      BarChartData(
-                        alignment: BarChartAlignment.spaceAround,
-                        maxY: 100,
-                        minY: 0,
-                        barTouchData: BarTouchData(
-                          enabled: true,
-                          touchTooltipData: BarTouchTooltipData(
-                            tooltipBgColor: Colors.grey[900],
-                            getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                              String label =
-                                  rodIndex == 0 ? 'Last 30 Days' : 'Right Now';
-                              return BarTooltipItem(
-                                '$label\n',
-                                const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                                children: [
-                                  TextSpan(
-                                    text: '${rod.toY.toStringAsFixed(1)}%',
-                                    style: const TextStyle(
-                                        color: Colors.tealAccent,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                        titlesData: FlTitlesData(
-                          leftTitles: AxisTitles(
-                            sideTitles: SideTitles(
-                              showTitles: true,
-                              interval: 20,
-                              reservedSize: 40,
-                              getTitlesWidget: (value, meta) => Text(
-                                '${value.toInt()}%',
-                                style: const TextStyle(
-                                  color: Color.fromARGB(255, 71, 70, 70),
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: ApplicationBar(
+        context: context,
+        title: menuProfilerCustomerProgressMyExamsTitle,
+        withShareButton: false,
+      ),
+      body: isFinishLoad
+          ? Column(
+              children: [
+                const SizedBox(height: 16),
+                Expanded(
+                  child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Stack(alignment: Alignment.topCenter, children: [
+                        BarChart(
+                          BarChartData(
+                            alignment: BarChartAlignment.spaceAround,
+                            maxY: 100,
+                            minY: 0,
+                            barTouchData: BarTouchData(
+                              enabled: true,
+                              touchTooltipData: BarTouchTooltipData(
+                                tooltipBgColor: Colors.grey[900],
+                                getTooltipItem:
+                                    (group, groupIndex, rod, rodIndex) {
+                                  String label = rodIndex == 0
+                                      ? userProgressBarAgoTitle
+                                      : userProgressBarNowTitle;
+                                  return BarTooltipItem(
+                                    '$label\n',
+                                    const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                    children: [
+                                      TextSpan(
+                                        text: '${rod.toY.toStringAsFixed(1)}%',
+                                        style: const TextStyle(
+                                            color: Colors.tealAccent,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ],
+                                  );
+                                },
                               ),
                             ),
-                          ),
-                          bottomTitles: AxisTitles(
-                            sideTitles: SideTitles(
-                              showTitles: true,
-                              reservedSize: 48,
-                              getTitlesWidget: (value, meta) {
-                                final index = value.toInt();
-                                if (index < cateList.length) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: SizedBox(
-                                      width: 50,
-                                      child: Text(
-                                        cateList[index].title,
-                                        textAlign: TextAlign.center,
-                                        softWrap: true,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
+                            titlesData: FlTitlesData(
+                              leftTitles: AxisTitles(
+                                sideTitles: SideTitles(
+                                  showTitles: true,
+                                  interval: 20,
+                                  reservedSize: 40,
+                                  getTitlesWidget: (value, meta) => Text(
+                                    '${value.toInt()}%',
+                                    style: const TextStyle(
+                                      color: Color.fromARGB(255, 71, 70, 70),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
                                     ),
-                                  );
-                                }
-                                return const SizedBox.shrink();
-                              },
+                                  ),
+                                ),
+                              ),
+                              bottomTitles: AxisTitles(
+                                sideTitles: SideTitles(
+                                  showTitles: true,
+                                  reservedSize: 48,
+                                  getTitlesWidget: (value, meta) {
+                                    final index = value.toInt();
+                                    if (index < cateList.length) {
+                                      return Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 8.0),
+                                        child: SizedBox(
+                                          width: 50,
+                                          child: Text(
+                                            cateList[index].title,
+                                            textAlign: TextAlign.center,
+                                            softWrap: true,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    return const SizedBox.shrink();
+                                  },
+                                ),
+                              ),
+                              rightTitles: const AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false)),
+                              topTitles: const AxisTitles(
+                                  sideTitles: SideTitles(showTitles: false)),
                             ),
+                            gridData: FlGridData(
+                              show: true,
+                              horizontalInterval: 20,
+                              drawVerticalLine: false,
+                              getDrawingHorizontalLine: (value) => FlLine(
+                                color: const Color.fromARGB(255, 51, 51, 51)
+                                    .withOpacity(0.2),
+                                strokeWidth: 1,
+                              ),
+                            ),
+                            borderData: FlBorderData(show: false),
+                            barGroups: _generateBarGroups(),
                           ),
-                          rightTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false)),
-                          topTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: false)),
                         ),
-                        gridData: FlGridData(
-                          show: true,
-                          horizontalInterval: 20,
-                          drawVerticalLine: false,
-                          getDrawingHorizontalLine: (value) => FlLine(
-                            color: const Color.fromARGB(255, 51, 51, 51).withOpacity(0.2),
-                            strokeWidth: 1,
-                          ),
+                        Positioned.fill(
+                          child: _buildBarLabels(), // Add this
                         ),
-                        borderData: FlBorderData(show: false),
-                        barGroups: _generateBarGroups(),
-                      ),
-                    ),
-                    Positioned.fill(
-                      child: _buildBarLabels(), // Add this
-                    ),
-                  ])
+                      ])),
                 ),
-              ),
-              const SizedBox(height: 16),
-              _buildLegend(),
-              const SizedBox(height: 16),
-            ],
-          )
-        : const Center(child: CircularProgressIndicator()),
-  );
-}
-
+                const SizedBox(height: 16),
+                _buildLegend(),
+                const SizedBox(height: 16),
+              ],
+            )
+          : const Center(child: CircularProgressIndicator()),
+    );
+  }
 
   List<BarChartGroupData> _generateBarGroups() {
     final now = DateTime.now();
@@ -217,9 +218,11 @@ Widget build(BuildContext context) {
     for (int i = 0; i < cateList.length; i++) {
       final category = cateList[i];
 
-      final relevantExams = list.where(
-        (exam) => exam.categorys.any((c) => c.title == category.title),
-      ).toList();
+      final relevantExams = list
+          .where(
+            (exam) => exam.categorys.any((c) => c.title == category.title),
+          )
+          .toList();
       double totalScore = 0;
       int totalCount = 0;
       List<String> totalQA = [];
@@ -231,17 +234,17 @@ Widget build(BuildContext context) {
       for (var exam in relevantExams) {
         if (exam.questionAnswers.isEmpty) continue;
 
-        final correct = exam.questionAnswers
-            .where((qa) => qa.answer.isCorrect && qa.question.category.title == category.title);
+        final correct = exam.questionAnswers.where((qa) =>
+            qa.answer.isCorrect &&
+            qa.question.category.title == category.title);
         List<String> answerTitle = [];
 
-        for(var answer in correct) {
+        for (var answer in correct) {
           answerTitle.add(answer.answer.title);
         }
 
         totalQA = {...totalQA, ...answerTitle}.toList();
         totalCount++;
-        
 
         if (now.difference(exam.creationTime).inDays >= 30) {
           lastQA = {...totalQA, ...answerTitle}.toList();
@@ -249,11 +252,11 @@ Widget build(BuildContext context) {
         }
       }
 
-      totalScore = totalQA.length/category.maxQuestions*100;
-      lastScore = lastQA.length/category.maxQuestions*100;
+      totalScore = totalQA.length / category.maxQuestions * 100;
+      lastScore = lastQA.length / category.maxQuestions * 100;
 
-      double avgTotal = totalCount > 0 ? totalScore: 0;
-      double avgLast = lastCount > 0 ? lastScore: 0;
+      double avgTotal = totalCount > 0 ? totalScore : 0;
+      double avgLast = lastCount > 0 ? lastScore : 0;
 
       barGroups.add(
         BarChartGroupData(
@@ -268,7 +271,8 @@ Widget build(BuildContext context) {
               backDrawRodData: BackgroundBarChartRodData(
                 show: true,
                 toY: 100,
-                color: const Color.fromARGB(255, 230, 124, 124).withOpacity(0.1),
+                color:
+                    const Color.fromARGB(255, 230, 124, 124).withOpacity(0.1),
               ),
             ),
             BarChartRodData(
@@ -279,7 +283,8 @@ Widget build(BuildContext context) {
               backDrawRodData: BackgroundBarChartRodData(
                 show: true,
                 toY: 100,
-                color: const Color.fromARGB(255, 131, 184, 228).withOpacity(0.1),
+                color:
+                    const Color.fromARGB(255, 131, 184, 228).withOpacity(0.1),
               ),
             ),
           ],
@@ -294,9 +299,10 @@ Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _legendItem(const Color.fromARGB(255, 233, 29, 63), 'Last 30 Days'),
+        _legendItem(
+            const Color.fromARGB(255, 233, 29, 63), userProgressBarAgoTitle),
         const SizedBox(width: 24),
-        _legendItem(Colors.blue.shade400, 'Right Now'),
+        _legendItem(Colors.blue.shade400, userProgressBarNowTitle),
       ],
     );
   }
@@ -325,61 +331,58 @@ Widget build(BuildContext context) {
   }
 
   Widget _buildBarLabels() {
-  final barGroups = _generateBarGroups();
+    final barGroups = _generateBarGroups();
 
-  return LayoutBuilder(
-    builder: (context, constraints) {
-      final groupCount = barGroups.length;
-      final groupWidth = (constraints.maxWidth-40) / groupCount;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final groupCount = barGroups.length;
+        final groupWidth = (constraints.maxWidth - 40) / groupCount;
 
-      return Stack(
-        children: List.generate(groupCount, (index) {
-          final group = barGroups[index];
-          final rods = group.barRods;
-
-          return Positioned(
-            left: groupWidth * index + groupWidth/3.6 +40,
-            bottom: (rods[0].toY / 100) * (constraints.maxHeight-50) + 50,
-            child: Column(
-              children: [
-                Text(
-                  '${rods[0].toY.toStringAsFixed(0)}%',
-                  style: const TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 233, 29, 63),
-                  ),
-                ),
-              ],
-            ),
-          );
-        })
-          ..addAll(List.generate(groupCount, (index) {
+        return Stack(
+          children: List.generate(groupCount, (index) {
             final group = barGroups[index];
             final rods = group.barRods;
 
             return Positioned(
-              left: groupWidth * index + groupWidth / 1.75 + 40,
-              bottom: (rods[1].toY / 100) * (constraints.maxHeight-50) + 50,
+              left: groupWidth * index + groupWidth / 3.6 + 40,
+              bottom: (rods[0].toY / 100) * (constraints.maxHeight - 50) + 50,
               child: Column(
                 children: [
                   Text(
-                    '${rods[1].toY.toStringAsFixed(0)}%',
+                    '${rods[0].toY.toStringAsFixed(0)}%',
                     style: const TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                      color: Color.fromARGB(255, 233, 29, 63),
                     ),
                   ),
                 ],
               ),
             );
-          })),
-      );
-    },
-  );
-}
+          })
+            ..addAll(List.generate(groupCount, (index) {
+              final group = barGroups[index];
+              final rods = group.barRods;
 
-
-
+              return Positioned(
+                left: groupWidth * index + groupWidth / 1.75 + 40,
+                bottom: (rods[1].toY / 100) * (constraints.maxHeight - 50) + 50,
+                child: Column(
+                  children: [
+                    Text(
+                      '${rods[1].toY.toStringAsFixed(0)}%',
+                      style: const TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            })),
+        );
+      },
+    );
+  }
 }
