@@ -1,5 +1,5 @@
 import 'package:mdexam/models/category_model.dart';
-import 'package:mdexam/models/question_answer_model.dart';
+// import 'package:mdexam/models/question_answer_model.dart';
 import 'package:mdexam/models/user_exam_model.dart';
 import 'package:mdexam/variables/globalvar.dart';
 import 'package:mdexam/widgets/application_bar.dart';
@@ -99,98 +99,105 @@ Widget build(BuildContext context) {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: BarChart(
-                    BarChartData(
-                      alignment: BarChartAlignment.spaceAround,
-                      maxY: 100,
-                      minY: 0,
-                      barTouchData: BarTouchData(
-                        enabled: true,
-                        touchTooltipData: BarTouchTooltipData(
-                          tooltipBgColor: Colors.grey[900],
-                          getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                            String label =
-                                rodIndex == 0 ? 'Last 30 Days' : 'Right Now';
-                            return BarTooltipItem(
-                              '$label\n',
-                              const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                              children: [
-                                TextSpan(
-                                  text: '${rod.toY.toStringAsFixed(1)}%',
-                                  style: const TextStyle(
-                                      color: Colors.tealAccent,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                      titlesData: FlTitlesData(
-                        leftTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            interval: 20,
-                            reservedSize: 40,
-                            getTitlesWidget: (value, meta) => Text(
-                              '${value.toInt()}%',
-                              style: const TextStyle(
-                                color: Color.fromARGB(255, 71, 70, 70),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ),
-                        bottomTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            reservedSize: 48,
-                            getTitlesWidget: (value, meta) {
-                              final index = value.toInt();
-                              if (index < cateList.length) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: SizedBox(
-                                    width: 50,
-                                    child: Text(
-                                      cateList[index].title,
-                                      textAlign: TextAlign.center,
-                                      softWrap: true,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
+                  child: Stack(
+                    alignment: Alignment.topCenter,
+                  children: [
+                      BarChart(
+                      BarChartData(
+                        alignment: BarChartAlignment.spaceAround,
+                        maxY: 100,
+                        minY: 0,
+                        barTouchData: BarTouchData(
+                          enabled: true,
+                          touchTooltipData: BarTouchTooltipData(
+                            tooltipBgColor: Colors.grey[900],
+                            getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                              String label =
+                                  rodIndex == 0 ? 'Last 30 Days' : 'Right Now';
+                              return BarTooltipItem(
+                                '$label\n',
+                                const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                                children: [
+                                  TextSpan(
+                                    text: '${rod.toY.toStringAsFixed(1)}%',
+                                    style: const TextStyle(
+                                        color: Colors.tealAccent,
+                                        fontWeight: FontWeight.w500),
                                   ),
-                                );
-                              }
-                              return const SizedBox.shrink();
+                                ],
+                              );
                             },
                           ),
                         ),
-                        rightTitles: const AxisTitles(
-                            sideTitles: SideTitles(showTitles: false)),
-                        topTitles: const AxisTitles(
-                            sideTitles: SideTitles(showTitles: false)),
-                      ),
-                      gridData: FlGridData(
-                        show: true,
-                        horizontalInterval: 20,
-                        drawVerticalLine: false,
-                        getDrawingHorizontalLine: (value) => FlLine(
-                          color: const Color.fromARGB(255, 51, 51, 51).withOpacity(0.2),
-                          strokeWidth: 1,
+                        titlesData: FlTitlesData(
+                          leftTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              interval: 20,
+                              reservedSize: 40,
+                              getTitlesWidget: (value, meta) => Text(
+                                '${value.toInt()}%',
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 71, 70, 70),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ),
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              reservedSize: 48,
+                              getTitlesWidget: (value, meta) {
+                                final index = value.toInt();
+                                if (index < cateList.length) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: SizedBox(
+                                      width: 50,
+                                      child: Text(
+                                        cateList[index].title,
+                                        textAlign: TextAlign.center,
+                                        softWrap: true,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                return const SizedBox.shrink();
+                              },
+                            ),
+                          ),
+                          rightTitles: const AxisTitles(
+                              sideTitles: SideTitles(showTitles: false)),
+                          topTitles: const AxisTitles(
+                              sideTitles: SideTitles(showTitles: false)),
                         ),
+                        gridData: FlGridData(
+                          show: true,
+                          horizontalInterval: 20,
+                          drawVerticalLine: false,
+                          getDrawingHorizontalLine: (value) => FlLine(
+                            color: const Color.fromARGB(255, 51, 51, 51).withOpacity(0.2),
+                            strokeWidth: 1,
+                          ),
+                        ),
+                        borderData: FlBorderData(show: false),
+                        barGroups: _generateBarGroups(),
                       ),
-                      borderData: FlBorderData(show: false),
-                      barGroups: _generateBarGroups(),
                     ),
-                  ),
+                    Positioned.fill(
+                      child: _buildBarLabels(), // Add this
+                    ),
+                  ])
                 ),
               ),
               const SizedBox(height: 16),
@@ -316,5 +323,63 @@ Widget build(BuildContext context) {
       ],
     );
   }
+
+  Widget _buildBarLabels() {
+  final barGroups = _generateBarGroups();
+
+  return LayoutBuilder(
+    builder: (context, constraints) {
+      final groupCount = barGroups.length;
+      final groupWidth = (constraints.maxWidth-40) / groupCount;
+
+      return Stack(
+        children: List.generate(groupCount, (index) {
+          final group = barGroups[index];
+          final rods = group.barRods;
+
+          return Positioned(
+            left: groupWidth * index + groupWidth/3.6 +40,
+            bottom: (rods[0].toY / 100) * (constraints.maxHeight-50) + 50,
+            child: Column(
+              children: [
+                Text(
+                  '${rods[0].toY.toStringAsFixed(0)}%',
+                  style: const TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 233, 29, 63),
+                  ),
+                ),
+              ],
+            ),
+          );
+        })
+          ..addAll(List.generate(groupCount, (index) {
+            final group = barGroups[index];
+            final rods = group.barRods;
+
+            return Positioned(
+              left: groupWidth * index + groupWidth / 1.75 + 40,
+              bottom: (rods[1].toY / 100) * (constraints.maxHeight-50) + 50,
+              child: Column(
+                children: [
+                  Text(
+                    '${rods[1].toY.toStringAsFixed(0)}%',
+                    style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          })),
+      );
+    },
+  );
+}
+
+
 
 }
