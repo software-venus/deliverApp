@@ -85,8 +85,9 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
   }
 
   @override
-  @override
   Widget build(BuildContext context) {
+    final isVertical = MediaQuery.of(context).size.width >= 1200;
+
     return Scaffold(
       appBar: ApplicationBar(
         context: context,
@@ -99,108 +100,10 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
                 const SizedBox(height: 16),
                 Expanded(
                   child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Stack(alignment: Alignment.topCenter, children: [
-                        BarChart(
-                          BarChartData(
-                            alignment: BarChartAlignment.spaceAround,
-                            maxY: 100,
-                            minY: 0,
-                            barTouchData: BarTouchData(
-                              enabled: true,
-                              touchTooltipData: BarTouchTooltipData(
-                                tooltipBgColor: Colors.grey[900],
-                                getTooltipItem:
-                                    (group, groupIndex, rod, rodIndex) {
-                                  String label = rodIndex == 0
-                                      ? userProgressBarAgoTitle
-                                      : userProgressBarNowTitle;
-                                  return BarTooltipItem(
-                                    '$label\n',
-                                    const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                    children: [
-                                      TextSpan(
-                                        text: '${rod.toY.toStringAsFixed(1)}%',
-                                        style: const TextStyle(
-                                            color: Colors.tealAccent,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
-                            ),
-                            titlesData: FlTitlesData(
-                              leftTitles: AxisTitles(
-                                sideTitles: SideTitles(
-                                  showTitles: true,
-                                  interval: 20,
-                                  reservedSize: 40,
-                                  getTitlesWidget: (value, meta) => Text(
-                                    '${value.toInt()}%',
-                                    style: const TextStyle(
-                                      color: Color.fromARGB(255, 71, 70, 70),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              bottomTitles: AxisTitles(
-                                sideTitles: SideTitles(
-                                  showTitles: true,
-                                  reservedSize: 48,
-                                  getTitlesWidget: (value, meta) {
-                                    final index = value.toInt();
-                                    if (index < cateList.length) {
-                                      return Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 8.0),
-                                        child: SizedBox(
-                                          width: 50,
-                                          child: Text(
-                                            cateList[index].title,
-                                            textAlign: TextAlign.center,
-                                            softWrap: true,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: const TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    return const SizedBox.shrink();
-                                  },
-                                ),
-                              ),
-                              rightTitles: const AxisTitles(
-                                  sideTitles: SideTitles(showTitles: false)),
-                              topTitles: const AxisTitles(
-                                  sideTitles: SideTitles(showTitles: false)),
-                            ),
-                            gridData: FlGridData(
-                              show: true,
-                              horizontalInterval: 20,
-                              drawVerticalLine: false,
-                              getDrawingHorizontalLine: (value) => FlLine(
-                                color: const Color.fromARGB(255, 51, 51, 51)
-                                    .withOpacity(0.2),
-                                strokeWidth: 1,
-                              ),
-                            ),
-                            borderData: FlBorderData(show: false),
-                            barGroups: _generateBarGroups(),
-                          ),
-                        ),
-                        Positioned.fill(
-                          child: _buildBarLabels(), // Add this
-                        ),
-                      ])),
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: isVertical
+                          ? _buildVerticalChart()
+                          : _buildHorizontalChart()),
                 ),
                 const SizedBox(height: 16),
                 _buildLegend(),
@@ -209,6 +112,244 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
             )
           : const Center(child: CircularProgressIndicator()),
     );
+  }
+
+  Widget _buildVerticalChart() {
+    final ScrollController _scrollController = ScrollController();
+    return Scrollbar(
+        controller: _scrollController,
+        thumbVisibility: true,
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        scrollDirection: Axis.horizontal,
+        child: SizedBox(
+          width: 1400,
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              BarChart(
+                BarChartData(
+                  alignment: BarChartAlignment.spaceAround,
+                  maxY: 100,
+                  minY: 0,
+                  barTouchData: BarTouchData(
+                    enabled: true,
+                    touchTooltipData: BarTouchTooltipData(
+                      tooltipBgColor: Colors.grey[900],
+                      getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                        String label = rodIndex == 0
+                            ? userProgressBarAgoTitle
+                            : userProgressBarNowTitle;
+                        return BarTooltipItem(
+                          '$label\n',
+                          const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                          children: [
+                            TextSpan(
+                              text: '${rod.toY.toStringAsFixed(1)}%',
+                              style: const TextStyle(
+                                  color: Colors.tealAccent,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                  titlesData: FlTitlesData(
+                    leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        interval: 20,
+                        reservedSize: 40,
+                        getTitlesWidget: (value, meta) => Text(
+                          '${value.toInt()}%',
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 71, 70, 70),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 48,
+                        getTitlesWidget: (value, meta) {
+                          final index = value.toInt();
+                          if (index < cateList.length) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: SizedBox(
+                                width: 50,
+                                child: Text(
+                                  cateList[index].title,
+                                  textAlign: TextAlign.center,
+                                  softWrap: true,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
+                    ),
+                    rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                  ),
+                  gridData: FlGridData(
+                    show: true,
+                    horizontalInterval: 20,
+                    drawVerticalLine: false,
+                    getDrawingHorizontalLine: (value) => FlLine(
+                      color: const Color.fromARGB(255, 51, 51, 51)
+                          .withOpacity(0.2),
+                      strokeWidth: 1,
+                    ),
+                  ),
+                  borderData: FlBorderData(show: false),
+                  barGroups: _generateBarGroups(),
+                ),
+              ),
+              Positioned.fill(
+                child: _buildBarLabels(), // overlays the percent labels
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHorizontalChart() {
+    final ScrollController _scrollController = ScrollController();
+    return RotatedBox(
+        quarterTurns: 1,
+        child: Scrollbar(
+        controller: _scrollController,
+        thumbVisibility: true,
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        scrollDirection: Axis.horizontal,
+        child: SizedBox(
+          width: 1400,
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              BarChart(
+                BarChartData(
+                  alignment: BarChartAlignment.spaceAround,
+                  maxY: 100,
+                  minY: 0,
+                  barTouchData: BarTouchData(
+                    enabled: true,
+                    touchTooltipData: BarTouchTooltipData(
+                      tooltipBgColor: Colors.grey[900],
+                      getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                        String label = rodIndex == 0
+                            ? userProgressBarAgoTitle
+                            : userProgressBarNowTitle;
+                        return BarTooltipItem(
+                          '$label\n',
+                          const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                          children: [
+                            TextSpan(
+                              text: '${rod.toY.toStringAsFixed(1)}%',
+                              style: const TextStyle(
+                                  color: Colors.tealAccent,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                  titlesData: FlTitlesData(
+                    leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        interval: 20,
+                        reservedSize: 40,
+                        getTitlesWidget: (value, meta) => Text(
+                          '${value.toInt()}%',
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 71, 70, 70),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 48,
+                        getTitlesWidget: (value, meta) {
+                          final index = value.toInt();
+                          if (index < cateList.length) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: SizedBox(
+                                width: 50,
+                                child: Text(
+                                  cateList[index].title,
+                                  textAlign: TextAlign.center,
+                                  softWrap: true,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
+                    ),
+                    rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                    topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false),
+                    ),
+                  ),
+                  gridData: FlGridData(
+                    show: true,
+                    horizontalInterval: 20,
+                    drawVerticalLine: false,
+                    getDrawingHorizontalLine: (value) => FlLine(
+                      color: const Color.fromARGB(255, 51, 51, 51)
+                          .withOpacity(0.2),
+                      strokeWidth: 1,
+                    ),
+                  ),
+                  borderData: FlBorderData(show: false),
+                  barGroups: _generateBarGroups(),
+                ),
+              ),
+              Positioned.fill(
+                child: _buildBarLabels(), // overlays the percent labels
+              ),
+            ],
+          ),
+        ),
+      ),
+    ));
   }
 
   List<BarChartGroupData> _generateBarGroups() {
@@ -344,7 +485,7 @@ class CustomerMyExamListState extends State<CustomerMyProgress> {
             final rods = group.barRods;
 
             return Positioned(
-              left: groupWidth * index + groupWidth / 3.6 + 40,
+              left: groupWidth * index + groupWidth / 4 + 40,
               bottom: (rods[0].toY / 100) * (constraints.maxHeight - 50) + 50,
               child: Column(
                 children: [
