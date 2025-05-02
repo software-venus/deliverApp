@@ -158,6 +158,7 @@ flutter:
     - assets/icons/user.png
     - assets/logo.png
     - assets/menuhead.png
+    - assets/sidebar.jpg
   # localization:
   #   arb-dir: lib/l10n
   #   template-arb-file: app_en.arb

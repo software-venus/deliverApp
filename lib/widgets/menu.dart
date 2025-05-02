@@ -32,367 +32,380 @@ class Menu extends Drawer {
       : super(
           key: key,
           elevation: 20,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              _createHeader(),
-
-/* ABM List */
-              homePageState.isLogin && homePageState.loginIsAdministrator
-                  ? _createDrawerTitle(
-                      text: menuABMListTitle, textColor: Colors.black54)
-                  : Container(),
-
-/* Question List */
-              homePageState.isLogin && homePageState.loginIsAdministrator
-                  ? createDrawerItem(
-                      icon: Icons.question_answer_outlined,
-                      text: menuProfilerAdministratorQuestionListTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const QuestionList(),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-
-/* Category List */
-              homePageState.isLogin && homePageState.loginIsAdministrator
-                  ? createDrawerItem(
-                      icon: Icons.category_outlined,
-                      text: menuProfilerAdministratorCategoryListTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const CategoryList(),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-
-/* Membership List */
-              homePageState.isLogin && homePageState.loginIsAdministrator
-                  ? createDrawerItem(
-                      icon: Icons.card_membership_outlined,
-                      text: menuProfilerAdministratorMembershipListTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const MembershipList(),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-
-/* Flashcard Question List */
-              homePageState.isLogin && homePageState.loginIsAdministrator
-                  ? createDrawerItem(
-                      icon: Icons.flash_on_outlined,
-                      text: menuProfilerAdministratorFlashcardQuestionListTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const FlashcardQuestionList(),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-
-/* Flashcard Category List */
-              homePageState.isLogin && homePageState.loginIsAdministrator
-                  ? createDrawerItem(
-                      icon: Icons.flash_on_outlined,
-                      text: menuProfilerAdministratorFlashcardCategoryListTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const FlashcardCategoryList(),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-
-/* Video List */
-              homePageState.isLogin && homePageState.loginIsAdministrator
-                  ? createDrawerItem(
-                      icon: Icons.play_arrow_rounded,
-                      text: menuProfilerAdministratorVideoListTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const VideoList(),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-
-/* Video Category List */
-              homePageState.isLogin && homePageState.loginIsAdministrator
-                  ? createDrawerItem(
-                      icon: Icons.play_arrow_rounded,
-                      text: menuProfilerAdministratorVideoCategoryListTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const VideoCategoryList(),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-
-/* Parameter List */
-              homePageState.isLogin && homePageState.loginIsAdministrator
-                  ? createDrawerItem(
-                      icon: Icons.panorama_horizontal_select_outlined,
-                      text: menuParameterTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.pushNamed(context, "/ParameterList");
-                      },
-                    )
-                  : Container(),
-
-/* Customer */
-              _createDrawerTitle(
-                  text: menuProfilerCustomerListTitle,
-                  textColor: Colors.black54),
-
-/* Customer About Us */
-              createDrawerImageItem(
-                icon: "assets/icons/info.png",
-                text: menuProfilerCustomerAboutUsTitle,
-                textColor: Colors.black,
-                onTap: () async {
-                  ParameterModel parameterModel =
-                      parameterStringFromKey2ToParameterModel(
-                          homePageState.listParameters, "CustomerAboutUs");
-                  String enContent = await getTranslatedDetail(parameterModel.additional, languageStatus);
-                  Navigator.push<void>(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => ContentView(
-                          title: menuProfilerCustomerAboutUsTitle,
-                          body: enContent,
-                          isFooterPayment: false),
-                    ),
-                  );
-                },
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover, // Fill the entire ListView area with the background image
+                image: AssetImage('assets/sidebar.jpg'), // Set the background image
               ),
+            ),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                _createHeader(),
 
-/* Customer Frequent Questions */
-              createDrawerImageItem(
-                icon: "assets/icons/faq.png",
-                text: menuProfilerCustomerFrequentQuestionsTitle,
-                textColor: Colors.black,
-                onTap: () {
-                  ParameterModel parameterModel =
-                      parameterStringFromKey2ToParameterModel(
-                          homePageState.listParameters,
-                          "CustomerFrequentQuestions");
-                  Navigator.push<void>(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => ContentView(
-                          title: menuProfilerCustomerFrequentQuestionsTitle,
-                          body: languageStatus==0? parameterModel.additional:parameterModel.additionalEn,
-                          isFooterPayment: false),
-                    ),
-                  );
-                },
-              ),
+                /* ABM List */
+                homePageState.isLogin && homePageState.loginIsAdministrator
+                    ? _createDrawerTitle(
+                        text: menuABMListTitle, textColor: Colors.black54)
+                    : Container(),
 
-//subscriptions
-              createDrawerImageItem(
-                icon: "assets/icons/money.png",
-                text: menuSubscriptionTitle,
-                textColor: Colors.black,
-                onTap: () {
-                  ParameterModel parameterModel =
-                      parameterStringFromKey2ToParameterModel(
-                          homePageState.listParameters,
-                          "CustomerFrequentQuestions");
-                  Navigator.push<void>(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => ContentView(
-                          title: menuProfilerCustomerFrequentQuestionsTitle,
-                          body: languageStatus==0? parameterModel.additional:parameterModel.additionalEn,
-                          isFooterPayment: false),
-                    ),
-                  );
-                },
-              ),
+                /* Question List */
+                homePageState.isLogin && homePageState.loginIsAdministrator
+                    ? createDrawerItem(
+                        icon: Icons.question_answer_outlined,
+                        text: menuProfilerAdministratorQuestionListTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const QuestionList(),
+                            ),
+                          );
+                        },
+                      )
+                    : Container(),
 
-              createDrawerImageItem(
-                icon: "assets/icons/settings.png",
-                text: menuSettingsTitle,
-                textColor: Colors.black,
-                onTap: () {
-                  ParameterModel parameterModel =
-                      parameterStringFromKey2ToParameterModel(
-                          homePageState.listParameters,
-                          "CustomerFrequentQuestions");
-                  Navigator.push<void>(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => ContentView(
-                          title: menuProfilerCustomerFrequentQuestionsTitle,
-                          body: languageStatus==0? parameterModel.additional:parameterModel.additionalEn,
-                          isFooterPayment: false),
-                    ),
-                  );
-                },
-              ),
+                /* Category List */
+                homePageState.isLogin && homePageState.loginIsAdministrator
+                    ? createDrawerItem(
+                        icon: Icons.category_outlined,
+                        text: menuProfilerAdministratorCategoryListTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const CategoryList(),
+                            ),
+                          );
+                        },
+                      )
+                    : Container(),
 
+                /* Membership List */
+                homePageState.isLogin && homePageState.loginIsAdministrator
+                    ? createDrawerItem(
+                        icon: Icons.card_membership_outlined,
+                        text: menuProfilerAdministratorMembershipListTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const MembershipList(),
+                            ),
+                          );
+                        },
+                      )
+                    : Container(),
 
-/* Customer My Exams */
-              homePageState.isLogin && homePageState.loginIsCustomer
-                  ? createDrawerImageItem(
-                      icon: "assets/icons/user.png",
-                      text: menuProfileTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                CustomerMyExamList(
-                                    loginUsername: homePageState.loginUsername),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
+                /* Flashcard Question List */
+                homePageState.isLogin && homePageState.loginIsAdministrator
+                    ? createDrawerItem(
+                        icon: Icons.flash_on_outlined,
+                        text: menuProfilerAdministratorFlashcardQuestionListTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const FlashcardQuestionList(),
+                            ),
+                          );
+                        },
+                      )
+                    : Container(),
 
-/* CPanel */
-              const Divider(),
-              _createDrawerTitle(
-                  text: menuCPanelTitle, textColor: Colors.black54),
-              homePageState.isLogin
-                  ? createDrawerItem(
-                      icon: Icons.login_rounded,
-                      text: homePageState.loginUsername,
-                      textColor: Colors.black,
-                    )
-                  : Container(),
+                /* Flashcard Category List */
+                homePageState.isLogin && homePageState.loginIsAdministrator
+                    ? createDrawerItem(
+                        icon: Icons.flash_on_outlined,
+                        text: menuProfilerAdministratorFlashcardCategoryListTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const FlashcardCategoryList(),
+                            ),
+                          );
+                        },
+                      )
+                    : Container(),
 
-              !homePageState.isLogin
-                  ? createDrawerItem(
-                      icon: Icons.login_rounded,
-                      text: menuCPanelUserLoginTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => UserLogin(
-                                homePageState: homePageState,
-                                dobleClosed: true),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-              homePageState.isLogin &&
-                      (homePageState.loginCanListUsers ||
-                          homePageState.loginUsername
-                                  .trim()
-                                  .compareTo("joseluisocleppo@hotmail.com") ==
-                              0)
-                  ? createDrawerItem(
-                      icon: Icons.people_rounded,
-                      text: menuCPanelUserListTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.pushNamed(context, "/UserList");
-                      },
-                    )
-                  : Container(),
-              !homePageState.isLogin
-                  ? createDrawerItem(
-                      icon: Icons.vpn_key_rounded,
-                      text: menuCPanelUserLostPasswordTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.pushNamed(context, "/UserLostPassword");
-                      },
-                    )
-                  : Container(),
-              homePageState.isLogin
-                  ? createDrawerItem(
-                      icon: Icons.logout_rounded,
-                      text: menuCPanelUserLogoutTitle,
-                      textColor: Colors.red.shade700,
-                      onTap: () {
-                        _userLogout(context, homePageState);
-                      })
-                  : Container(),
-              const Divider(),
-              // homePageState.isLogin
-              //     ? createDrawerItem(
-              //         icon: Icons.no_accounts_rounded,
-              //         text: menuCPanelUserDeleteTitle,
-              //         textColor: Colors.red,
-              //         onTap: () {
-              //           ShowDialogYesNo showDialogYesNo = ShowDialogYesNo(
-              //               onClickYes: () {
-              //                 ShowDialogOk showDialogOk = ShowDialogOk();
-              //                 showDialogOk.show(
-              //                     context, userDeletedTitle, userDeletedBody);
-              //               },
-              //               onClickNo: () {});
-              //           showDialogYesNo.show(
-              //               context,
-              //               userDeleteTitle,
-              //               userDeleteQuestion,
-              //               userDeleteYesCaption,
-              //               userDeleteNoCaption);
-              //         })
-              //     : Container(),
-              const Divider(),
-              createDrawerImageItem(
-                icon: "assets/icons/language.png",
-                text: menuLanguageTitle,
-                textColor: Colors.black,
-                onTap: () {
-                  
-                },
-              ),
-              const Center(child: LanguageSwitcherButton()),
-              const Divider(),
-            ],
+                /* Video List */
+                homePageState.isLogin && homePageState.loginIsAdministrator
+                    ? createDrawerItem(
+                        icon: Icons.play_arrow_rounded,
+                        text: menuProfilerAdministratorVideoListTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const VideoList(),
+                            ),
+                          );
+                        },
+                      )
+                    : Container(),
+
+                /* Video Category List */
+                homePageState.isLogin && homePageState.loginIsAdministrator
+                    ? createDrawerItem(
+                        icon: Icons.play_arrow_rounded,
+                        text: menuProfilerAdministratorVideoCategoryListTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  const VideoCategoryList(),
+                            ),
+                          );
+                        },
+                      )
+                    : Container(),
+
+                /* Parameter List */
+                homePageState.isLogin && homePageState.loginIsAdministrator
+                    ? createDrawerItem(
+                        icon: Icons.panorama_horizontal_select_outlined,
+                        text: menuParameterTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.pushNamed(context, "/ParameterList");
+                        },
+                      )
+                    : Container(),
+
+                /* Customer */
+                _createDrawerTitle(
+                    text: menuProfilerCustomerListTitle,
+                    textColor: Colors.black54),
+
+                /* Customer About Us */
+                createDrawerImageItem(
+                  icon: "assets/icons/info.png",
+                  text: menuProfilerCustomerAboutUsTitle,
+                  textColor: Colors.black,
+                  onTap: () async {
+                    ParameterModel parameterModel =
+                        parameterStringFromKey2ToParameterModel(
+                            homePageState.listParameters, "CustomerAboutUs");
+                    String enContent =
+                        await getTranslatedDetail(parameterModel.additional, languageStatus);
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => ContentView(
+                            title: menuProfilerCustomerAboutUsTitle,
+                            body: enContent,
+                            isFooterPayment: false),
+                      ),
+                    );
+                  },
+                ),
+
+                /* Customer Frequent Questions */
+                createDrawerImageItem(
+                  icon: "assets/icons/faq.png",
+                  text: menuProfilerCustomerFrequentQuestionsTitle,
+                  textColor: Colors.black,
+                  onTap: () {
+                    ParameterModel parameterModel =
+                        parameterStringFromKey2ToParameterModel(
+                            homePageState.listParameters,
+                            "CustomerFrequentQuestions");
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => ContentView(
+                            title: menuProfilerCustomerFrequentQuestionsTitle,
+                            body: languageStatus == 0
+                                ? parameterModel.additional
+                                : parameterModel.additionalEn,
+                            isFooterPayment: false),
+                      ),
+                    );
+                  },
+                ),
+
+                /* Subscriptions */
+                createDrawerImageItem(
+                  icon: "assets/icons/money.png",
+                  text: menuSubscriptionTitle,
+                  textColor: Colors.black,
+                  onTap: () {
+                    ParameterModel parameterModel =
+                        parameterStringFromKey2ToParameterModel(
+                            homePageState.listParameters,
+                            "CustomerFrequentQuestions");
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => ContentView(
+                            title: menuProfilerCustomerFrequentQuestionsTitle,
+                            body: languageStatus == 0
+                                ? parameterModel.additional
+                                : parameterModel.additionalEn,
+                            isFooterPayment: false),
+                      ),
+                    );
+                  },
+                ),
+
+                createDrawerImageItem(
+                  icon: "assets/icons/settings.png",
+                  text: menuSettingsTitle,
+                  textColor: Colors.black,
+                  onTap: () {
+                    ParameterModel parameterModel =
+                        parameterStringFromKey2ToParameterModel(
+                            homePageState.listParameters,
+                            "CustomerFrequentQuestions");
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => ContentView(
+                            title: menuProfilerCustomerFrequentQuestionsTitle,
+                            body: languageStatus == 0
+                                ? parameterModel.additional
+                                : parameterModel.additionalEn,
+                            isFooterPayment: false),
+                      ),
+                    );
+                  },
+                ),
+
+                /* Customer My Exams */
+                homePageState.isLogin && homePageState.loginIsCustomer
+                    ? createDrawerImageItem(
+                        icon: "assets/icons/user.png",
+                        text: menuProfileTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) =>
+                                  CustomerMyExamList(
+                                      loginUsername: homePageState.loginUsername),
+                            ),
+                          );
+                        },
+                      )
+                    : Container(),
+
+                /* CPanel */
+                const Divider(),
+                _createDrawerTitle(
+                    text: menuCPanelTitle, textColor: Colors.black54),
+                homePageState.isLogin
+                    ? createDrawerItem(
+                        icon: Icons.login_rounded,
+                        text: homePageState.loginUsername,
+                        textColor: Colors.black,
+                      )
+                    : Container(),
+
+                !homePageState.isLogin
+                    ? createDrawerItem(
+                        icon: Icons.login_rounded,
+                        text: menuCPanelUserLoginTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.push<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (BuildContext context) => UserLogin(
+                                  homePageState: homePageState,
+                                  dobleClosed: true),
+                            ),
+                          );
+                        },
+                      )
+                    : Container(),
+                homePageState.isLogin &&
+                        (homePageState.loginCanListUsers ||
+                            homePageState.loginUsername
+                                    .trim()
+                                    .compareTo("joseluisocleppo@hotmail.com") ==
+                                0)
+                    ? createDrawerItem(
+                        icon: Icons.people_rounded,
+                        text: menuCPanelUserListTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.pushNamed(context, "/UserList");
+                        },
+                      )
+                    : Container(),
+                !homePageState.isLogin
+                    ? createDrawerItem(
+                        icon: Icons.vpn_key_rounded,
+                        text: menuCPanelUserLostPasswordTitle,
+                        textColor: Colors.black,
+                        onTap: () {
+                          Navigator.pushNamed(context, "/UserLostPassword");
+                        },
+                      )
+                    : Container(),
+                homePageState.isLogin
+                    ? createDrawerItem(
+                        icon: Icons.logout_rounded,
+                        text: menuCPanelUserLogoutTitle,
+                        textColor: Colors.red.shade700,
+                        onTap: () {
+                          _userLogout(context, homePageState);
+                        })
+                    : Container(),
+                const Divider(),
+                // homePageState.isLogin
+                //     ? createDrawerItem(
+                //         icon: Icons.no_accounts_rounded,
+                //         text: menuCPanelUserDeleteTitle,
+                //         textColor: Colors.red,
+                //         onTap: () {
+                //           ShowDialogYesNo showDialogYesNo = ShowDialogYesNo(
+                //               onClickYes: () {
+                //                 ShowDialogOk showDialogOk = ShowDialogOk();
+                //                 showDialogOk.show(
+                //                     context, userDeletedTitle, userDeletedBody);
+                //               },
+                //               onClickNo: () {});
+                //           showDialogYesNo.show(
+                //               context,
+                //               userDeleteTitle,
+                //               userDeleteQuestion,
+                //               userDeleteYesCaption,
+                //               userDeleteNoCaption);
+                //         })
+                //     : Container(),
+                const Divider(),
+                createDrawerImageItem(
+                  icon: "assets/icons/language.png",
+                  text: menuLanguageTitle,
+                  textColor: Colors.black,
+                  onTap: () {},
+                ),
+                const Center(child: LanguageSwitcherButton()),
+                const Divider(),
+              ],
+            ),
           ),
         );
 }
+
 
 Future<String> getTranslatedDetail(String text, int languageStatus) async {
     final translator = GoogleTranslator();
