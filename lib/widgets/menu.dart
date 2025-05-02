@@ -1,27 +1,27 @@
 // ignore: import_of_legacy_library_into_null_safe
 // ignore_for_file: deprecated_member_use
 
-import 'package:mdexam/models/parameter_model.dart';
-import 'package:mdexam/pages/category_list.dart';
-import 'package:mdexam/pages/content_view.dart';
-import 'package:mdexam/pages/customer_flashcard_my_exam_list.dart';
-import 'package:mdexam/pages/customer_my_exam_list.dart';
-import 'package:mdexam/pages/customer_my_progress.dart';
-import 'package:mdexam/pages/flashcard_category_list.dart';
-import 'package:mdexam/pages/video_category_list.dart';
-import 'package:mdexam/pages/flashcard_question_list.dart';
-import 'package:mdexam/pages/video_list.dart';
+import 'package:entrega/models/parameter_model.dart';
+import 'package:entrega/pages/category_list.dart';
+import 'package:entrega/pages/content_view.dart';
+import 'package:entrega/pages/customer_flashcard_my_exam_list.dart';
+import 'package:entrega/pages/customer_my_exam_list.dart';
+import 'package:entrega/pages/customer_my_progress.dart';
+import 'package:entrega/pages/flashcard_category_list.dart';
+import 'package:entrega/pages/video_category_list.dart';
+import 'package:entrega/pages/flashcard_question_list.dart';
+import 'package:entrega/pages/video_list.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:mdexam/pages/home.dart';
-import 'package:mdexam/pages/membership_list.dart';
+import 'package:entrega/pages/home.dart';
+import 'package:entrega/pages/membership_list.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:mdexam/pages/question_list.dart';
-import 'package:mdexam/pages/user_login.dart';
-import 'package:mdexam/utils/general/reference_Page_State.dart';
-import 'package:mdexam/utils/general/show_dialog_ok.dart';
-import 'package:mdexam/utils/general/show_dialog_yes_no.dart';
-import 'package:mdexam/utils/list_transforms/parameter_list_transforms.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/pages/question_list.dart';
+import 'package:entrega/pages/user_login.dart';
+import 'package:entrega/utils/general/reference_Page_State.dart';
+import 'package:entrega/utils/general/show_dialog_ok.dart';
+import 'package:entrega/utils/general/show_dialog_yes_no.dart';
+import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';

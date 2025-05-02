@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:mdexam/pages/home.dart';
-import 'package:mdexam/pages/parameter_list.dart';
-import 'package:mdexam/pages/payment_cancel.dart';
-import 'package:mdexam/pages/payment_confirm.dart';
-import 'package:mdexam/pages/payment_paypal_confirm.dart';
-import 'package:mdexam/pages/tos.dart';
-import 'package:mdexam/pages/user_list.dart';
-import 'package:mdexam/pages/user_lostpassword.dart';
-import 'package:mdexam/pages/wb_payment_cancel.dart';
-import 'package:mdexam/pages/wb_payment_confirm.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/pages/home.dart';
+import 'package:entrega/pages/parameter_list.dart';
+import 'package:entrega/pages/payment_cancel.dart';
+import 'package:entrega/pages/payment_confirm.dart';
+import 'package:entrega/pages/payment_paypal_confirm.dart';
+import 'package:entrega/pages/tos.dart';
+import 'package:entrega/pages/user_list.dart';
+import 'package:entrega/pages/user_lostpassword.dart';
+import 'package:entrega/pages/wb_payment_cancel.dart';
+import 'package:entrega/pages/wb_payment_confirm.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 // 👇 Generated localization file (after flutter gen-l10n)
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -27,12 +27,13 @@ Future<void> main() async {
   if (isWeb()) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        apiKey: "AIzaSyCPl1-sBA7vZo4VDsY8lHG-SLhjYKAaMak",
-        authDomain: "md-exam-app.firebaseapp.com",
-        projectId: "md-exam-app",
-        storageBucket: "md-exam-app.appspot.com",
-        messagingSenderId: "112666543658",
-        appId: "1:112666543658:web:05c619bf141528c9e26553",
+        apiKey : "AIzaSyDy-wZBBYCQPeytgBPjL6ZtI6tsOvto09E" , 
+        authDomain : "delivertrackapp.firebaseapp.com" , 
+        projectId : "delivertrackapp" , 
+        storageBucket : "delivertrackapp.firebasestorage.app" , 
+        messagingSenderId : "443709792692" , 
+        appId : "1:443709792692:web:3b8d76ffb2d2e1bfc152e1" , 
+        measurementId : "G-SEB02BM0PJ" 
       ),
     );
   } else {

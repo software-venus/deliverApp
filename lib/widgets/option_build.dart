@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mdexam/utils/general/custom_button.dart';
+import 'package:entrega/utils/general/custom_button.dart';
 
 Widget optionBuild(String title, IconData icon, Color iconColor,
     String buttonTitle, double factor, VoidCallback onClick) {

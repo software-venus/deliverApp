@@ -1,13 +1,13 @@
 // ignore_for_file: unnecessary_null_comparison
 
-import 'package:mdexam/models/flashcard_category_model.dart';
-import 'package:mdexam/pages/flashcard_category_list.dart';
-import 'package:mdexam/utils/firebase/firebase_custom_flashcard_category.dart';
-import 'package:mdexam/widgets/application_bar.dart';
-import 'package:mdexam/utils/general/abm.dart';
-import 'package:mdexam/utils/general/reference_Page_State.dart';
+import 'package:entrega/models/flashcard_category_model.dart';
+import 'package:entrega/pages/flashcard_category_list.dart';
+import 'package:entrega/utils/firebase/firebase_custom_flashcard_category.dart';
+import 'package:entrega/widgets/application_bar.dart';
+import 'package:entrega/utils/general/abm.dart';
+import 'package:entrega/utils/general/reference_Page_State.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 // ignore: must_be_immutable
 class FlashcardCategoryABM extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:mdexam/models/video_category_model.dart';
+import 'package:entrega/models/video_category_model.dart';
 
 List<String> videoCategoryListToStringList(List<VideoCategoryModel> list) {
   List<String> result = [];

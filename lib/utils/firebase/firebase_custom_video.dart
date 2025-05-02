@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mdexam/models/video_category_model.dart';
-import 'package:mdexam/models/video_model.dart';
-import 'package:mdexam/utils/general/global.dart';
-import 'package:mdexam/utils/general/show_dialog_wait.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/models/video_category_model.dart';
+import 'package:entrega/models/video_model.dart';
+import 'package:entrega/utils/general/global.dart';
+import 'package:entrega/utils/general/show_dialog_wait.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:uuid/uuid.dart';
 
 class FirebaseCustomVideoHelper {

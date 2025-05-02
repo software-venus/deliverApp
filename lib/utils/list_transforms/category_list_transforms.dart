@@ -1,4 +1,4 @@
-import 'package:mdexam/models/category_model.dart';
+import 'package:entrega/models/category_model.dart';
 
 List<String> categoryListToStringList(List<CategoryModel> list) {
   List<String> result = [];

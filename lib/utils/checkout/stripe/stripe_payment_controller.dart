@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:mdexam/models/parameter_model.dart';
-import 'package:mdexam/utils/checkout/base_payment_controller.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/utils/list_transforms/parameter_list_transforms.dart';
+import 'package:entrega/models/parameter_model.dart';
+import 'package:entrega/utils/checkout/base_payment_controller.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart';
 
 class StripePaymentController extends BasePaymentController {
   String secretKey = "";

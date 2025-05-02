@@ -1,4 +1,4 @@
-import 'package:mdexam/models/parameter_model.dart';
+import 'package:entrega/models/parameter_model.dart';
 
 List<String> parameterListToStringList(List<ParameterModel> list) {
   List<String> result = [];

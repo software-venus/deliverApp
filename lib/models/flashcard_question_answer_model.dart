@@ -1,5 +1,5 @@
-import 'package:mdexam/models/flashcard_answer_model.dart';
-import 'package:mdexam/models/flashcard_question_model.dart';
+import 'package:entrega/models/flashcard_answer_model.dart';
+import 'package:entrega/models/flashcard_question_model.dart';
 
 class FlashcardQuestionAnswerModel {
   FlashcardQuestionModel question;

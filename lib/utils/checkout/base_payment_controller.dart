@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mdexam/main.dart';
-import 'package:mdexam/models/parameter_model.dart';
-import 'package:mdexam/pages/custom_web_view.dart';
-import 'package:mdexam/utils/firebase/firebase_custom_membership.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/main.dart';
+import 'package:entrega/models/parameter_model.dart';
+import 'package:entrega/pages/custom_web_view.dart';
+import 'package:entrega/utils/firebase/firebase_custom_membership.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/variables/globalvar.dart';
 import "package:universal_html/html.dart" as universal_html;
 
 class BasePaymentController {

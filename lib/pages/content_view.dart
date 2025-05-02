@@ -1,11 +1,11 @@
 // ignore: import_of_legacy_library_into_null_safe
 // ignore_for_file: deprecated_member_use
 
-import 'package:mdexam/variables/globalvar.dart';
-import 'package:mdexam/widgets/application_bar.dart';
-import 'package:mdexam/widgets/create_click_item.dart';
+import 'package:entrega/variables/globalvar.dart';
+import 'package:entrega/widgets/application_bar.dart';
+import 'package:entrega/widgets/create_click_item.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
 import 'package:share/share.dart';
 import 'package:styled_text/styled_text.dart';
 import 'package:url_launcher/url_launcher.dart';

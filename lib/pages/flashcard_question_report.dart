@@ -1,9 +1,9 @@
-import 'package:mdexam/models/flashcard_question_answer_model.dart';
-import 'package:mdexam/models/user_flashcard_exam_model.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/models/flashcard_question_answer_model.dart';
+import 'package:entrega/models/user_flashcard_exam_model.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/widgets/flashcard_question_answer_build.dart';
+import 'package:entrega/widgets/flashcard_question_answer_build.dart';
 
 // ignore: must_be_immutable
 class FlashcardQuestionReport extends StatefulWidget {

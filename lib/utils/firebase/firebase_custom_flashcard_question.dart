@@ -1,7 +1,7 @@
-import 'package:mdexam/models/flashcard_category_model.dart';
-import 'package:mdexam/models/flashcard_question_model.dart';
-import 'package:mdexam/utils/general/show_dialog_wait.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/models/flashcard_category_model.dart';
+import 'package:entrega/models/flashcard_question_model.dart';
+import 'package:entrega/utils/general/show_dialog_wait.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

@@ -1,13 +1,13 @@
 // ignore_for_file: unnecessary_null_comparison
 
-import 'package:mdexam/models/membership_model.dart';
-import 'package:mdexam/pages/membership_list.dart';
-import 'package:mdexam/utils/firebase/firebase_custom_membership.dart';
-import 'package:mdexam/widgets/application_bar.dart';
-import 'package:mdexam/utils/general/abm.dart';
-import 'package:mdexam/utils/general/reference_Page_State.dart';
+import 'package:entrega/models/membership_model.dart';
+import 'package:entrega/pages/membership_list.dart';
+import 'package:entrega/utils/firebase/firebase_custom_membership.dart';
+import 'package:entrega/widgets/application_bar.dart';
+import 'package:entrega/utils/general/abm.dart';
+import 'package:entrega/utils/general/reference_Page_State.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 // ignore: must_be_immutable
 class MembershipABM extends StatefulWidget {

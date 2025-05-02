@@ -1,10 +1,10 @@
-import 'package:mdexam/models/user_model.dart';
+import 'package:entrega/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mdexam/pages/user_abm.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/pages/user_abm.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 class UserList extends StatefulWidget {
   const UserList({Key? key}) : super(key: key);

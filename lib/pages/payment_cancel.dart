@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mdexam/main.dart';
-import 'package:mdexam/utils/checkout/base_payment_controller.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/main.dart';
+import 'package:entrega/utils/checkout/base_payment_controller.dart';
+import 'package:entrega/widgets/application_bar.dart';
 
 // ignore: must_be_immutable
 class PaymentCancel extends StatefulWidget {

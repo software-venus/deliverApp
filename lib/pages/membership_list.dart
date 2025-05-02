@@ -1,12 +1,12 @@
-import 'package:mdexam/models/membership_model.dart';
-import 'package:mdexam/pages/membership_abm.dart';
-import 'package:mdexam/utils/firebase/firebase_custom_membership.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/models/membership_model.dart';
+import 'package:entrega/pages/membership_abm.dart';
+import 'package:entrega/utils/firebase/firebase_custom_membership.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 // ignore: must_be_immutable
 class MembershipList extends StatefulWidget {

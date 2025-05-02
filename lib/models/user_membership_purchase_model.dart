@@ -1,5 +1,5 @@
-import 'package:mdexam/models/membership_model.dart';
-import 'package:mdexam/models/user_membership_purchase_status_model.dart';
+import 'package:entrega/models/membership_model.dart';
+import 'package:entrega/models/user_membership_purchase_status_model.dart';
 
 class UserMembershipPurchaseModel {
   bool exportKeyToId;

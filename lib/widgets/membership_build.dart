@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mdexam/pages/home.dart';
-import 'package:mdexam/utils/general/custom_button.dart';
+import 'package:entrega/pages/home.dart';
+import 'package:entrega/utils/general/custom_button.dart';
 
 Widget membershipBuild(
     HomePageState homePageState,

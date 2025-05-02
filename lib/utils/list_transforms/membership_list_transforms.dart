@@ -1,6 +1,6 @@
 
 
-import 'package:mdexam/models/membership_model.dart';
+import 'package:entrega/models/membership_model.dart';
 
 List<String> membershipListToStringList(List<MembershipModel> list) {
   List<String> result = [];

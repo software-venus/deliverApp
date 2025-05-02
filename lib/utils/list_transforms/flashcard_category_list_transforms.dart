@@ -1,4 +1,4 @@
-import 'package:mdexam/models/flashcard_category_model.dart';
+import 'package:entrega/models/flashcard_category_model.dart';
 
 List<String> flashcardCategoryListToStringList(List<FlashcardCategoryModel> list) {
   List<String> result = [];

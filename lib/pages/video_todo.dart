@@ -2,22 +2,22 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mdexam/models/video_category_model.dart';
-import 'package:mdexam/models/video_model.dart';
-import 'package:mdexam/pages/custom_web_view.dart';
-import 'package:mdexam/pages/home.dart';
-import 'package:mdexam/utils/general/abm.dart';
-import 'package:mdexam/utils/general/reference_Page_State.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/models/video_category_model.dart';
+import 'package:entrega/models/video_model.dart';
+import 'package:entrega/pages/custom_web_view.dart';
+import 'package:entrega/pages/home.dart';
+import 'package:entrega/utils/general/abm.dart';
+import 'package:entrega/utils/general/reference_Page_State.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
-import 'package:mdexam/utils/list_transforms/video_category_list_transforms.dart'
+import 'package:entrega/variables/globalvar.dart';
+import 'package:entrega/utils/list_transforms/video_category_list_transforms.dart'
     // ignore: library_prefixes
     as videoCategoryTransforms;
-import 'package:mdexam/utils/list_transforms/video_list_transforms.dart'
+import 'package:entrega/utils/list_transforms/video_list_transforms.dart'
     // ignore: library_prefixes
     as videoTransforms;
-import 'package:mdexam/widgets/drop_down_buttom_edit_format_value_change.dart';
+import 'package:entrega/widgets/drop_down_buttom_edit_format_value_change.dart';
 import 'package:translator/translator.dart';
 
 

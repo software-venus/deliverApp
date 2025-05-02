@@ -1,5 +1,5 @@
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:mdexam/pages/home.dart';
+import 'package:entrega/pages/home.dart';
 import 'package:flutter/material.dart';
 
 formAddNameToFormAdd(

@@ -1,12 +1,12 @@
 import 'dart:math';
 
-import 'package:mdexam/models/answer_model.dart';
-import 'package:mdexam/models/category_model.dart';
-import 'package:mdexam/models/question_answer_model.dart';
-import 'package:mdexam/models/question_model.dart';
-import 'package:mdexam/models/user_exam_model.dart';
-import 'package:mdexam/utils/general/show_dialog_wait.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/models/answer_model.dart';
+import 'package:entrega/models/category_model.dart';
+import 'package:entrega/models/question_answer_model.dart';
+import 'package:entrega/models/question_model.dart';
+import 'package:entrega/models/user_exam_model.dart';
+import 'package:entrega/utils/general/show_dialog_wait.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

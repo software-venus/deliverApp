@@ -1,5 +1,5 @@
-import 'package:mdexam/models/answer_model.dart';
-import 'package:mdexam/models/question_model.dart';
+import 'package:entrega/models/answer_model.dart';
+import 'package:entrega/models/question_model.dart';
 
 class QuestionAnswerModel {
   QuestionModel question;

@@ -1,10 +1,10 @@
-import 'package:mdexam/models/user_model.dart';
-import 'package:mdexam/pages/user_list.dart';
-import 'package:mdexam/utils/general/abm.dart';
-import 'package:mdexam/utils/firebase/firebase_custom_user.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/models/user_model.dart';
+import 'package:entrega/pages/user_list.dart';
+import 'package:entrega/utils/general/abm.dart';
+import 'package:entrega/utils/firebase/firebase_custom_user.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 // ignore: must_be_immutable
 class UserABM extends StatefulWidget {

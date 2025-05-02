@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 class ShowDialogOk {
   ShowDialogOk() : super();

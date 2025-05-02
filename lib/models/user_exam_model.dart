@@ -1,6 +1,6 @@
-import 'package:mdexam/models/category_model.dart';
-import 'package:mdexam/models/question_answer_model.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/models/category_model.dart';
+import 'package:entrega/models/question_answer_model.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 class UserExamModel {
   bool exportKeyToId;

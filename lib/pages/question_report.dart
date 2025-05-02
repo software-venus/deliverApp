@@ -1,9 +1,9 @@
-import 'package:mdexam/models/question_answer_model.dart';
-import 'package:mdexam/models/user_exam_model.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/models/question_answer_model.dart';
+import 'package:entrega/models/user_exam_model.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/widgets/question_answer_build.dart';
+import 'package:entrega/widgets/question_answer_build.dart';
 
 // ignore: must_be_immutable
 class QuestionReport extends StatefulWidget {

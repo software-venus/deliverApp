@@ -2,35 +2,35 @@
 // ignore: import_of_legacy_library_into_null_safe, unused_import
 import 'dart:convert';
 // import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:mdexam/models/answer_model.dart';
-import 'package:mdexam/models/category_model.dart';
-import 'package:mdexam/models/flashcard_answer_model.dart';
-import 'package:mdexam/models/flashcard_category_model.dart';
-import 'package:mdexam/models/flashcard_question_answer_model.dart';
-import 'package:mdexam/models/flashcard_question_model.dart';
-import 'package:mdexam/models/membership_model.dart';
-import 'package:mdexam/models/question_answer_model.dart';
-import 'package:mdexam/models/question_model.dart';
-import 'package:mdexam/models/user_exam_model.dart';
-import 'package:mdexam/models/user_flashcard_exam_model.dart';
-import 'package:mdexam/widgets/application_bar_customer.dart';
+import 'package:entrega/models/answer_model.dart';
+import 'package:entrega/models/category_model.dart';
+import 'package:entrega/models/flashcard_answer_model.dart';
+import 'package:entrega/models/flashcard_category_model.dart';
+import 'package:entrega/models/flashcard_question_answer_model.dart';
+import 'package:entrega/models/flashcard_question_model.dart';
+import 'package:entrega/models/membership_model.dart';
+import 'package:entrega/models/question_answer_model.dart';
+import 'package:entrega/models/question_model.dart';
+import 'package:entrega/models/user_exam_model.dart';
+import 'package:entrega/models/user_flashcard_exam_model.dart';
+import 'package:entrega/widgets/application_bar_customer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mdexam/models/parameter_model.dart';
-import 'package:mdexam/models/user_model.dart';
+import 'package:entrega/models/parameter_model.dart';
+import 'package:entrega/models/user_model.dart';
 // ignore: unused_import
-import 'package:mdexam/utils/general/reference_Page_State.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/utils/list_transforms/parameter_list_transforms.dart'
+import 'package:entrega/utils/general/reference_Page_State.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart'
     as parameterTransforms;
-import 'package:mdexam/utils/list_transforms/membership_list_transforms.dart'
+import 'package:entrega/utils/list_transforms/membership_list_transforms.dart'
     as membershipTransforms;
-import 'package:mdexam/utils/list_transforms/category_list_transforms.dart'
+import 'package:entrega/utils/list_transforms/category_list_transforms.dart'
     as categoryTransforms;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mdexam/widgets/customer_build.dart';
-import 'package:mdexam/widgets/menu.dart';
+import 'package:entrega/widgets/customer_build.dart';
+import 'package:entrega/widgets/menu.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum IdProfiler { undefined, general, customer }

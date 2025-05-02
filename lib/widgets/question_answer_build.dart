@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/models/answer_model.dart';
-import 'package:mdexam/models/question_answer_model.dart';
-import 'package:mdexam/pages/image_view.dart';
-import 'package:mdexam/utils/general/custom_button.dart';
-import 'package:mdexam/utils/general/horizontal_line.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/models/answer_model.dart';
+import 'package:entrega/models/question_answer_model.dart';
+import 'package:entrega/pages/image_view.dart';
+import 'package:entrega/utils/general/custom_button.dart';
+import 'package:entrega/utils/general/horizontal_line.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:styled_text/styled_text.dart';
 import 'package:translator/translator.dart';
 

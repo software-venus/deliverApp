@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_if_null_operators
 
-import 'package:mdexam/models/answer_model.dart';
-import 'package:mdexam/models/category_model.dart';
-import 'package:mdexam/utils/general/array_search.dart';
+import 'package:entrega/models/answer_model.dart';
+import 'package:entrega/models/category_model.dart';
+import 'package:entrega/utils/general/array_search.dart';
 
 class QuestionModel {
   static int minCicles = 5;

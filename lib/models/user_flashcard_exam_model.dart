@@ -1,5 +1,5 @@
-import 'package:mdexam/models/flashcard_category_model.dart';
-import 'package:mdexam/models/flashcard_question_answer_model.dart';
+import 'package:entrega/models/flashcard_category_model.dart';
+import 'package:entrega/models/flashcard_question_answer_model.dart';
 
 class UserFlashcardExamModel {
   bool exportKeyToId;

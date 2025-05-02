@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_if_null_operators
 
-import 'package:mdexam/models/flashcard_answer_model.dart';
-import 'package:mdexam/models/flashcard_category_model.dart';
-import 'package:mdexam/utils/general/array_search.dart';
+import 'package:entrega/models/flashcard_answer_model.dart';
+import 'package:entrega/models/flashcard_category_model.dart';
+import 'package:entrega/utils/general/array_search.dart';
 
 class FlashcardQuestionModel {
   static int minCicles = 1;

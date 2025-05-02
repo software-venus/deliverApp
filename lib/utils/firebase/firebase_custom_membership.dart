@@ -1,10 +1,10 @@
-import 'package:mdexam/models/membership_model.dart';
-import 'package:mdexam/models/parameter_model.dart';
-import 'package:mdexam/models/user_membership_purchase_model.dart';
-import 'package:mdexam/utils/fixvalues/user_membership_purchase_status_values.dart';
-import 'package:mdexam/utils/general/show_dialog_wait.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/models/membership_model.dart';
+import 'package:entrega/models/parameter_model.dart';
+import 'package:entrega/models/user_membership_purchase_model.dart';
+import 'package:entrega/utils/fixvalues/user_membership_purchase_status_values.dart';
+import 'package:entrega/utils/general/show_dialog_wait.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

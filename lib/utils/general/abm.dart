@@ -1,4 +1,4 @@
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:flutter/material.dart';
 
 Future<bool> abmOnBackPressed2(

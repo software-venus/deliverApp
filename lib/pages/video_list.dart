@@ -1,8 +1,8 @@
-import 'package:mdexam/models/video_category_model.dart';
-import 'package:mdexam/pages/video_abm.dart';
-import 'package:mdexam/models/video_model.dart';
-import 'package:mdexam/variables/globalvar.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/models/video_category_model.dart';
+import 'package:entrega/pages/video_abm.dart';
+import 'package:entrega/models/video_model.dart';
+import 'package:entrega/variables/globalvar.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_auth/firebase_auth.dart';

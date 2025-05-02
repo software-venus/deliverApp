@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mdexam/models/flashcard_answer_model.dart';
-import 'package:mdexam/models/flashcard_question_answer_model.dart';
-import 'package:mdexam/utils/general/custom_button.dart';
-import 'package:mdexam/utils/general/horizontal_line.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/models/flashcard_answer_model.dart';
+import 'package:entrega/models/flashcard_question_answer_model.dart';
+import 'package:entrega/utils/general/custom_button.dart';
+import 'package:entrega/utils/general/horizontal_line.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:styled_text/styled_text.dart';
 import 'package:translator/translator.dart';
 

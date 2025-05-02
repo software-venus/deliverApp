@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:mdexam/utils/firebase/firebase_auth.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/utils/firebase/firebase_auth.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 class UserLostPassword extends StatefulWidget {
   const UserLostPassword({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 // ignore: avoid_web_libraries_in_flutter, library_prefixes
 //import 'dart:html' as dartHtml;
-import 'package:mdexam/utils/general/sizes_helpers.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
 import "package:universal_html/html.dart" as universal_html;
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';

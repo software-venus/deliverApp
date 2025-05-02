@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:mdexam/models/user_flashcard_exam_model.dart';
-import 'package:mdexam/pages/home.dart';
-import 'package:mdexam/pages/flashcard_question_report.dart';
-import 'package:mdexam/utils/firebase/firebase_custom_user_flashcard_exam.dart';
-import 'package:mdexam/utils/general/abm.dart';
-import 'package:mdexam/utils/general/clock_timer.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/variables/globalvar.dart';
-import 'package:mdexam/widgets/application_bar.dart';
-import 'package:mdexam/widgets/flashcard_question_answer_build.dart';
+import 'package:entrega/models/user_flashcard_exam_model.dart';
+import 'package:entrega/pages/home.dart';
+import 'package:entrega/pages/flashcard_question_report.dart';
+import 'package:entrega/utils/firebase/firebase_custom_user_flashcard_exam.dart';
+import 'package:entrega/utils/general/abm.dart';
+import 'package:entrega/utils/general/clock_timer.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/variables/globalvar.dart';
+import 'package:entrega/widgets/application_bar.dart';
+import 'package:entrega/widgets/flashcard_question_answer_build.dart';
 import 'package:translator/translator.dart';
 
 // ignore: must_be_immutable

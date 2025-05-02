@@ -1,11 +1,11 @@
 /*
 import 'package:flutter/material.dart';
-import 'package:mdexam/models/parameter_model.dart';
-import 'package:mdexam/utils/checkout/base_payment_controller.dart';
-import 'package:mdexam/utils/checkout/paypal/v2/paypal_v2_services.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
+import 'package:entrega/models/parameter_model.dart';
+import 'package:entrega/utils/checkout/base_payment_controller.dart';
+import 'package:entrega/utils/checkout/paypal/v2/paypal_v2_services.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
 // ignore: unused_import
-import 'package:mdexam/utils/list_transforms/parameter_list_transforms.dart';
+import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart';
 
 class PaypalV2PaymentController extends BasePaymentController {
   bool sandboxMode = true;

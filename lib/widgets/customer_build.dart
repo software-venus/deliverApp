@@ -1,30 +1,30 @@
 // ignore: import_of_legacy_library_into_null_safe
 // ignore_for_file: deprecated_member_use, avoid_print
 // import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:mdexam/models/category_model.dart';
-import 'package:mdexam/models/membership_model.dart';
-import 'package:mdexam/models/parameter_model.dart';
-import 'package:mdexam/models/user_exam_model.dart';
-import 'package:mdexam/models/user_flashcard_exam_model.dart';
-import 'package:mdexam/models/user_model.dart';
-import 'package:mdexam/pages/customer_flashcard_my_exam_list.dart';
-import 'package:mdexam/pages/customer_my_exam_list.dart';
-import 'package:mdexam/pages/flashcard_question_todo.dart';
-import 'package:mdexam/pages/video_todo.dart';
+import 'package:entrega/models/category_model.dart';
+import 'package:entrega/models/membership_model.dart';
+import 'package:entrega/models/parameter_model.dart';
+import 'package:entrega/models/user_exam_model.dart';
+import 'package:entrega/models/user_flashcard_exam_model.dart';
+import 'package:entrega/models/user_model.dart';
+import 'package:entrega/pages/customer_flashcard_my_exam_list.dart';
+import 'package:entrega/pages/customer_my_exam_list.dart';
+import 'package:entrega/pages/flashcard_question_todo.dart';
+import 'package:entrega/pages/video_todo.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:mdexam/pages/home.dart';
-import 'package:mdexam/pages/membership_purchase.dart';
-import 'package:mdexam/pages/question_todo.dart';
-import 'package:mdexam/pages/user_login.dart';
-import 'package:mdexam/pages/user_simple_add.dart';
-import 'package:mdexam/utils/firebase/firebase_custom_membership.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
-import 'package:mdexam/utils/list_transforms/parameter_list_transforms.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/pages/home.dart';
+import 'package:entrega/pages/membership_purchase.dart';
+import 'package:entrega/pages/question_todo.dart';
+import 'package:entrega/pages/user_login.dart';
+import 'package:entrega/pages/user_simple_add.dart';
+import 'package:entrega/utils/firebase/firebase_custom_membership.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
+import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart';
+import 'package:entrega/variables/globalvar.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/widgets/membership_build.dart';
-import 'package:mdexam/widgets/menu.dart';
-import 'package:mdexam/widgets/option_build.dart';
+import 'package:entrega/widgets/membership_build.dart';
+import 'package:entrega/widgets/menu.dart';
+import 'package:entrega/widgets/option_build.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:translator/translator.dart';
 

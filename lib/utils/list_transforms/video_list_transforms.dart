@@ -1,4 +1,4 @@
-import 'package:mdexam/models/video_model.dart';
+import 'package:entrega/models/video_model.dart';
 
 List<String> videoListToStringList(List<VideoModel> list) {
   List<String> result = [];

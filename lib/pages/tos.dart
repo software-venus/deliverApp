@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/models/parameter_model.dart';
-import 'package:mdexam/pages/content_view.dart';
-import 'package:mdexam/variables/globalvar.dart';
+import 'package:entrega/models/parameter_model.dart';
+import 'package:entrega/pages/content_view.dart';
+import 'package:entrega/variables/globalvar.dart';
 
 // ignore: must_be_immutable
 class Tos extends StatefulWidget {

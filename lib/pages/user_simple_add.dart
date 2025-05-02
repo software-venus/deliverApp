@@ -1,13 +1,13 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:mdexam/models/membership_model.dart';
-import 'package:mdexam/models/user_model.dart';
+import 'package:entrega/models/membership_model.dart';
+import 'package:entrega/models/user_model.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:mdexam/pages/home.dart';
-import 'package:mdexam/utils/firebase/firebase_custom_user.dart';
-import 'package:mdexam/utils/general/reference_Page_State.dart';
-import 'package:mdexam/variables/globalvar.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/pages/home.dart';
+import 'package:entrega/utils/firebase/firebase_custom_user.dart';
+import 'package:entrega/utils/general/reference_Page_State.dart';
+import 'package:entrega/variables/globalvar.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

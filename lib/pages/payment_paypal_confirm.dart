@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mdexam/main.dart';
-import 'package:mdexam/utils/checkout/base_payment_controller.dart';
-import 'package:mdexam/utils/checkout/paypal/v1/paypal_v1_payment_controller.dart';
-import 'package:mdexam/variables/globalvar.dart';
-import 'package:mdexam/widgets/application_bar.dart';
-import 'package:mdexam/widgets/text_view_format.dart';
+import 'package:entrega/main.dart';
+import 'package:entrega/utils/checkout/base_payment_controller.dart';
+import 'package:entrega/utils/checkout/paypal/v1/paypal_v1_payment_controller.dart';
+import 'package:entrega/variables/globalvar.dart';
+import 'package:entrega/widgets/application_bar.dart';
+import 'package:entrega/widgets/text_view_format.dart';
 
 // ignore: must_be_immutable
 class PaymentPayPalConfirm extends StatefulWidget {

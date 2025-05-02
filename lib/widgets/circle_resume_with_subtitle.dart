@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mdexam/widgets/circle_resume_build.dart';
+import 'package:entrega/widgets/circle_resume_build.dart';
 
 Widget circleResumeWithSubtitleBuild(String value, double fontSize, Color color,
     double diameter, String subTitle) {

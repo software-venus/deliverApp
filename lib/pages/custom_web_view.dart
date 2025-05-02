@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mdexam/utils/general/sizes_helpers.dart';
+import 'package:entrega/utils/general/sizes_helpers.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 // ignore: must_be_immutable

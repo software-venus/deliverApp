@@ -1,14 +1,14 @@
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:mdexam/models/user_model.dart';
-import 'package:mdexam/pages/home.dart';
-import 'package:mdexam/pages/user_simple_add.dart';
-import 'package:mdexam/utils/firebase/firebase_auth.dart';
-import 'package:mdexam/utils/general/custom_button.dart';
-import 'package:mdexam/widgets/application_bar.dart';
+import 'package:entrega/models/user_model.dart';
+import 'package:entrega/pages/home.dart';
+import 'package:entrega/pages/user_simple_add.dart';
+import 'package:entrega/utils/firebase/firebase_auth.dart';
+import 'package:entrega/utils/general/custom_button.dart';
+import 'package:entrega/widgets/application_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mdexam/variables/globalvar.dart';
-import 'package:mdexam/widgets/menu.dart';
+import 'package:entrega/variables/globalvar.dart';
+import 'package:entrega/widgets/menu.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
