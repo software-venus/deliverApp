@@ -297,44 +297,6 @@ class Menu extends Drawer {
                     )
                   : Container(),
 
-/* Customer Flashcard My Exams */
-              homePageState.isLogin && homePageState.loginIsCustomer
-                  ? createDrawerItem(
-                      icon: Icons.flash_on_outlined,
-                      text: menuProfilerCustomerFlashcardMyExamsTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                CustomerFlashcardMyExamList(
-                                    loginUsername: homePageState.loginUsername),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-              
-
-              homePageState.isLogin && homePageState.loginIsCustomer
-                  ? createDrawerItem(
-                      icon: Icons.bar_chart,
-                      text: menuProfilerCustomerProgressMyExamsTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                CustomerMyProgress(
-                                    loginUsername: homePageState.loginUsername),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-
 /* CPanel */
               const Divider(),
               _createDrawerTitle(
@@ -346,32 +308,7 @@ class Menu extends Drawer {
                       textColor: Colors.black,
                     )
                   : Container(),
-/*                  
-              !homePageState.isLogin
-                  ? createDrawerItem(
-                      icon: Icons.add_rounded,
-                      text: menuCPanelUserAddTitle,
-                      textColor: Colors.black,
-                      onTap: () {
-                        Navigator.push<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => UserSimpleAdd(
-                                homePageState: homePageState,
-                                referencePageState:
-                                    MenuReferencePageState(homePageState),
-                                isNew: true,
-                                isModify: false,
-                                userModel: UserModel(
-                                    "", "", true, false, false, true, "", ""),
-                                isOriginSelectAdd: true,
-                                memberships: homePageState.membershipLists),
-                          ),
-                        );
-                      },
-                    )
-                  : Container(),
-*/
+
               !homePageState.isLogin
                   ? createDrawerItem(
                       icon: Icons.login_rounded,
@@ -424,30 +361,30 @@ class Menu extends Drawer {
                       })
                   : Container(),
               const Divider(),
-              homePageState.isLogin
-                  ? createDrawerItem(
-                      icon: Icons.no_accounts_rounded,
-                      text: menuCPanelUserDeleteTitle,
-                      textColor: Colors.red,
-                      onTap: () {
-                        ShowDialogYesNo showDialogYesNo = ShowDialogYesNo(
-                            onClickYes: () {
-                              ShowDialogOk showDialogOk = ShowDialogOk();
-                              showDialogOk.show(
-                                  context, userDeletedTitle, userDeletedBody);
-                            },
-                            onClickNo: () {});
-                        showDialogYesNo.show(
-                            context,
-                            userDeleteTitle,
-                            userDeleteQuestion,
-                            userDeleteYesCaption,
-                            userDeleteNoCaption);
-                      })
-                  : Container(),
+              // homePageState.isLogin
+              //     ? createDrawerItem(
+              //         icon: Icons.no_accounts_rounded,
+              //         text: menuCPanelUserDeleteTitle,
+              //         textColor: Colors.red,
+              //         onTap: () {
+              //           ShowDialogYesNo showDialogYesNo = ShowDialogYesNo(
+              //               onClickYes: () {
+              //                 ShowDialogOk showDialogOk = ShowDialogOk();
+              //                 showDialogOk.show(
+              //                     context, userDeletedTitle, userDeletedBody);
+              //               },
+              //               onClickNo: () {});
+              //           showDialogYesNo.show(
+              //               context,
+              //               userDeleteTitle,
+              //               userDeleteQuestion,
+              //               userDeleteYesCaption,
+              //               userDeleteNoCaption);
+              //         })
+              //     : Container(),
               const Divider(),
-              createDrawerItem(
-                icon: Icons.language,
+              createDrawerImageItem(
+                icon: "assets/icons/language.png",
                 text: menuLanguageTitle,
                 textColor: Colors.black,
                 onTap: () {
@@ -456,10 +393,6 @@ class Menu extends Drawer {
               ),
               const Center(child: LanguageSwitcherButton()),
               const Divider(),
-              ListTile(
-                title: const Text('4.1.3 2312_28'),
-                onTap: () {},
-              ),
             ],
           ),
         );

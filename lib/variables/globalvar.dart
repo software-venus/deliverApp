@@ -10,6 +10,11 @@ String get menuProfilerCustomerFrequentQuestionsTitle => languageStatus == 0 ? "
 String get menuProfileTitle => languageStatus == 0 ? "Meu perfil" : "My Profile";
 String get menuSubscriptionTitle => languageStatus == 0 ? "Assinaturas" : "Subscriptions";
 String get menuSettingsTitle => languageStatus == 0 ? "Configurações" : "Settings";
+String get menuLanguageTitle => languageStatus == 0 ? "linguagem" : "Language";
+String get menuCPanelTitle => languageStatus == 0 ? "ADMINISTRAÇÃO" : "ADMINISTRATION";
+String get menuCPanelUserLoginTitle => languageStatus == 0 ? "Conecte-se" : "Login";
+String get menuCPanelUserLostPasswordTitle => languageStatus == 0 ? "Esqueceu sua senha" : "Forgot Password";
+String get menuCPanelUserLogoutTitle => languageStatus == 0 ? "Sair" : "Logout";
 
 /////////////--------------------PT---------------------////////////////////
 
@@ -27,16 +32,16 @@ String get appMembershipDaysSubTitle => languageStatus == 0 ? "días de suscripc
 String get appMembershipDays0Title => languageStatus == 0 ? "No tienes más días de suscripción." : "You have no more subscription days.";
 
 String get menuContentTitle => languageStatus == 0 ? "CONTENIDO" : "CONTENT";
-String get menuCPanelTitle => languageStatus == 0 ? "ADMINISTRACION" : "ADMINISTRATION";
+
 String get menuContactUSTitle => languageStatus == 0 ? "CONTACTO" : "CONTACT";
 String get menuContactUSWhatsappTitle => languageStatus == 0 ? "Whatsapp" : "Whatsapp";
 String get menuLnaguagetitle => languageStatus == 0 ? "Idioma" : "Language";
 
 String get menuCPanelUserAddTitle => languageStatus == 0 ? "Nuevo Usuario" : "New User";
-String get menuCPanelUserLoginTitle => languageStatus == 0 ? "Ingresar" : "Login";
+
 String get menuCPanelUserListTitle => languageStatus == 0 ? "Usuarios" : "Users";
-String get menuCPanelUserLostPasswordTitle => languageStatus == 0 ? "Olvidé la contraseña" : "Forgot Password";
-String get menuCPanelUserLogoutTitle => languageStatus == 0 ? "Salir" : "Logout";
+
+
 String get menuCPanelUserDeleteTitle => languageStatus == 0 ? "Eliminar cuenta" : "Delete Account";
 
 String get menuABMListTitle => languageStatus == 0 ? "MANTENIMIENTO" : "MAINTENANCE";
@@ -48,7 +53,7 @@ String get menuStreamingPlatformTitle => languageStatus == 0 ? "Plataformas de S
 String get menuArtistTypeTitle => languageStatus == 0 ? "Tipo de Artistas" : "Artist Type";
 String get menuStampTitle => languageStatus == 0 ? "Sellos" : "Labels";
 String get menuGenderTitle => languageStatus == 0 ? "Generos" : "Genres";
-String get menuLanguageTitle => languageStatus == 0 ? "Idiomas" : "Languages";
+
 String get menuAlbumFormatTitle => languageStatus == 0 ? "Formatos de Album" : "Album Formats";
 String get menuPriceCategoryTitle => languageStatus == 0 ? "Categorías de Precios" : "Price Categories";
 String get menuLicenseTypeTitle => languageStatus == 0 ? "Tipos de Licencias" : "License Types";
