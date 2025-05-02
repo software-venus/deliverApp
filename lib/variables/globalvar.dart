@@ -3,6 +3,16 @@ import 'package:flutter/material.dart';
 int languageStatus = 0;
 const String appName = "MD Exam";
 
+//////////////------------------PT----------------------//////////////////////
+String get menuProfilerCustomerListTitle => languageStatus == 0 ? "USUÁRIAS" : "USERS";
+String get menuProfilerCustomerAboutUsTitle => languageStatus == 0 ? "Sobre nós" : "About Us";
+String get menuProfilerCustomerFrequentQuestionsTitle => languageStatus == 0 ? "Perguntas frequentes" : "FAQ";
+String get menuProfileTitle => languageStatus == 0 ? "Meu perfil" : "My Profile";
+String get menuSubscriptionTitle => languageStatus == 0 ? "Assinaturas" : "Subscriptions";
+String get menuSettingsTitle => languageStatus == 0 ? "Configurações" : "Settings";
+
+/////////////--------------------PT---------------------////////////////////
+
 String get shareText => languageStatus == 0
     ? "Estoy usando MD Exam para enterarte de lo ultimo de examenes, puedes bajar la app en Google Play o Apple Store"
     : "I'm using MD Exam to stay updated on the latest exams. You can download the app from Google Play or Apple Store";
@@ -65,12 +75,12 @@ String get menuProfilerAdministratorVideoCategoryListTitle => languageStatus == 
 String get menuProfilerAdministratorVideoListTitle => languageStatus == 0 ? "(Videoclases) Subir Videoclase" : "(Video Classes) Upload Video";
 String get menuProfilerAdministratorFlashcardQuestionListTitle => languageStatus == 0 ? "(Flashcards) Preguntas/Respuestas" : "(Flashcards) Questions/Answers";
 
-String get menuProfilerCustomerListTitle => languageStatus == 0 ? "USUARIO" : "USER";
-String get menuProfilerCustomerMyExamsTitle => languageStatus == 0 ? "Cuestionarios realizados" : "Completed Exams";
+
+
 String get menuProfilerCustomerFlashcardMyExamsTitle => languageStatus == 0 ? "Flashcards realizados" : "Completed Flashcards";
 String get menuProfilerCustomerProgressMyExamsTitle => languageStatus == 0 ? "Mi Progreso" : "My Progress";
-String get menuProfilerCustomerAboutUsTitle => languageStatus == 0 ? "Nosotros" : "About Us";
-String get menuProfilerCustomerFrequentQuestionsTitle => languageStatus == 0 ? "Preguntas frecuentes" : "FAQ";
+
+
 String get menuProfilerCustomerAgentContactForPhoneTitle => languageStatus == 0 ? "Contactar Agente por Teléfono" : "Contact Agent by Phone";
 String get menuProfilerCustomerAgentContactForEmailTitle => languageStatus == 0 ? "Contactar Agente por Email" : "Contact Agent by Email";
 String get menuProfilerCustomerReferAFriendTitle => languageStatus == 0 ? "Referir a un amigo" : "Refer a Friend";

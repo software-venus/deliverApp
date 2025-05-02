@@ -24,7 +24,6 @@ import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart';
 import 'package:entrega/variables/globalvar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import 'package:translator/translator.dart';
 
@@ -192,8 +191,8 @@ class Menu extends Drawer {
                   textColor: Colors.black54),
 
 /* Customer About Us */
-              createDrawerItem(
-                icon: Icons.toc_outlined,
+              createDrawerImageItem(
+                icon: "assets/icons/info.png",
                 text: menuProfilerCustomerAboutUsTitle,
                 textColor: Colors.black,
                 onTap: () async {
@@ -214,8 +213,8 @@ class Menu extends Drawer {
               ),
 
 /* Customer Frequent Questions */
-              createDrawerItem(
-                icon: Icons.toc_outlined,
+              createDrawerImageItem(
+                icon: "assets/icons/faq.png",
                 text: menuProfilerCustomerFrequentQuestionsTitle,
                 textColor: Colors.black,
                 onTap: () {
@@ -235,53 +234,55 @@ class Menu extends Drawer {
                 },
               ),
 
-/* Customr Contact For Phone */
-              createDrawerItem(
-                icon: Icons.phone_android_rounded,
-                text: menuProfilerCustomerAgentContactForPhoneTitle,
+//subscriptions
+              createDrawerImageItem(
+                icon: "assets/icons/money.png",
+                text: menuSubscriptionTitle,
                 textColor: Colors.black,
-                onTap: () async {
-                  String url;
-
-                  url = "tel:" +
+                onTap: () {
+                  ParameterModel parameterModel =
                       parameterStringFromKey2ToParameterModel(
-                              homePageState.listParameters, "ContactForPhone")
-                          .additional +
-                      "";
-
-                  if (await canLaunch(url)) {
-                    await launch(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
+                          homePageState.listParameters,
+                          "CustomerFrequentQuestions");
+                  Navigator.push<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => ContentView(
+                          title: menuProfilerCustomerFrequentQuestionsTitle,
+                          body: languageStatus==0? parameterModel.additional:parameterModel.additionalEn,
+                          isFooterPayment: false),
+                    ),
+                  );
                 },
               ),
-/* Customr Contact For Email */
-              createDrawerItem(
-                icon: Icons.phone_android_rounded,
-                text: menuProfilerCustomerAgentContactForEmailTitle,
-                textColor: Colors.black,
-                onTap: () async {
-                  String url;
 
-                  url = "mailto:" +
+              createDrawerImageItem(
+                icon: "assets/icons/settings.png",
+                text: menuSettingsTitle,
+                textColor: Colors.black,
+                onTap: () {
+                  ParameterModel parameterModel =
                       parameterStringFromKey2ToParameterModel(
-                              homePageState.listParameters, "ContactForEmail")
-                          .additional +
-                      "";
-                  if (await canLaunch(url)) {
-                    await launch(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
+                          homePageState.listParameters,
+                          "CustomerFrequentQuestions");
+                  Navigator.push<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => ContentView(
+                          title: menuProfilerCustomerFrequentQuestionsTitle,
+                          body: languageStatus==0? parameterModel.additional:parameterModel.additionalEn,
+                          isFooterPayment: false),
+                    ),
+                  );
                 },
               ),
+
 
 /* Customer My Exams */
               homePageState.isLogin && homePageState.loginIsCustomer
-                  ? createDrawerItem(
-                      icon: Icons.history_edu_outlined,
-                      text: menuProfilerCustomerMyExamsTitle,
+                  ? createDrawerImageItem(
+                      icon: "assets/icons/user.png",
+                      text: menuProfileTitle,
                       textColor: Colors.black,
                       onTap: () {
                         Navigator.push<void>(
@@ -525,6 +526,33 @@ Widget createDrawerItem(
   );
 }
 
+Widget createDrawerImageItem(
+    {required String icon,
+    required String text,
+    required Color textColor,
+    GestureTapCallback? onTap}) {
+  return ListTile(
+    title: Row(
+      children: <Widget>[
+        Image.asset(
+          icon,
+          width: 22,
+          height: 22,
+          fit: BoxFit.contain,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Text(text,
+              style: TextStyle(
+                color: textColor,
+              )),
+        )
+      ],
+    ),
+    onTap: onTap,
+  );
+}
+
 Future<void> _userLogout(
     BuildContext context, HomePageState homePageState) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -613,7 +641,7 @@ class _LanguageSwitcherButtonState extends State<LanguageSwitcherButton> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Image.asset(
-          isEnglish ? 'assets/spain.png' : 'assets/english.png',
+          isEnglish ? 'assets/spt.png' : 'assets/english.png',
           width: 80,
           height: 40,
           fit: BoxFit.contain,
