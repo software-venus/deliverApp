@@ -11,7 +11,6 @@ import 'package:entrega/pages/video_todo.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:entrega/pages/home.dart';
 import 'package:entrega/pages/membership_purchase.dart';
-import 'package:entrega/pages/question_todo.dart';
 import 'package:entrega/pages/user_login.dart';
 import 'package:entrega/pages/user_simple_add.dart';
 import 'package:entrega/utils/firebase/firebase_custom_membership.dart';
@@ -204,48 +203,6 @@ Widget customerBuild(
                               fontWeight: FontWeight.w500),
                         ),
                       ]),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      optionBuild(
-                          questionNewOpenTitle,
-                          Icons.question_answer_outlined,
-                          Colors.deepPurple,
-                          questionNewOpenButtonTitle,
-                          factor, () {
-                        !homePageState.isLogin
-                            ? Navigator.push<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) => UserLogin(
-                                      homePageState: homePageState,
-                                      dobleClosed: false),
-                                ),
-                              )
-                            : validMembershipQuestion(
-                                homePageState, context, true);
-                      }),
-                      optionBuild(
-                          questionNewClosedTitle,
-                          Icons.question_mark_outlined,
-                          Colors.blue,
-                          questionNewClosedButtonTitle,
-                          factor, () {
-                        !homePageState.isLogin
-                            ? Navigator.push<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) => UserLogin(
-                                      homePageState: homePageState,
-                                      dobleClosed: false),
-                                ),
-                              )
-                            : validMembershipQuestion(
-                                homePageState, context, false);
-                      }),
-                    ],
-                  ),
                 ],
               )
             : Container(),
@@ -758,65 +715,6 @@ Future<Widget> membershipOneItem(HomePageState homePageState, BuildContext conte
           ),
         );
       });
-}
-
-void validMembershipQuestion(
-    HomePageState homePageState, BuildContext context, bool isOpen) {
-  try {
-    String error = "";
-
-    if (homePageState.customerMembershipCurrent.creationTime
-        .isBefore(DateTime.now().toUtc())) {
-      error = questionTodoError1;
-    }
-
-    if (homePageState.customerMembershipCurrent.maxUses < 1) {
-      error = questionTodoError2;
-    }
-
-    if (error.isEmpty) {
-      homePageState.customerMembershipCurrent.maxUses -= 1;
-
-      FirebaseCustomMembershipHelper()
-          .use(
-        context: context,
-        loginUsername: homePageState.loginUsername,
-        membershipCurrent: homePageState.customerMembershipCurrent,
-      )
-          .then((result) {
-        if (result == null) {
-          Navigator.push<void>(
-            context,
-            MaterialPageRoute<void>(
-              builder: (BuildContext context) =>
-                  QuestionTodo(homePageState: homePageState, isOpen: isOpen),
-            ),
-          );
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              result,
-              style: const TextStyle(fontSize: 16),
-            ),
-          ));
-        }
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-          error,
-          style: const TextStyle(fontSize: 16),
-        ),
-      ));
-    }
-  } catch (errorValue) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-        errorValue.toString(),
-        style: const TextStyle(fontSize: 16),
-      ),
-    ));
-  }
 }
 
 void validMembershipFlashcards(

@@ -12,7 +12,6 @@ import 'package:entrega/pages/video_list.dart';
 import 'package:entrega/pages/home.dart';
 import 'package:entrega/pages/membership_list.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:entrega/pages/question_list.dart';
 import 'package:entrega/pages/user_login.dart';
 import 'package:entrega/utils/general/reference_Page_State.dart';
 import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart';
@@ -42,23 +41,7 @@ class Menu extends Drawer {
                         text: menuABMListTitle, textColor: Colors.black54)
                     : Container(),
 
-                /* Question List */
-                homePageState.isLogin && homePageState.loginIsAdministrator
-                    ? createDrawerItem(
-                        icon: Icons.question_answer_outlined,
-                        text: menuProfilerAdministratorQuestionListTitle,
-                        textColor: Colors.black,
-                        onTap: () {
-                          Navigator.push<void>(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  const QuestionList(),
-                            ),
-                          );
-                        },
-                      )
-                    : Container(),
+                    
 
                 /* Category List */
                 homePageState.isLogin && homePageState.loginIsAdministrator

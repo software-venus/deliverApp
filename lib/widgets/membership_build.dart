@@ -20,30 +20,30 @@ Widget membershipBuild(
   // ignore: unused_local_variable
   String kConsumableId = "";
 
-  if (homePageState.iosPurchaseMembership) {
-    kConsumableId = "1M";
-    price = 9.99;
+  // if (homePageState.iosPurchaseMembership) {
+  //   kConsumableId = "1M";
+  //   price = 9.99;
 
-    if (title.compareTo("1 MES") == 0) {
-      kConsumableId = "1M";
-      price = 9.99;
-    }
+  //   if (title.compareTo("1 MES") == 0) {
+  //     kConsumableId = "1M";
+  //     price = 9.99;
+  //   }
 
-    if (title.compareTo("3 MESES") == 0) {
-      kConsumableId = "3M";
-      price = 19.99;
-    }
+  //   if (title.compareTo("3 MESES") == 0) {
+  //     kConsumableId = "3M";
+  //     price = 19.99;
+  //   }
 
-    if (title.compareTo("6 MESES") == 0) {
-      kConsumableId = "6M";
-      price = 39.99;
-    }
+  //   if (title.compareTo("6 MESES") == 0) {
+  //     kConsumableId = "6M";
+  //     price = 39.99;
+  //   }
 
-    if (title.compareTo("1 AÑO") == 0) {
-      kConsumableId = "1A";
-      price = 69.99;
-    }
-  }
+  //   if (title.compareTo("1 AÑO") == 0) {
+  //     kConsumableId = "1A";
+  //     price = 69.99;
+  //   }
+  // }
 /*
   List<PaymentItem> paymentItems = [
     PaymentItem(
@@ -115,8 +115,7 @@ Widget membershipBuild(
                         height: 10,
                       ),
                       buttonShowSelect
-                          ? !homePageState.iosPurchaseMembership
-                              ? CustomButton(
+                          ? CustomButton(
                                   buttonTitle,
                                   Icons.arrow_circle_right_outlined,
                                   true,
@@ -166,7 +165,7 @@ Widget membershipBuild(
                                   ),
                                 )
 */
-                          : Container(),
+                          ,
                       buttonShowSelectNew
                           ? CustomButton(
                               buttonTitle,
