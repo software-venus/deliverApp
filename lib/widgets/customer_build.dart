@@ -1,7 +1,6 @@
 // ignore: import_of_legacy_library_into_null_safe
 // ignore_for_file: deprecated_member_use, avoid_print
 // import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:entrega/models/category_model.dart';
 import 'package:entrega/models/membership_model.dart';
 import 'package:entrega/models/parameter_model.dart';
 import 'package:entrega/models/user_model.dart';
@@ -27,7 +26,6 @@ import 'package:translator/translator.dart';
 Widget customerBuild(
     HomePageState homePageState,
     BuildContext context,
-    List<CategoryModel> categorys,
     List<MembershipModel> memberships,
     List<MembershipModel> membershipOnlyVisibles,
     double factor) {

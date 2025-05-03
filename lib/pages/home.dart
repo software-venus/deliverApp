@@ -2,7 +2,6 @@
 // ignore: import_of_legacy_library_into_null_safe, unused_import
 import 'dart:convert';
 // import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:entrega/models/category_model.dart';
 import 'package:entrega/models/membership_model.dart';
 import 'package:entrega/widgets/application_bar_customer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,8 +14,6 @@ import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart'
     as parameterTransforms;
 import 'package:entrega/utils/list_transforms/membership_list_transforms.dart'
     as membershipTransforms;
-import 'package:entrega/utils/list_transforms/category_list_transforms.dart'
-    as categoryTransforms;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:entrega/widgets/customer_build.dart';
 import 'package:entrega/widgets/menu.dart';
@@ -88,7 +85,6 @@ class HomePageState extends State<HomePage> {
 //  MessagingHelper messagingHelper = MessagingHelper();
 //  final GeolocatorPlatform geolocatorPlatform = GeolocatorPlatform.instance;
 
-  List<CategoryModel> customerCategoryLists = [];
 
   MembershipModel customerMembershipCurrent = MembershipModel(
       false, "", "", "", 0, 0, 0, 0, 0, 0, 0, false, false, 0, DateTime.now());
@@ -307,23 +303,7 @@ class HomePageState extends State<HomePage> {
       }
 
       // Customer Category
-      customerCategoryLists.clear();
 
-      CollectionReference categorys =
-          firestoreInstance.collection(firebaseCustomCategoryKey);
-
-      categorys
-          .limit(100)
-          .orderBy("title", descending: false)
-          .get()
-          .then((querySnapshot) {
-        for (var result in querySnapshot.docs) {
-          setState(() {
-            categoryTransforms.uniquedAdd(customerCategoryLists,
-                CategoryModel.fromJSON(false, result.id, result.data()));
-          });
-        }
-      });
 
       setState(() {});
     } on FirebaseAuthException catch (e) {
@@ -508,7 +488,6 @@ class HomePageState extends State<HomePage> {
           body: customerBuild(
               this,
               context,
-              customerCategoryLists,
               membershipLists,
               membershipOnlyVisibleLists,
               factor(context)));
@@ -545,7 +524,6 @@ class HomePageState extends State<HomePage> {
           body: customerBuild(
               this,
               context,
-              customerCategoryLists,
               membershipLists,
               membershipOnlyVisibleLists,
               factor(context),));

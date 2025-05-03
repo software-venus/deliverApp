@@ -2,7 +2,6 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:entrega/models/parameter_model.dart';
-import 'package:entrega/pages/category_list.dart';
 import 'package:entrega/pages/content_view.dart';
 import 'package:entrega/pages/flashcard_category_list.dart';
 import 'package:entrega/pages/video_category_list.dart';
@@ -39,26 +38,6 @@ class Menu extends Drawer {
                 homePageState.isLogin && homePageState.loginIsAdministrator
                     ? _createDrawerTitle(
                         text: menuABMListTitle, textColor: Colors.black54)
-                    : Container(),
-
-                    
-
-                /* Category List */
-                homePageState.isLogin && homePageState.loginIsAdministrator
-                    ? createDrawerItem(
-                        icon: Icons.category_outlined,
-                        text: menuProfilerAdministratorCategoryListTitle,
-                        textColor: Colors.black,
-                        onTap: () {
-                          Navigator.push<void>(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  const CategoryList(),
-                            ),
-                          );
-                        },
-                      )
                     : Container(),
 
                 /* Membership List */
