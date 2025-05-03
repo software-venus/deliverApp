@@ -23,40 +23,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 enum IdProfiler { undefined, general, customer }
 
-String videoUrlLandscape =
-    "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4";
-String videoUrlPortrait =
-    'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4';
-String longVideo =
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-
-String video720 =
-    "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4";
-
-String video480 =
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4";
-
-String video240 =
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4";
-
-/*
-String videoUrlLandscape =
-    "https://drive.google.com/file/d/14geKB1bAWQZCFANoOUla64Zm2DdaW_zo/preview";
-String videoUrlPortrait =
-    'https://drive.google.com/file/d/14geKB1bAWQZCFANoOUla64Zm2DdaW_zo/preview';
-String longVideo =
-    "https://drive.google.com/file/d/14geKB1bAWQZCFANoOUla64Zm2DdaW_zo/preview";
-
-String video720 =
-    "https://drive.google.com/file/d/14geKB1bAWQZCFANoOUla64Zm2DdaW_zo/preview";
-
-String video480 =
-    "https://drive.google.com/file/d/14geKB1bAWQZCFANoOUla64Zm2DdaW_zo/preview";
-
-String video240 =
-    "https://drive.google.com/file/d/14geKB1bAWQZCFANoOUla64Zm2DdaW_zo/preview";
-
-*/
 
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
@@ -81,9 +47,6 @@ class HomePageState extends State<HomePage> {
   bool positionPermissionDeny = false;
 
   bool drawerIsOpen = false;
-
-//  MessagingHelper messagingHelper = MessagingHelper();
-//  final GeolocatorPlatform geolocatorPlatform = GeolocatorPlatform.instance;
 
 
   MembershipModel customerMembershipCurrent = MembershipModel(
@@ -124,37 +87,6 @@ class HomePageState extends State<HomePage> {
     idProfiler = widget.idProfiler;
 
     refresh();
-
-
-/*
-    videoPlayerController = CachedVideoPlayerController.network(
-      longVideo,
-    )..initialize().then((value) => setState(() {}));
-    videoPlayerController2 = CachedVideoPlayerController.network(video240);
-    videoPlayerController3 = CachedVideoPlayerController.network(video480);
-    customVideoPlayerController = CustomVideoPlayerController(
-      context: context,
-      videoPlayerController: videoPlayerController,
-      customVideoPlayerSettings: customVideoPlayerSettings,
-      additionalVideoSources: {
-        "240p": videoPlayerController2,
-        "480p": videoPlayerController3,
-        "720p": videoPlayerController,
-      },
-    );
-
-    customVideoPlayerWebController = CustomVideoPlayerWebController(
-      webVideoPlayerSettings: customVideoPlayerWebSettings,
-    );
-
-
-    videoPlayercontroller = VideoPlayerController.networkUrl(Uri.parse(
-        'https://www.googleapis.com/drive/v3/files/1dq5RFPcYEjV8W89MRwP2yClpjhjb4gEW?alt=media'))
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
-*/
   }
 
   void setStates() {
@@ -191,7 +123,7 @@ class HomePageState extends State<HomePage> {
         loginCustomerName = userModel.name;
 
         if (loginIsAdministrator) {
-          loadAdministrator();
+
         }
 
         if (loginIsCustomer) {
@@ -258,36 +190,6 @@ class HomePageState extends State<HomePage> {
     }
   }
 
-  Future<void> loadAdministrator() async {
-/*    
-    try {
-      final firestoreInstance = FirebaseFirestore.instance;
-
-      administratorFormAddLists.clear();
-
-      CollectionReference formAdds =
-          firestoreInstance.collection(firebaseCustomFormAddKey);
-
-      formAdds
-          .limit(100)
-          .orderBy("date", descending: true)
-          .get()
-          .then((querySnapshot) {
-        for (var result in querySnapshot.docs) {
-          setState(() {
-            formAddTransforms.uniquedAdd(administratorFormAddLists,
-                FormAddModel.fromJSON(false, result.id, result.data()));
-          });
-        }
-      });
-
-      setState(() {});
-    } on FirebaseAuthException catch (e) {
-      e.stackTrace;
-    }
-*/
-  }
-
   Future<void> loadCustomer() async {
     try {
       final firestoreInstance = FirebaseFirestore.instance;
@@ -311,131 +213,11 @@ class HomePageState extends State<HomePage> {
     }
   }
 
-/*
-  void customerOnActionGpsTip() async {
-    try {
-      if (!positionPermissionDeny) {
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-        bool resultPositionPermissionAccept =
-            prefs.getBool(preferencePositionPermissionAccept);
-
-        if (resultPositionPermissionAccept != null) {
-        } else {
-          resultPositionPermissionAccept = false;
-        }
-
-        if (resultPositionPermissionAccept) {
-          customerGpsGetCurrentPosition();
-        } else {
-          ShowDialogYesNo showDialogYesNo =
-              ShowDialogYesNo(onClickYes: () async {
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-
-            prefs.setBool(preferencePositionPermissionAccept, true);
-
-            customerGpsGetCurrentPosition();
-          }, onClickNo: () {
-            positionPermissionDeny = true;
-          });
-          showDialogYesNo.show(
-              context,
-              positionPermissionTitleCaption,
-              positionPermissionQuestionCaption,
-              positionPermissionYesCaption,
-              positionPermissionNoCaption);
-        }
-      }
-    } catch (e) {
-      e.toString();
-    }
-  }
-
-  Future<void> customerGpsGetCurrentPosition() async {
-    try {
-      final hasPermission = await handlePermission(this);
-
-      if (!hasPermission) {
-        return;
-      }
-
-      final position = await geolocatorPlatform.getCurrentPosition();
-
-      if (position.latitude != customerActualPosition.latitude ||
-          position.longitude != customerActualPosition.longitude) {
-        customerActualPosition.latitude = position.latitude;
-        customerActualPosition.longitude = position.longitude;
-
-        final firestoreInstance = FirebaseFirestore.instance;
-
-        await firestoreInstance
-            .collection(firebaseCustomLoginPositionKey)
-            .doc(customerProfilerModel.key)
-            .set(PositionModel(customerActualPosition.latitude,
-                    customerActualPosition.longitude, DateTime.now())
-                .toJson());
-
-        setStates();
-      }
-    } on Exception catch (e) {
-      e.toString();
-    }
-  }
-
-  Future<bool> handlePermission(HomePageState homePageState) async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    // Test if location services are enabled.
-    serviceEnabled = await geolocatorPlatform.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      // Location services are not enabled don't continue
-      // accessing the position and request users of the
-      // App to enable the location services.
-      snackBarMessage(
-        context,
-        gpsLocationServicesDisabledMessage,
-      );
-
-      return false;
-    }
-
-    permission = await geolocatorPlatform.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await geolocatorPlatform.requestPermission();
-      if (permission == LocationPermission.denied) {
-        // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
-        snackBarMessage(
-          context,
-          gpsPermissionDeniedMessage,
-        );
-
-        return false;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
-      snackBarMessage(
-        context,
-        gpsPermissionDeniedForeverMessage,
-      );
-
-      return false;
-    }
-
-    return true;
-  }
-*/
   refresh() {
     loadPreferences();
 
     if (loginIsAdministrator) {
-      loadAdministrator();
+
     }
 
     if (loginIsCustomer) {
@@ -445,7 +227,7 @@ class HomePageState extends State<HomePage> {
 
   globalRefresh() {
     if (loginIsAdministrator) {
-      loadAdministrator();
+
     }
 
     if (loginIsCustomer) {
@@ -461,8 +243,6 @@ class HomePageState extends State<HomePage> {
     _currentIndex = currentIndex;
   }
 
-//  final _loginUsernameController = TextEditingController();
-//  final _loginPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -555,75 +335,6 @@ class HomePageState extends State<HomePage> {
       _currentIndex = index;
     });
   }
-
-/*
-  void setDeliveryNotification() async {
-    if (isMobile()) {
-      await NotificationService().init();
-
-      FirebaseMessaging.onMessage.listen((RemoteMessage remoteMessage) {
-        setStates();
-
-        if (remoteMessage.data['messageType'] == "10") {
-          showMessage();
-        }
-      });
-
-      FirebaseMessaging.onBackgroundMessage(showMessageRemoteMessenger);
-
-      FirebaseMessaging.instance.subscribeToTopic("deliverySaleNew");
-    }
-  }
-
-  Future<void> showMessageRemoteMessenger(RemoteMessage remoteMessage) async {
-    if (remoteMessage.data['messageType'] == "10") {
-      showMessage();
-    }
-  }
-
-  Future<void> showMessage() async {
-    try {
-      if (isMobile()) {
-        String title = deliveryShowMessageTitle;
-        String message = deliveryShowMessageDetail;
-
-        FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-            FlutterLocalNotificationsPlugin();
-
-        var initializationSettingsAndroid =
-            AndroidInitializationSettings('ic_notification');
-        var initializationSettingsIOS = const IOSInitializationSettings(
-            onDidReceiveLocalNotification: null);
-        var initializationSettings = InitializationSettings(
-            android: initializationSettingsAndroid,
-            iOS: initializationSettingsIOS);
-        flutterLocalNotificationsPlugin.initialize(initializationSettings,
-            onSelectNotification: null);
-
-        AndroidNotificationDetails androidPlatformChannelSpecifics =
-            AndroidNotificationDetails("1234", "channel",
-                channelDescription: "channelDescription",
-                importance: Importance.defaultImportance,
-                priority: Priority.high);
-
-        NotificationDetails platformChannelSpecifics =
-            NotificationDetails(android: androidPlatformChannelSpecifics);
-
-        var rng = Random();
-
-        await flutterLocalNotificationsPlugin.show(
-            rng.nextInt(10000), title, message, platformChannelSpecifics,
-            payload: message);
-
-//        if (await Vibrate.canVibrate) {
-//          Vibrate.vibrate();
-//        }
-      }
-    } on Exception catch (e) {
-      e.toString();
-    }
-  }
-*/
 }
 
 class HomeReferencePageState extends ReferencePageState {
