@@ -4,20 +4,17 @@
 import 'package:entrega/models/membership_model.dart';
 import 'package:entrega/models/parameter_model.dart';
 import 'package:entrega/models/user_model.dart';
-import 'package:entrega/pages/video_todo.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:entrega/pages/home.dart';
 import 'package:entrega/pages/membership_purchase.dart';
 import 'package:entrega/pages/user_login.dart';
 import 'package:entrega/pages/user_simple_add.dart';
-import 'package:entrega/utils/firebase/firebase_custom_membership.dart';
 import 'package:entrega/utils/general/sizes_helpers.dart';
 import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart';
 import 'package:entrega/variables/globalvar.dart';
 import 'package:flutter/material.dart';
 import 'package:entrega/widgets/membership_build.dart';
 import 'package:entrega/widgets/menu.dart';
-import 'package:entrega/widgets/option_build.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:translator/translator.dart';
 
@@ -206,46 +203,6 @@ Widget customerBuild(
           height: 50,
         ),
 
-
-/* Videos */
-        homePageState.isLogin
-            ? Column(
-                children: [
-                  Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          videoTitleCustom,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              color: Colors.black87,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ]),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      optionBuild(videoNewTitle, Icons.play_arrow_outlined,
-                          Colors.red, videoNewButtonTitle, factor, () {
-                        !homePageState.isLogin
-                            ? Navigator.push<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) => UserLogin(
-                                      homePageState: homePageState,
-                                      dobleClosed: false),
-                                ),
-                              )
-                            : validMembershipVideo(homePageState, context);
-                      }),
-                    ],
-                  ),
-                ],
-              )
-            : Container(),
 
 /* Memberships */
         showMembership
@@ -639,64 +596,6 @@ Future<Widget> membershipOneItem(HomePageState homePageState, BuildContext conte
           ),
         );
       });
-}
-
-void validMembershipVideo(HomePageState homePageState, BuildContext context) {
-  try {
-    String error = "";
-
-    if (homePageState.customerMembershipCurrent.creationTime
-        .isBefore(DateTime.now().toUtc())) {
-      error = videoTodoError1;
-    }
-
-    if (homePageState.customerMembershipCurrent.maxVideos < 1) {
-      error = videoTodoError2;
-    }
-
-    if (error.isEmpty) {
-      homePageState.customerMembershipCurrent.maxVideos -= 1;
-
-      FirebaseCustomMembershipHelper()
-          .use(
-        context: context,
-        loginUsername: homePageState.loginUsername,
-        membershipCurrent: homePageState.customerMembershipCurrent,
-      )
-          .then((result) {
-        if (result == null) {
-          Navigator.push<void>(
-            context,
-            MaterialPageRoute<void>(
-              builder: (BuildContext context) => VideoTodo(
-                  homePageState: homePageState, isOpen: true), //Video Run
-            ),
-          );
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              result,
-              style: const TextStyle(fontSize: 16),
-            ),
-          ));
-        }
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-          error,
-          style: const TextStyle(fontSize: 16),
-        ),
-      ));
-    }
-  } catch (errorValue) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-        errorValue.toString(),
-        style: const TextStyle(fontSize: 16),
-      ),
-    ));
-  }
 }
 
 String membershipDays(HomePageState homePageState) {

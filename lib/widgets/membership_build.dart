@@ -123,32 +123,7 @@ Widget membershipBuild(
                                   Colors.green, () {
                                   onClickSelect();
                                 })
-                              : CustomButton(
-                                  buttonTitle,
-                                  Icons.arrow_circle_right_outlined,
-                                  true,
-                                  Colors.white,
-                                  Colors.green, () {
-/*                                    
-                                  ProductDetails productDetails =
-                                      ProductDetails(
-                                          id: kConsumableId,
-                                          title: title,
-                                          description: body,
-                                          price: price.toString(),
-                                          rawPrice: price,
-                                          currencyCode: "USD");
-
-                                  final PurchaseParam purchaseParam =
-                                      PurchaseParam(
-                                    productDetails: productDetails,
-                                  );
-
-                                  homePageState.iapStoreKitPlatform
-                                      .buyConsumable(
-                                          purchaseParam: purchaseParam);
-*/
-                                })
+                              : Container()
 /*
 
                               : ApplePayButton(
