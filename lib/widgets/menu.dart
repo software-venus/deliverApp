@@ -4,7 +4,6 @@
 import 'package:entrega/models/parameter_model.dart';
 import 'package:entrega/pages/category_list.dart';
 import 'package:entrega/pages/content_view.dart';
-import 'package:entrega/pages/customer_my_exam_list.dart';
 import 'package:entrega/pages/flashcard_category_list.dart';
 import 'package:entrega/pages/video_category_list.dart';
 import 'package:entrega/pages/flashcard_question_list.dart';
@@ -279,25 +278,6 @@ class Menu extends Drawer {
                     );
                   },
                 ),
-
-                /* Customer My Exams */
-                homePageState.isLogin && homePageState.loginIsCustomer
-                    ? createDrawerImageItem(
-                        icon: "assets/icons/user.png",
-                        text: menuProfileTitle,
-                        textColor: Colors.black,
-                        onTap: () {
-                          Navigator.push<void>(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  CustomerMyExamList(
-                                      loginUsername: homePageState.loginUsername),
-                            ),
-                          );
-                        },
-                      )
-                    : Container(),
 
                 /* CPanel */
                 const Divider(),
