@@ -32,7 +32,7 @@ class PaymentPayPalConfirmState extends State<PaymentPayPalConfirm> {
         .executePayment(context, paymentId, payerId,  () {
       BasePaymentController()
           .processApproved(context, widget.queryParameters, onFinishApproved);
-    }, (string) {});
+    });
   }
 
   @override

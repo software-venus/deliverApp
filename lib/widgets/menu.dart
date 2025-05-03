@@ -5,7 +5,6 @@ import 'package:entrega/models/parameter_model.dart';
 import 'package:entrega/pages/content_view.dart';
 import 'package:entrega/pages/flashcard_category_list.dart';
 import 'package:entrega/pages/video_category_list.dart';
-import 'package:entrega/pages/flashcard_question_list.dart';
 import 'package:entrega/pages/video_list.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:entrega/pages/home.dart';
@@ -52,24 +51,6 @@ class Menu extends Drawer {
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) =>
                                   const MembershipList(),
-                            ),
-                          );
-                        },
-                      )
-                    : Container(),
-
-                /* Flashcard Question List */
-                homePageState.isLogin && homePageState.loginIsAdministrator
-                    ? createDrawerItem(
-                        icon: Icons.flash_on_outlined,
-                        text: menuProfilerAdministratorFlashcardQuestionListTitle,
-                        textColor: Colors.black,
-                        onTap: () {
-                          Navigator.push<void>(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  const FlashcardQuestionList(),
                             ),
                           );
                         },

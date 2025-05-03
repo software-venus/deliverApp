@@ -4,8 +4,6 @@
 import 'package:entrega/models/membership_model.dart';
 import 'package:entrega/models/parameter_model.dart';
 import 'package:entrega/models/user_model.dart';
-import 'package:entrega/pages/customer_flashcard_my_exam_list.dart';
-import 'package:entrega/pages/flashcard_question_todo.dart';
 import 'package:entrega/pages/video_todo.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:entrega/pages/home.dart';
@@ -208,78 +206,6 @@ Widget customerBuild(
           height: 50,
         ),
 
-/* Flashcard */
-        homePageState.isLogin
-            ? Column(
-                children: [
-                  Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          flashcardQuestionTitle,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              color: Colors.black87,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ]),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      optionBuild(
-                          flashcardQuestionNewTitle,
-                          Icons.flash_on_outlined,
-                          Colors.yellow,
-                          flashcardQuestionNewButtonTitle,
-                          factor, () {
-                        !homePageState.isLogin
-                            ? Navigator.push<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) => UserLogin(
-                                      homePageState: homePageState,
-                                      dobleClosed: false),
-                                ),
-                              )
-                            : validMembershipFlashcards(homePageState, context);
-                      }),
-                      optionBuild(
-                          flashcardQuestionHistoryTitle,
-                          Icons.flash_on_outlined,
-                          Colors.redAccent,
-                          flashcardQuestionHistoryButtonTitle,
-                          factor, () {
-                        !homePageState.isLogin
-                            ? Navigator.push<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) => UserLogin(
-                                    homePageState: homePageState,
-                                    dobleClosed: false,
-                                  ),
-                                ),
-                              )
-                            : Navigator.push<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) =>
-                                      CustomerFlashcardMyExamList(
-                                          loginUsername:
-                                              homePageState.loginUsername),
-                                ),
-                              );
-                      }),
-                    ],
-                  ),
-                ],
-              )
-            : Container(),
-        const SizedBox(
-          height: 50,
-        ),
 
 /* Videos */
         homePageState.isLogin
@@ -713,65 +639,6 @@ Future<Widget> membershipOneItem(HomePageState homePageState, BuildContext conte
           ),
         );
       });
-}
-
-void validMembershipFlashcards(
-    HomePageState homePageState, BuildContext context) {
-  try {
-    String error = "";
-
-    if (homePageState.customerMembershipCurrent.creationTime
-        .isBefore(DateTime.now().toUtc())) {
-      error = flashcardQuestionTodoError1;
-    }
-
-    if (homePageState.customerMembershipCurrent.maxUsesFlashcards < 1) {
-      error = flashcardQuestionTodoError2;
-    }
-
-    if (error.isEmpty) {
-      homePageState.customerMembershipCurrent.maxUsesFlashcards -= 1;
-
-      FirebaseCustomMembershipHelper()
-          .use(
-        context: context,
-        loginUsername: homePageState.loginUsername,
-        membershipCurrent: homePageState.customerMembershipCurrent,
-      )
-          .then((result) {
-        if (result == null) {
-          Navigator.push<void>(
-            context,
-            MaterialPageRoute<void>(
-              builder: (BuildContext context) => FlashcardQuestionTodo(
-                  homePageState: homePageState, isOpen: true),
-            ),
-          );
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-              result,
-              style: const TextStyle(fontSize: 16),
-            ),
-          ));
-        }
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-          error,
-          style: const TextStyle(fontSize: 16),
-        ),
-      ));
-    }
-  } catch (errorValue) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-        errorValue.toString(),
-        style: const TextStyle(fontSize: 16),
-      ),
-    ));
-  }
 }
 
 void validMembershipVideo(HomePageState homePageState, BuildContext context) {

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:entrega/models/parameter_model.dart';
 import 'package:entrega/utils/checkout/base_payment_controller.dart';
 import 'package:entrega/utils/checkout/paypal/v1/paypal_v1_services.dart';
-import 'package:entrega/utils/firebase/firebase_custom_flashcard_question.dart';
 import 'package:entrega/utils/general/sizes_helpers.dart';
 import 'package:entrega/variables/globalvar.dart';
 import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart';
@@ -122,7 +121,7 @@ class PaypalV1PaymentController extends BasePaymentController {
   }
 
   Future executePayment(BuildContext context, String paymentId, String payerId,
-      VoidCallback onSuccess, VoidCallbackString onError) async {
+      VoidCallback onSuccess) async {
     loadParameters(
       () async {
         initParameter(listParameters);
@@ -144,8 +143,6 @@ class PaypalV1PaymentController extends BasePaymentController {
 
             if (!res["error"]) {
               onSuccess();
-            } else {
-              onError(res["data"]);
             }
           }
         } catch (e) {
