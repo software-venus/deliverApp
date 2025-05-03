@@ -17,7 +17,6 @@ import 'package:entrega/utils/general/sizes_helpers.dart';
 import 'package:entrega/variables/globalvar.dart';
 
 // 👇 Generated localization file (after flutter gen-l10n)
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 DateTime defaultDateTime = DateTime.utc(1969, 7, 20, 20, 18, 04);
 
@@ -96,7 +95,6 @@ class _AppState extends State<App> {
         Locale('es'),
       ],
       localizationsDelegates: const [
-        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

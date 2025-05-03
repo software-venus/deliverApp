@@ -32,13 +32,6 @@ class Menu extends Drawer {
       : super(
           key: key,
           elevation: 20,
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover, // Fill the entire ListView area with the background image
-                image: AssetImage('assets/sidebar.jpg'), // Set the background image
-              ),
-            ),
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
@@ -402,7 +395,6 @@ class Menu extends Drawer {
                 const Divider(),
               ],
             ),
-          ),
         );
 }
 
