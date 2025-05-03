@@ -2,17 +2,8 @@
 // ignore: import_of_legacy_library_into_null_safe, unused_import
 import 'dart:convert';
 // import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:entrega/models/answer_model.dart';
 import 'package:entrega/models/category_model.dart';
-import 'package:entrega/models/flashcard_answer_model.dart';
-import 'package:entrega/models/flashcard_category_model.dart';
-import 'package:entrega/models/flashcard_question_answer_model.dart';
-import 'package:entrega/models/flashcard_question_model.dart';
 import 'package:entrega/models/membership_model.dart';
-import 'package:entrega/models/question_answer_model.dart';
-import 'package:entrega/models/question_model.dart';
-import 'package:entrega/models/user_exam_model.dart';
-import 'package:entrega/models/user_flashcard_exam_model.dart';
 import 'package:entrega/widgets/application_bar_customer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:entrega/models/parameter_model.dart';
@@ -126,65 +117,7 @@ class HomePageState extends State<HomePage> {
     this.loginIsCustomer = loginIsCustomer;
   }
 
-  UserExamModel testingUserExam = UserExamModel(
-      false,
-      "",
-      "",
-      "custom title",
-      [CategoryModel(false, "", "Categoria testing", 0, DateTime.now())],
-      true,
-      true,
-//      false,
-//      true,
-      3,
-      25,
-      [],
-      DateTime.now().toUtc(),
-      DateTime.now().toUtc().add(Duration(minutes: 25)));
-
-  UserFlashcardExamModel testingUserFlashcardExam = UserFlashcardExamModel(
-      false,
-      "",
-      "",
-      "custom title",
-      [
-        FlashcardCategoryModel(
-            false, "", "Categoria testing", 0, DateTime.now())
-      ],
-      true,
-      false,
-//      false,
-//      true,
-      3,
-      25,
-      [],
-      DateTime.now().toUtc(),
-      DateTime.now().toUtc().add(Duration(minutes: 25)));
-
-  bool iosPurchaseMembership = false;
-/*
-  final InAppPurchaseStoreKitPlatform iapStoreKitPlatform =
-      InAppPurchasePlatform.instance as InAppPurchaseStoreKitPlatform;
-*/
-
-/*
-  late CachedVideoPlayerController videoPlayerController,
-      videoPlayerController2,
-      videoPlayerController3;
-  late CustomVideoPlayerController customVideoPlayerController;
-  late CustomVideoPlayerWebController customVideoPlayerWebController;
-
-  final CustomVideoPlayerSettings customVideoPlayerSettings =
-      const CustomVideoPlayerSettings(
-    showSeekButtons: true,
-  );
-
-  final CustomVideoPlayerWebSettings customVideoPlayerWebSettings =
-      CustomVideoPlayerWebSettings(
-    hideDownloadButton: true,
-    src: longVideo,
-  );
-*/
+  
 
 //  late VideoPlayerController videoPlayercontroller;
 
@@ -196,165 +129,6 @@ class HomePageState extends State<HomePage> {
 
     refresh();
 
-    testingUserExam.questionAnswers.add(QuestionAnswerModel(
-        QuestionModel(
-            false,
-            "",
-            testingUserExam.categorys[0],
-            "<b>Pregunta</b> 1",
-            "explicacion de la <b>pregunta</b> 1",
-            "<b>referencia</b> de la pregunta 1",
-            [
-              AnswerModel("<b>respuesta</b> 1", true),
-              AnswerModel("<b>respuesta</b> 2", false),
-              AnswerModel("<b>respuesta</b> 3", false),
-              AnswerModel("respuesta <b>4</b>", false),
-              AnswerModel("<b>respuesta</b> 5", false),
-            ],
-            true,
-            "",
-            "https://www.sysadminok.es/wp-content/uploads/2022/07/cors.jpg",
-            "",
-            "https://www.sysadminok.es/wp-content/uploads/2022/07/cors.jpg",
-            "",
-            "https://www.sysadminok.es/wp-content/uploads/2022/07/cors.jpg",
-            "",
-            "https://www.sysadminok.es/wp-content/uploads/2022/07/cors.jpg",
-            "",
-            "https://www.sysadminok.es/wp-content/uploads/2022/07/cors.jpg",
-            "",
-            "https://www.sysadminok.es/wp-content/uploads/2022/07/cors.jpg",
-            "",
-            "https://www.sysadminok.es/wp-content/uploads/2022/07/cors.jpg",
-            "",
-            "https://www.sysadminok.es/wp-content/uploads/2022/07/cors.jpg",
-            "",
-            "https://www.sysadminok.es/wp-content/uploads/2022/07/cors.jpg",
-            DateTime.now().toUtc()),
-        AnswerModel("", false)));
-
-    testingUserExam.questionAnswers.add(QuestionAnswerModel(
-        QuestionModel(
-            false,
-            "",
-            testingUserExam.categorys[0],
-            "Pregunta 2 Pregunta 2 Pregunta 2 Pregunta 2 Pregunta 2 Pregunta 2 Pregunta 2 ",
-            "explicacion de la pregunta 2",
-            "referencia de la pregunta 2",
-            [
-              AnswerModel("respuesta 1", false),
-              AnswerModel("respuesta 2 ", true),
-              AnswerModel(
-                  "respuesta 3 respuesta 3 respuesta 3 respuesta 3 respuesta 3 respuesta 3 ",
-                  false),
-              AnswerModel("respuesta 4", false),
-              AnswerModel("respuesta 5", false),
-            ],
-            true,
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            DateTime.now().toUtc()),
-        AnswerModel("", false)));
-
-    testingUserExam.questionAnswers.add(QuestionAnswerModel(
-        QuestionModel(
-            false,
-            "",
-            testingUserExam.categorys[0],
-            "Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 ",
-            "explicacion de la pregunta 3 explicacion de la pregunta 3 explicacion de la pregunta 3 explicacion de la pregunta 3 explicacion de la pregunta 3 explicacion de la pregunta 3 explicacion de la pregunta 3 ",
-            "referencia de la pregunta 3",
-            [
-              AnswerModel("respuesta 1", false),
-              AnswerModel("respuesta 2", false),
-              AnswerModel(
-                  "respuesta 3 respuesta 3 respuesta 3 respuesta 3 respuesta 3 respuesta 3 ",
-                  true),
-              AnswerModel("respuesta 4", false),
-              AnswerModel("respuesta 5", true),
-            ],
-            true,
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            DateTime.now().toUtc()),
-        AnswerModel("", false)));
-
-    testingUserFlashcardExam.questionAnswers.add(FlashcardQuestionAnswerModel(
-        FlashcardQuestionModel(
-            false,
-            "",
-            testingUserFlashcardExam.categorys[0],
-            "<b>Pregunta</b> 1",
-            "",
-            "",
-            [
-              FlashcardAnswerModel("<b>respuesta</b> 1", true),
-            ],
-            true,
-            DateTime.now().toUtc()),
-        FlashcardAnswerModel("", false)));
-
-    testingUserFlashcardExam.questionAnswers.add(FlashcardQuestionAnswerModel(
-        FlashcardQuestionModel(
-            false,
-            "",
-            testingUserFlashcardExam.categorys[0],
-            "Pregunta 2 Pregunta 2 Pregunta 2 Pregunta 2 Pregunta 2 Pregunta 2 Pregunta 2 ",
-            "",
-            "",
-            [
-              FlashcardAnswerModel("respuesta 2", false),
-            ],
-            true,
-            DateTime.now().toUtc()),
-        FlashcardAnswerModel("", false)));
-
-    testingUserFlashcardExam.questionAnswers.add(FlashcardQuestionAnswerModel(
-        FlashcardQuestionModel(
-            false,
-            "",
-            testingUserFlashcardExam.categorys[0],
-            "Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 Pregunta 3 ",
-            "",
-            "",
-            [
-              FlashcardAnswerModel("respuesta 3", false),
-            ],
-            true,
-            DateTime.now().toUtc()),
-        FlashcardAnswerModel("", false)));
 
 /*
     videoPlayerController = CachedVideoPlayerController.network(
@@ -737,9 +511,7 @@ class HomePageState extends State<HomePage> {
               customerCategoryLists,
               membershipLists,
               membershipOnlyVisibleLists,
-              factor(context),
-              testingUserExam,
-              testingUserFlashcardExam));
+              factor(context)));
     }
 
 /* Is Administrator */
@@ -776,9 +548,7 @@ class HomePageState extends State<HomePage> {
               customerCategoryLists,
               membershipLists,
               membershipOnlyVisibleLists,
-              factor(context),
-              testingUserExam,
-              testingUserFlashcardExam));
+              factor(context),));
     }
 
 /*  Default Screen */

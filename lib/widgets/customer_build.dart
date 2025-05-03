@@ -4,11 +4,8 @@
 import 'package:entrega/models/category_model.dart';
 import 'package:entrega/models/membership_model.dart';
 import 'package:entrega/models/parameter_model.dart';
-import 'package:entrega/models/user_exam_model.dart';
-import 'package:entrega/models/user_flashcard_exam_model.dart';
 import 'package:entrega/models/user_model.dart';
 import 'package:entrega/pages/customer_flashcard_my_exam_list.dart';
-import 'package:entrega/pages/customer_my_exam_list.dart';
 import 'package:entrega/pages/flashcard_question_todo.dart';
 import 'package:entrega/pages/video_todo.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -34,9 +31,7 @@ Widget customerBuild(
     List<CategoryModel> categorys,
     List<MembershipModel> memberships,
     List<MembershipModel> membershipOnlyVisibles,
-    double factor,
-    UserExamModel newUserExam,
-    UserFlashcardExamModel newUserFlashcardExam) {
+    double factor) {
   String appSubTitle = "";
   bool youTubeShow = false;
   String youTubeID = "";
@@ -60,7 +55,6 @@ Widget customerBuild(
 
     if (!isIOS()) {
       showMembership = true;
-      homePageState.iosPurchaseMembership = false;
     } else {
       ParameterModel iosShowMembershipParameter =
           parameterStringFromKey2ToParameterModel(
@@ -79,7 +73,6 @@ Widget customerBuild(
                   .compareTo("iosPurchaseMembership") ==
               0 &&
           iosPurchaseMembershipParameter.additional.compareTo("Si") == 0) {
-        homePageState.iosPurchaseMembership = true;
       }
     }
   }
@@ -253,38 +246,6 @@ Widget customerBuild(
                       }),
                     ],
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      optionBuild(
-                          questionHistoryTitle,
-                          Icons.history_edu_outlined,
-                          Colors.redAccent,
-                          questionHistoryButtonTitle,
-                          factor, () {
-                        !homePageState.isLogin
-                            ? Navigator.push<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) => UserLogin(
-                                    homePageState: homePageState,
-                                    dobleClosed: false,
-                                  ),
-                                ),
-                              )
-                            : Navigator.push<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) =>
-                                      CustomerMyExamList(
-                                          loginUsername:
-                                              homePageState.loginUsername),
-                                ),
-                              );
-                      }),
-                    ],
-                  )
                 ],
               )
             : Container(),
