@@ -5,17 +5,8 @@ class MembershipModel {
   String title;
   String detail;
   double price;
-
-  int maxUses;
-  int maxDays;
-  int maxQuestions;
-  int maxFlashcards;
-  int maxUsesFlashcards;
-  int maxVideos;
-
-  bool isVisible;
-  bool isDefault;
-  int order;
+  int maxTracks;
+  bool isAds;
 
   DateTime creationTime;
 
@@ -25,15 +16,8 @@ class MembershipModel {
       this.title,
       this.detail,
       this.price,
-      this.maxUses,
-      this.maxDays,
-      this.maxQuestions,
-      this.maxFlashcards,
-      this.maxUsesFlashcards,
-      this.maxVideos,
-      this.isVisible,
-      this.isDefault,
-      this.order,
+      this.maxTracks,
+      this.isAds,
       this.creationTime);
 
   factory MembershipModel.fromJSON(
@@ -46,19 +30,9 @@ class MembershipModel {
         jsonData['price'] is double
             ? jsonData['price'] as double
             : double.parse(jsonData['price'].toString()),
-        jsonData['maxUses'] as int,
-        jsonData['maxDays'] as int,
-        jsonData['maxQuestions'] as int,
-        jsonData['maxFlashcards'] != null
-            ? jsonData['maxFlashcards'] as int
-            : 100,
-        jsonData['maxUsesFlashcards'] != null
-            ? jsonData['maxUsesFlashcards'] as int
-            : 50,
-        jsonData['maxVideos'] != null ? jsonData['maxVideos'] as int : 100,
-        jsonData['isVisible'] as bool,
-        jsonData['isDefault'] as bool,
-        jsonData['order'] as int,
+        jsonData['maxTracks'] as int,
+
+        jsonData['isAds'] as bool,
         DateTime.fromMicrosecondsSinceEpoch(
             jsonData['creationTime'].microsecondsSinceEpoch));
   }
@@ -73,19 +47,8 @@ class MembershipModel {
         jsonData['price'] is double
             ? jsonData['price'] as double
             : double.parse(jsonData['price'].toString()),
-        jsonData['maxUses'] as int,
-        jsonData['maxDays'] as int,
-        jsonData['maxQuestions'] as int,
-        jsonData['maxFlashcards'] != null
-            ? jsonData['maxFlashcards'] as int
-            : 100,
-        jsonData['maxUsesFlashcards'] != null
-            ? jsonData['maxUsesFlashcards'] as int
-            : 50,
-        jsonData['maxVideos'] != null ? jsonData['maxVideos'] as int : 100,
-        jsonData['isVisible'] as bool,
-        jsonData['isDefault'] as bool,
-        jsonData['order'] as int,
+        jsonData['maxTracks'] as int,
+        jsonData['isAds'] as bool,
         DateTime.fromMicrosecondsSinceEpoch(
             jsonData['creationTime'].microsecondsSinceEpoch));
   }
@@ -95,15 +58,8 @@ class MembershipModel {
         'title': title,
         'detail': detail,
         'price': price,
-        'maxUses': maxUses,
-        'maxDays': maxDays,
-        'maxQuestions': maxQuestions,
-        'maxFlashcards': maxFlashcards,
-        'maxUsesFlashcards': maxUsesFlashcards,
-        'maxVideos': maxVideos,
-        'isVisible': isVisible,
-        'isDefault': isDefault,
-        'order': order,
+        'maxTracks': maxTracks,
+        'isAds': isAds,
         'creationTime': creationTime,
       };
 
@@ -112,15 +68,8 @@ class MembershipModel {
         'title': title,
         'detail': detail,
         'price': price,
-        'maxUses': maxUses,
-        'maxDays': maxDays,
-        'maxQuestions': maxQuestions,
-        'maxFlashcards': maxFlashcards,
-        'maxUsesFlashcards': maxUsesFlashcards,
-        'maxVideos': maxVideos,
-        'isVisible': isVisible,
-        'isDefault': isDefault,
-        'order': order,
+        'maxTracks': maxTracks,
+        'isAds': isAds,
         'creationTime': creationTime,
       };
 
@@ -132,17 +81,10 @@ class MembershipModel {
     detail = fromMembership.detail;
     price = fromMembership.price;
 
-    maxUses = fromMembership.maxUses;
-    maxDays = fromMembership.maxDays;
-    maxQuestions = fromMembership.maxQuestions;
-    maxFlashcards = fromMembership.maxFlashcards;
-    maxUsesFlashcards = fromMembership.maxUsesFlashcards;
-    maxVideos = fromMembership.maxVideos;
+    maxTracks = fromMembership.maxTracks;
 
-    isVisible = fromMembership.isVisible;
-    isDefault = fromMembership.isDefault;
-    order = fromMembership.order;
+    isAds = fromMembership.isAds;
 
-    creationTime = DateTime.now().add(Duration(days: fromMembership.maxDays));
+    creationTime = DateTime.now();
   }
 }

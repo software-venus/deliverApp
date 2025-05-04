@@ -2040,9 +2040,9 @@ String get membershipABMFieldPriceHint => languageStatus == 0 ? "¿precio?" : "P
 String get membershipABMFieldPriceLabel => languageStatus == 0 ? "Precio" : "Price";
 String get membershipABMFieldPriceError => languageStatus == 0 ? "Debe ingresar un precio" : "You must enter a price";
 
-String get membershipABMFieldMaxUsesHint => languageStatus == 0 ? "¿máximo de usos?" : "Maximum uses?";
-String get membershipABMFieldMaxUsesLabel => languageStatus == 0 ? "Máximo de usos" : "Maximum uses";
-String get membershipABMFieldMaxUsesError => languageStatus == 0 ? "Debe ingresar un máximo de usos" : "You must enter the maximum uses";
+String get membershipABMFieldMaxTracksHint => languageStatus == 0 ? "¿máximo de usos?" : "Maximum uses?";
+String get membershipABMFieldMaxTracksLabel => languageStatus == 0 ? "Máximo de usos" : "Maximum uses";
+String get membershipABMFieldMaxTracksError => languageStatus == 0 ? "Debe ingresar un máximo de usos" : "You must enter the maximum uses";
 
 String get membershipABMFieldMaxDaysHint => languageStatus == 0 ? "¿máximo de Días?" : "Maximum days?";
 String get membershipABMFieldMaxDaysLabel => languageStatus == 0 ? "Máximo de Días" : "Maximum days";

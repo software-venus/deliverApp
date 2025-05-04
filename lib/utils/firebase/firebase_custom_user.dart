@@ -44,14 +44,14 @@ class FirebaseCustomUserHelper {
 /* Customer Membership Default */
       if (userModel.isCustomer) {
         MembershipModel defaultMembership = MembershipModel(false, "", "", "",
-            0, 0, 0, 0, 0, 0, 0, false, false, 0, DateTime.now());
-        for (MembershipModel oneMembership in memberships) {
-          if (oneMembership.isDefault) {
-            defaultMembership = oneMembership;
-            defaultMembership.creationTime =
-                DateTime.now().add(Duration(days: oneMembership.maxDays));
-          }
-        }
+            0, 0, false, DateTime.now());
+        // for (MembershipModel oneMembership in memberships) {
+        //   if (oneMembership.isDefault) {
+        //     defaultMembership = oneMembership;
+        //     defaultMembership.creationTime =
+        //         DateTime.now().add(Duration(days: oneMembership.maxDays));
+        //   }
+        // }
 
         CollectionReference appUserMemberships =
             firestoreInstance.collection(firebaseCustomUserMembershipKey);

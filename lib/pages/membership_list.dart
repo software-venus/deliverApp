@@ -93,8 +93,7 @@ class MembershipListState extends State<MembershipList> {
                       membershipListState: this,
                       isNew: true,
                       isModify: false,
-                      membershipModel: MembershipModel(false, "", "", "", 1, 0,
-                          0, 0, 0, 0, 0, false, false, 0, DateTime.now()),
+                      membershipModel: MembershipModel(false, "", "", "", 0, 0, false, DateTime.now()),
                     ),
                   ),
                 );

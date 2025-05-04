@@ -32,13 +32,7 @@ class _MembershipABMState extends State<MembershipABM> {
   final _titleController = TextEditingController();
   final _detailController = TextEditingController();
   final _priceController = TextEditingController();
-  final _maxUsesController = TextEditingController();
-  final _maxDaysController = TextEditingController();
-  final _maxQuestionsController = TextEditingController();
-  final _maxFlashcardsController = TextEditingController();
-  final _maxVideosController = TextEditingController();
-  final _maxUsesFlashcardsController = TextEditingController();
-  final _orderController = TextEditingController();
+  final _maxTracksController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -52,18 +46,7 @@ class _MembershipABMState extends State<MembershipABM> {
       _titleController.text = widget.membershipModel.title;
       _detailController.text = widget.membershipModel.detail;
       _priceController.text = widget.membershipModel.price.toString();
-
-      _maxUsesController.text = widget.membershipModel.maxUses.toString();
-      _maxDaysController.text = widget.membershipModel.maxDays.toString();
-      _maxQuestionsController.text =
-          widget.membershipModel.maxQuestions.toString();
-      _maxFlashcardsController.text =
-          widget.membershipModel.maxFlashcards.toString();
-      _maxVideosController.text = widget.membershipModel.maxVideos.toString();
-      _maxUsesFlashcardsController.text =
-          widget.membershipModel.maxUsesFlashcards.toString();
-
-      _orderController.text = widget.membershipModel.order.toString();
+      _maxTracksController.text = widget.membershipModel.maxTracks.toString();
     }
 
     super.initState();
@@ -147,173 +130,19 @@ class _MembershipABMState extends State<MembershipABM> {
                               },
                             ),
 
-/* MaxUses */
-                            TextFormField(
-                              decoration: InputDecoration(
-                                icon: const Icon(Icons.numbers_rounded),
-                                hintText: membershipABMFieldMaxUsesHint,
-                                labelText: membershipABMFieldMaxUsesLabel,
-                              ),
-                              controller: _maxUsesController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return membershipABMFieldMaxUsesError;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                widget.membershipModel.maxUses =
-                                    int.parse(value);
-                              },
-                            ),
-
-/* MaxDays */
-                            TextFormField(
-                              decoration: InputDecoration(
-                                icon: const Icon(Icons.numbers_rounded),
-                                hintText: membershipABMFieldMaxDaysHint,
-                                labelText: membershipABMFieldMaxDaysLabel,
-                              ),
-                              controller: _maxDaysController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return membershipABMFieldMaxDaysError;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                widget.membershipModel.maxDays =
-                                    int.parse(value);
-                              },
-                            ),
-
-/* MaxQuestions */
-                            TextFormField(
-                              decoration: InputDecoration(
-                                icon: const Icon(Icons.numbers_rounded),
-                                hintText: membershipABMFieldMaxQuestionsHint,
-                                labelText: membershipABMFieldMaxQuestionsLabel,
-                              ),
-                              controller: _maxQuestionsController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return membershipABMFieldMaxQuestionsError;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                widget.membershipModel.maxQuestions =
-                                    int.parse(value);
-                              },
-                            ),
-
-/* MaxFlashcards */
-                            TextFormField(
-                              decoration: InputDecoration(
-                                icon: const Icon(Icons.numbers_rounded),
-                                hintText: membershipABMFieldMaxFlashcardsHint,
-                                labelText: membershipABMFieldMaxFlashcardsLabel,
-                              ),
-                              controller: _maxFlashcardsController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return membershipABMFieldMaxFlashcardsError;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                widget.membershipModel.maxFlashcards =
-                                    int.parse(value);
-                              },
-                            ),
-
-/* MaxUsesFlashcards */
-                            TextFormField(
-                              decoration: InputDecoration(
-                                icon: const Icon(Icons.numbers_rounded),
-                                hintText:
-                                    membershipABMFieldMaxUsesFlashcardsHint,
-                                labelText:
-                                    membershipABMFieldMaxUsesFlashcardsLabel,
-                              ),
-                              controller: _maxUsesFlashcardsController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return membershipABMFieldMaxUsesFlashcardsError;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                widget.membershipModel.maxUsesFlashcards =
-                                    int.parse(value);
-                              },
-                            ),
-
-/* MaxVideos */
-                            TextFormField(
-                              decoration: InputDecoration(
-                                icon: const Icon(Icons.numbers_rounded),
-                                hintText: membershipABMFieldMaxVideosHint,
-                                labelText: membershipABMFieldMaxVideosLabel,
-                              ),
-                              controller: _maxFlashcardsController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return membershipABMFieldMaxVideosError;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                widget.membershipModel.maxVideos =
-                                    int.parse(value);
-                              },
-                            ),
-
 /* IsVisible */
                             Row(
                               children: [
                                 Checkbox(
-                                    value: widget.membershipModel.isVisible,
+                                    value: widget.membershipModel.isAds,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        widget.membershipModel.isVisible =
+                                        widget.membershipModel.isAds =
                                             value!;
                                       });
                                     }),
                                 Text(membershipABMFieldIsVisibleLabel),
                               ],
-                            ),
-                            Row(
-                              children: [
-                                Checkbox(
-                                    value: widget.membershipModel.isDefault,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        widget.membershipModel.isDefault =
-                                            value!;
-                                      });
-                                    }),
-                                Text(membershipABMFieldIsDefaultLabel),
-                              ],
-                            ),
-
-/* Order */
-                            TextFormField(
-                              decoration: InputDecoration(
-                                icon: const Icon(Icons.numbers_rounded),
-                                hintText: membershipABMFieldOrderHint,
-                                labelText: membershipABMFieldOrderLabel,
-                              ),
-                              controller: _orderController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return membershipABMFieldOrderError;
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                widget.membershipModel.order = int.parse(value);
-                              },
                             ),
 
 /* Finish */
@@ -371,94 +200,22 @@ class _MembershipABMState extends State<MembershipABM> {
 
                                             try {
                                               double.parse(
-                                                  _maxUsesController.text);
+                                                  _maxTracksController.text);
                                             } catch (errorValue) {
                                               error =
-                                                  membershipABMFieldMaxUsesError;
+                                                  membershipABMFieldMaxTracksError;
                                             }
                                             try {
-                                              int tValueMaxUses = int.parse(
-                                                  _maxUsesController.text);
+                                              int tValueMaxTracks = int.parse(
+                                                  _maxTracksController.text);
 
-                                              if (tValueMaxUses < 1) {
+                                              if (tValueMaxTracks < 1) {
                                                 error =
-                                                    membershipABMFieldMaxUsesError;
+                                                    membershipABMFieldMaxTracksError;
                                               }
                                             } catch (errorValue) {
                                               error =
-                                                  membershipABMFieldMaxUsesError;
-                                            }
-
-                                            try {
-                                              double.parse(
-                                                  _maxDaysController.text);
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxDaysError;
-                                            }
-                                            try {
-                                              int tValueMaxDays = int.parse(
-                                                  _maxDaysController.text);
-
-                                              if (tValueMaxDays < 1) {
-                                                error =
-                                                    membershipABMFieldMaxDaysError;
-                                              }
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxDaysError;
-                                            }
-
-                                            try {
-                                              double.parse(
-                                                  _maxQuestionsController.text);
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxQuestionsError;
-                                            }
-                                            try {
-                                              int tValueMaxQuestions =
-                                                  int.parse(
-                                                      _maxQuestionsController
-                                                          .text);
-
-                                              if (tValueMaxQuestions < 1) {
-                                                error =
-                                                    membershipABMFieldMaxQuestionsError;
-                                              }
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxQuestionsError;
-                                            }
-
-                                            try {
-                                              double.parse(
-                                                  _maxFlashcardsController
-                                                      .text);
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxFlashcardsError;
-                                            }
-                                            try {
-                                              int tValueMaxFlashcards =
-                                                  int.parse(
-                                                      _maxFlashcardsController
-                                                          .text);
-
-                                              if (tValueMaxFlashcards < 1) {
-                                                error =
-                                                    membershipABMFieldMaxFlashcardsError;
-                                              }
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxFlashcardsError;
-                                            }
-
-                                            try {
-                                              int.parse(_orderController.text);
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldOrderError;
+                                                  membershipABMFieldMaxTracksError;
                                             }
 
                                             if (error.isEmpty) {
@@ -559,94 +316,22 @@ class _MembershipABMState extends State<MembershipABM> {
 
                                             try {
                                               double.parse(
-                                                  _maxUsesController.text);
+                                                  _maxTracksController.text);
                                             } catch (errorValue) {
                                               error =
-                                                  membershipABMFieldMaxUsesError;
+                                                  membershipABMFieldMaxTracksError;
                                             }
                                             try {
                                               int tValueMaxUses = int.parse(
-                                                  _maxUsesController.text);
+                                                  _maxTracksController.text);
 
                                               if (tValueMaxUses < 1) {
                                                 error =
-                                                    membershipABMFieldMaxUsesError;
+                                                    membershipABMFieldMaxTracksError;
                                               }
                                             } catch (errorValue) {
                                               error =
-                                                  membershipABMFieldMaxUsesError;
-                                            }
-
-                                            try {
-                                              double.parse(
-                                                  _maxDaysController.text);
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxDaysError;
-                                            }
-                                            try {
-                                              int tValueMaxDays = int.parse(
-                                                  _maxDaysController.text);
-
-                                              if (tValueMaxDays < 1) {
-                                                error =
-                                                    membershipABMFieldMaxDaysError;
-                                              }
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxDaysError;
-                                            }
-
-                                            try {
-                                              double.parse(
-                                                  _maxQuestionsController.text);
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxQuestionsError;
-                                            }
-                                            try {
-                                              int tValueMaxQuestions =
-                                                  int.parse(
-                                                      _maxQuestionsController
-                                                          .text);
-
-                                              if (tValueMaxQuestions < 1) {
-                                                error =
-                                                    membershipABMFieldMaxQuestionsError;
-                                              }
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxQuestionsError;
-                                            }
-
-                                            try {
-                                              double.parse(
-                                                  _maxFlashcardsController
-                                                      .text);
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxFlashcardsError;
-                                            }
-                                            try {
-                                              int tValueMaxFlashcards =
-                                                  int.parse(
-                                                      _maxFlashcardsController
-                                                          .text);
-
-                                              if (tValueMaxFlashcards < 1) {
-                                                error =
-                                                    membershipABMFieldMaxFlashcardsError;
-                                              }
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldMaxFlashcardsError;
-                                            }
-
-                                            try {
-                                              int.parse(_orderController.text);
-                                            } catch (errorValue) {
-                                              error =
-                                                  membershipABMFieldOrderError;
+                                                  membershipABMFieldMaxTracksError;
                                             }
 
                                             if (error.isEmpty) {

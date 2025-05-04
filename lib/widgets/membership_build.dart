@@ -20,6 +20,7 @@ Widget membershipBuild(
   // ignore: unused_local_variable
   String kConsumableId = "";
 
+
   // if (homePageState.iosPurchaseMembership) {
   //   kConsumableId = "1M";
   //   price = 9.99;

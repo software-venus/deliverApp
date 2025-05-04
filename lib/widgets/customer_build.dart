@@ -46,6 +46,7 @@ Widget customerBuild(
     }
 
     if (!isIOS()) {
+
       showMembership = true;
     } else {
       ParameterModel iosShowMembershipParameter =
@@ -246,6 +247,7 @@ Widget membershipBuildListViewX2(
     BuildContext context,
     List<MembershipModel> list,
     double factor) {
+      // print(list);
   return ListView.builder(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
@@ -431,7 +433,9 @@ Widget membershipBuildListViewX4(
     BuildContext context,
     List<MembershipModel> list,
     double factor) {
+      print(list.length);
   return ListView.builder(
+    
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
     scrollDirection: Axis.vertical,
@@ -559,10 +563,10 @@ Future<Widget> membershipOneItem(HomePageState homePageState, BuildContext conte
       title,
       membershipModel.price,
       detail,
-      !membershipModel.isDefault
+      !membershipModel.isAds
           ? membershipSelectTitle
           : membershipSelectNewTitle,
-      !membershipModel.isDefault,
+      !membershipModel.isAds,
       factor,
       () {
         !homePageState.isLogin
@@ -584,7 +588,7 @@ Future<Widget> membershipOneItem(HomePageState homePageState, BuildContext conte
                 ),
               );
       },
-      membershipModel.isDefault && !homePageState.isLogin,
+      membershipModel.isAds && !homePageState.isLogin,
       () {
         Navigator.push<void>(
           context,

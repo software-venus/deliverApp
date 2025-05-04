@@ -50,7 +50,7 @@ class HomePageState extends State<HomePage> {
 
 
   MembershipModel customerMembershipCurrent = MembershipModel(
-      false, "", "", "", 0, 0, 0, 0, 0, 0, 0, false, false, 0, DateTime.now());
+      false, "", "", "", 0, 0, false, DateTime.now());
 
   List<ParameterModel> listParameters = [];
   List<MembershipModel> membershipLists = [];
@@ -166,20 +166,18 @@ class HomePageState extends State<HomePage> {
 
       memberships
           .limit(100)
-          .orderBy("order", descending: false)
+          .orderBy("price", descending: false)
           .get()
           .then((querySnapshot) {
         for (var result in querySnapshot.docs) {
           setState(() {
             MembershipModel newMembership =
                 MembershipModel.fromJSON(false, result.id, result.data());
-
             membershipTransforms.uniquedAdd(membershipLists, newMembership);
 
-            if (newMembership.isVisible) {
-              membershipTransforms.uniquedAdd(
-                  membershipOnlyVisibleLists, newMembership);
-            }
+
+            membershipTransforms.uniquedAdd(
+                membershipOnlyVisibleLists, newMembership);
           });
         }
       });
