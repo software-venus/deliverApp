@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 int languageStatus = 0;
-const String appName = "MD Exam";
+const String appName = "TE";
 
 //////////////------------------PT----------------------//////////////////////
 String get menuProfilerCustomerListTitle => languageStatus == 0 ? "USUÁRIAS" : "USERS";
@@ -15,6 +15,8 @@ String get menuCPanelTitle => languageStatus == 0 ? "ADMINISTRAÇÃO" : "ADMINIS
 String get menuCPanelUserLoginTitle => languageStatus == 0 ? "Conecte-se" : "Login";
 String get menuCPanelUserLostPasswordTitle => languageStatus == 0 ? "Esqueceu sua senha" : "Forgot Password";
 String get menuCPanelUserLogoutTitle => languageStatus == 0 ? "Sair" : "Logout";
+String get appHomeTitle => languageStatus==0 ? "Entrega rápida e confiável — em qualquer lugar, a qualquer hora.":"Fast, Reliable Delivered—Anywhere, Anytime.";
+String get appMembershipTitle => languageStatus == 0 ? "Planos de assinatura" : "Subscription plans";
 
 /////////////--------------------PT---------------------////////////////////
 
@@ -22,11 +24,11 @@ String get shareText => languageStatus == 0
     ? "Estoy usando MD Exam para enterarte de lo ultimo de examenes, puedes bajar la app en Google Play o Apple Store"
     : "I'm using MD Exam to stay updated on the latest exams. You can download the app from Google Play or Apple Store";
 
-String get appHomeTitle => languageStatus==0 ? "Banco de preguntas para el examen de residencias médicas":"Question bank for the medical residency exam";
+
 
 String get appHomeWelcome => languageStatus == 0 ? "Te damos la bienvenida" : "Welcome";
 
-String get appMembershipTitle => languageStatus == 0 ? "Planes de suscripción" : "Subscription plans";
+
 String get appMembershipDaysPreTitle => languageStatus == 0 ? "Te quedan" : "You have";
 String get appMembershipDaysSubTitle => languageStatus == 0 ? "días de suscripción" : "subscription days";
 String get appMembershipDays0Title => languageStatus == 0 ? "No tienes más días de suscripción." : "You have no more subscription days.";
@@ -98,6 +100,7 @@ String get menuProfilerCustomerContactTitle => languageStatus == 0 ? "Contactar"
 const Color primaryColor = Color.fromRGBO(2, 82, 145, 1);
 const Color gridTitleColor = Colors.white;
 const Color customBackcolor = Color.fromRGBO(254, 254, 254, 1);
+const Color customAppBarColor = Color.fromRGBO(10, 38, 202, 1);
 
 String get preferenceIsLogin => "isLogin";
 String get preferenceLoginUsername => "LoginUsername";

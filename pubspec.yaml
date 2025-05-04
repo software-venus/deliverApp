@@ -141,7 +141,6 @@ flutter:
   assets:
     - assets/header_background.png
     - assets/login_image.png
-    - assets/login_image2.png
     - assets/logo_screen.png
     - assets/login_background.png
     - assets/go.png
@@ -159,6 +158,8 @@ flutter:
     - assets/logo.png
     - assets/menuhead.png
     - assets/sidebar.jpg
+    - assets/home_image.png
+
   # localization:
   #   arb-dir: lib/l10n
   #   template-arb-file: app_en.arb

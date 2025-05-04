@@ -108,15 +108,22 @@ Widget customerBuild(
                     )))
             : Container(),
         const SizedBox(
-          height: 20,
+          height: 50,
         ),
 
 
 
 /* Image */
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 50), // your margin
+          child: SizedBox(
+            height: 130,
+            child: Image(image: AssetImage('assets/home_image.png')),
+          ),
+        ),
+
         const SizedBox(
-          height: 100,
-          child: Image(image: AssetImage('assets/login_image2.png')),
+          height: 30,
         ),
 
 /* Title */
@@ -126,37 +133,34 @@ Widget customerBuild(
             appHomeTitle,
             textAlign: TextAlign.center,
             style: const TextStyle(
-                color: primaryColor, fontSize: 20, fontWeight: FontWeight.w500),
+                color: primaryColor, fontSize: 30, fontWeight: FontWeight.w600),
           ),
-        ),
-        const SizedBox(
-          height: 30,
         ),
 
 /* SubTitle */
-        if (!homePageState.isLogin)
-          FutureBuilder<String>(
-            future: getTranslatedDetail(appSubTitle, languageStatus),
-            builder: (context, snapshot) {
-              return SizedBox(
-                width: displayWidth(context) - 30,
-                child: Text(
-                  snapshot.data ?? '...',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.black87,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              );
-            },
-          ),
+        // if (!homePageState.isLogin)
+        //   FutureBuilder<String>(
+        //     future: getTranslatedDetail(appSubTitle, languageStatus),
+        //     builder: (context, snapshot) {
+        //       return SizedBox(
+        //         width: displayWidth(context) - 30,
+        //         child: Text(
+        //           snapshot.data ?? '...',
+        //           textAlign: TextAlign.center,
+        //           style: const TextStyle(
+        //             color: Colors.black87,
+        //             fontSize: 25,
+        //             fontWeight: FontWeight.w500,
+        //           ),
+        //         ),
+        //       );
+        //     },
+        //   ),
         !homePageState.isLogin && youTubeShow && !homePageState.drawerIsOpen
             ? Column(
                 children: [
                   const SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
                   ClipRRect(
                       borderRadius: BorderRadius.circular(15),
