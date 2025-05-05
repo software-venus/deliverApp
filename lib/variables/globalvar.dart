@@ -53,6 +53,7 @@ String get abmDeleteAlertContent => languageStatus == 0 ? "Você quer apagar o r
 String get abmDeleteAlertPressedNo => languageStatus == 0 ? "Não" : "No";
 String get abmDeleteAlertPressedYes => languageStatus == 0 ? "Sim" : "Yes";
 String get userLoginTitle => languageStatus == 0 ? "Conecte-se" : "Login";
+String get SubscriptionsTitle => languageStatus == 0 ? "Assinaturas" : "Subscriptions";
 String get userLoginFieldUsernameHint => languageStatus == 0 ? "Qual é seu e-mail?" : "What is your email?";
 String get userLoginFieldUsernameLabel => languageStatus == 0 ? "Email *" : "Email *";
 String get userLoginFieldUsernameError => languageStatus == 0 ? "Você deve inserir um e-mail" : "You must enter an email";

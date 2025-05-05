@@ -11,18 +11,15 @@ import 'package:entrega/variables/globalvar.dart';
 import 'package:flutter/material.dart';
 import 'package:entrega/widgets/membership_build.dart';
 import 'package:entrega/widgets/menu.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:translator/translator.dart';
 
-Widget customerBuild(
+Widget subscriptionsbuild(
     HomePageState homePageState,
     BuildContext context,
     List<MembershipModel> memberships,
     List<MembershipModel> membershipOnlyVisibles,
     double factor) {
   // String appSubTitle = "";
-  bool youTubeShow = false;
-  String youTubeID = "";
   bool showMembership = false;
 
   if (homePageState.listParameters.isNotEmpty) {
@@ -37,8 +34,6 @@ Widget customerBuild(
 
     if (youTubeParameter.key2.compareTo("youTube") == 0 &&
         youTubeParameter.additional.compareTo("youTubeNot") != 0) {
-      youTubeID = youTubeParameter.additional;
-      youTubeShow = true;
     }
 
     if (!isIOS()) {
@@ -66,119 +61,9 @@ Widget customerBuild(
     }
   }
 
-  final _controller = YoutubePlayerController.fromVideoId(
-    videoId: youTubeID,
-    autoPlay: false,
-    params: const YoutubePlayerParams(showFullscreenButton: true),
-  );
-
   return Container(
       color: customBackcolor,
       child: ListView(children: [
-        homePageState.isLogin
-            ? Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: SizedBox(
-                    width: displayWidth(context),
-                    child: Text(
-                      appHomeWelcome + " " + homePageState.loginCustomerName,
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                          color: Colors.black87,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500),
-                    )))
-            : Container(),
-/* Days */
-        homePageState.isLogin
-            ? Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: SizedBox(
-                    width: displayWidth(context),
-                    child: Text(
-                      membershipDays(homePageState),
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                          color: Colors.green,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500),
-                    )))
-            : Container(),
-        const SizedBox(
-          height: 50,
-        ),
-
-
-
-/* Image */
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 50), // your margin
-          child: SizedBox(
-            height: 130,
-            child: Image(image: AssetImage('assets/home_image.png')),
-          ),
-        ),
-
-        const SizedBox(
-          height: 30,
-        ),
-
-/* Title */
-        SizedBox(
-          width: displayWidth(context),
-          child: Text(
-            appHomeTitle,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-                color: primaryColor, fontSize: 30, fontWeight: FontWeight.w600),
-          ),
-        ),
-
-/* SubTitle */
-        // if (!homePageState.isLogin)
-        //   FutureBuilder<String>(
-        //     future: getTranslatedDetail(appSubTitle, languageStatus),
-        //     builder: (context, snapshot) {
-        //       return SizedBox(
-        //         width: displayWidth(context) - 30,
-        //         child: Text(
-        //           snapshot.data ?? '...',
-        //           textAlign: TextAlign.center,
-        //           style: const TextStyle(
-        //             color: Colors.black87,
-        //             fontSize: 25,
-        //             fontWeight: FontWeight.w500,
-        //           ),
-        //         ),
-        //       );
-        //     },
-        //   ),
-        !homePageState.isLogin && youTubeShow && !homePageState.drawerIsOpen
-            ? Column(
-                children: [
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: SizedBox(
-                        height: 340 * factor,
-                        width: 600 * factor,
-                        //width: displayWidth(context) - 50,
-                        //width: 200,
-                        //  child: FittedBox(
-                        //  fit: BoxFit.fill,
-                        child: YoutubePlayer(
-                          controller: _controller,
-                          aspectRatio: 16 / 9,
-                        ),
-                      ))
-                ],
-              )
-            : Container(),
-        const SizedBox(
-          height: 50,
-        ),
 
 
 /* Memberships */
@@ -405,7 +290,6 @@ Widget membershipBuildListViewX4(
     BuildContext context,
     List<MembershipModel> list,
     double factor) {
-      print(list.length);
   return ListView.builder(
     
     shrinkWrap: true,
