@@ -49,40 +49,40 @@ String get preferenceLoginUsername => "LoginUsername";
 
 
 String get abmDeleteAlertTitle => languageStatus == 0 ? "Registro" : "Record";
-String get abmDeleteAlertContent => languageStatus == 0 ? "¿Desea borrar el registro?" : "Do you want to delete the record?";
-String get abmDeleteAlertPressedNo => languageStatus == 0 ? "No" : "No";
-String get abmDeleteAlertPressedYes => languageStatus == 0 ? "Si" : "Yes";
-String get userLoginTitle => languageStatus == 0 ? "Iniciar sesión" : "Login";
-String get userLoginFieldUsernameHint => languageStatus == 0 ? "¿Cuál es su email?" : "What is your email?";
+String get abmDeleteAlertContent => languageStatus == 0 ? "Você quer apagar o registro?" : "Do you want to delete the record?";
+String get abmDeleteAlertPressedNo => languageStatus == 0 ? "Não" : "No";
+String get abmDeleteAlertPressedYes => languageStatus == 0 ? "Sim" : "Yes";
+String get userLoginTitle => languageStatus == 0 ? "Conecte-se" : "Login";
+String get userLoginFieldUsernameHint => languageStatus == 0 ? "Qual é seu e-mail?" : "What is your email?";
 String get userLoginFieldUsernameLabel => languageStatus == 0 ? "Email *" : "Email *";
-String get userLoginFieldUsernameError => languageStatus == 0 ? "Debe ingresar un email" : "You must enter an email";
-String get userLoginFieldPasswordHint => languageStatus == 0 ? "¿Cual es su contraseña?" : "What is your password?";
-String get userLoginFieldPasswordLabel => languageStatus == 0 ? "Contraseña *" : "Password *";
-String get userLoginFieldPasswordError => languageStatus == 0 ? "Debe ingresar una contraseña" : "You must enter a password";
+String get userLoginFieldUsernameError => languageStatus == 0 ? "Você deve inserir um e-mail" : "You must enter an email";
+String get userLoginFieldPasswordHint => languageStatus == 0 ? "Qual é sua senha?" : "What is your password?";
+String get userLoginFieldPasswordLabel => languageStatus == 0 ? "Senha *" : "Password *";
+String get userLoginFieldPasswordError => languageStatus == 0 ? "Você deve digitar uma senha" : "You must enter a password";
 
-String get userLostPasswordTitle => languageStatus == 0 ? "Recuperar Contraseña" : "Recover Password";
-String get userLostPasswordSendPassword => languageStatus == 0 ? "Te enviamos las instrucciones para recuperar tu contraseña" : "We sent you the instructions to recover your password";
-String get userLostPasswordFieldUsernameHint => languageStatus == 0 ? "¿Cuál es su email?" : "What is your email?";
+String get userLostPasswordTitle => languageStatus == 0 ? "Recuperar senha" : "Recover Password";
+String get userLostPasswordSendPassword => languageStatus == 0 ? "Enviamos-lhe as instruções para recuperar a sua senha" : "We sent you the instructions to recover your password";
+String get userLostPasswordFieldUsernameHint => languageStatus == 0 ? "Qual é seu e-mail?" : "What is your email?";
 String get userLostPasswordFieldUsernameLabel => languageStatus == 0 ? "Email *" : "Email *";
-String get userLostPasswordFieldUsernameError => languageStatus == 0 ? "Debe ingresar un email" : "You must enter an email";
+String get userLostPasswordFieldUsernameError => languageStatus == 0 ? "Você deve inserir um e-mail" : "You must enter an email";
 
-String get userListTitle => languageStatus == 0 ? "Usuarios" : "Users";
+String get userListTitle => languageStatus == 0 ? "Usuárias" : "Users";
 
-String get userABMTitle => languageStatus == 0 ? "Usuario" : "User";
-String get userABMSaveTitle => languageStatus == 0 ? "Guardar" : "Save";
-String get userABMNewSaved => languageStatus == 0 ? "Usuario creado correctamente" : "User created successfully";
-String get userABMModifySaved => languageStatus == 0 ? "Usuario modificado correctamente" : "User updated successfully";
-String get userABMModifyDelete => languageStatus == 0 ? "Usuario borrado correctamente" : "User deleted successfully";
-String get userABMFieldCanListUsersLabel => languageStatus == 0 ? "Puede trabajar con Lista de Usuarios" : "Can manage User List";
-String get userABMFieldEnabledLabel => languageStatus == 0 ? "Habilitado" : "Enabled";
-String get userABMFieldIsAdministratorLabel => languageStatus == 0 ? "Es Administrador" : "Is Administrator";
+String get userABMTitle => languageStatus == 0 ? "Usuária" : "User";
+String get userABMSaveTitle => languageStatus == 0 ? "Salvar" : "Save";
+String get userABMNewSaved => languageStatus == 0 ? "Usuário criado com sucesso" : "User created successfully";
+String get userABMModifySaved => languageStatus == 0 ? "Usuário atualizado com sucesso" : "User updated successfully";
+String get userABMModifyDelete => languageStatus == 0 ? "Usuário excluído com sucesso" : "User deleted successfully";
+String get userABMFieldCanListUsersLabel => languageStatus == 0 ? "Pode gerenciar a lista de usuários" : "Can manage User List";
+String get userABMFieldEnabledLabel => languageStatus == 0 ? "Habilitada" : "Enabled";
+String get userABMFieldIsAdministratorLabel => languageStatus == 0 ? "É Administrador" : "Is Administrator";
 
-String get userABMFieldIsCustomerLabel => languageStatus == 0 ? "Es Cliente" : "Is Customer";
-String get userDocumentABMFieldTitleHint => languageStatus == 0 ? "Titulo" : "Title";
+String get userABMFieldIsCustomerLabel => languageStatus == 0 ? "É cliente" : "Is Customer";
+String get userDocumentABMFieldTitleHint => languageStatus == 0 ? "Título" : "Title";
 
 
 const String userABMNewNotSelectTypeError =
-    "Debe indicar si es Administrador/Manager/Delivery/Cliente";
+    "Deve indicar se é Administrador/Gerente/Entrega/Cliente";
 
 const String firebaseCustomUserKey = "/appusers";
 const String firebaseCustomUserMembershipKey = "/appusermemberships";
@@ -95,101 +95,101 @@ const String firebaseCustomMembershipKey = "/memberships";
 //////////////////////
 
 String get parameterListTitle => menuParameterTitle;
-String get parameterABMTitle => languageStatus == 0 ? "Parámetro" : "Parameter";
+String get parameterABMTitle => languageStatus == 0 ? "Parâmetro" : "Parameter";
 String get parameterABMSaveTitle => languageStatus == 0 ? "Guardar" : "Save";
-String get parameterABMNewSaved => languageStatus == 0 ? "Parámetro creado correctamente" : "Parameter created successfully";
-String get parameterABMModifySaved => languageStatus == 0 ? "Parámetro modificado correctamente" : "Parameter updated successfully";
-String get parameterABMModifyDelete => languageStatus == 0 ? "Parámetro borrada correctamente" : "Parameter deleted successfully";
-String get parameterABMFieldKey2Hint => languageStatus == 0 ? "¿Como se llama la clave?" : "What is the key name?";
-String get parameterABMFieldKey2Label => languageStatus == 0 ? "Clave" : "Key";
-String get parameterABMFieldKey2Error => languageStatus == 0 ? "Debe ingresar la clave" : "You must enter the key";
-String get parameterABMFieldTitleHint => languageStatus == 0 ? "¿Como se llama el parámetro?" : "What is the parameter name?";
-String get parameterABMFieldTitleLabel => languageStatus == 0 ? "Descripción" : "Description";
-String get parameterABMFieldTitleError => languageStatus == 0 ? "Debe ingresar una descripción" : "You must enter a description";
-String get parameterABMFieldAdditionalHint => languageStatus == 0 ? "¿Como se llama el texto adicional?" : "What is the additional text?";
-String get parameterABMFieldAdditionalLabel => languageStatus == 0 ? "Texto Adicional" : "Additional Text";
-String get parameterABMFieldAdditionalError => languageStatus == 0 ? "Debe ingresar el texto adicional" : "You must enter additional text";
+String get parameterABMNewSaved => languageStatus == 0 ? "Parâmetro criado com sucesso" : "Parameter created successfully";
+String get parameterABMModifySaved => languageStatus == 0 ? "Parâmetro atualizado com sucesso" : "Parameter updated successfully";
+String get parameterABMModifyDelete => languageStatus == 0 ? "Parâmetro excluído com sucesso" : "Parameter deleted successfully";
+String get parameterABMFieldKey2Hint => languageStatus == 0 ? "Qual é o nome da chave?" : "What is the key name?";
+String get parameterABMFieldKey2Label => languageStatus == 0 ? "Chave" : "Key";
+String get parameterABMFieldKey2Error => languageStatus == 0 ? "Você deve inserir a chave" : "You must enter the key";
+String get parameterABMFieldTitleHint => languageStatus == 0 ? "Qual é o nome do parâmetro?" : "What is the parameter name?";
+String get parameterABMFieldTitleLabel => languageStatus == 0 ? "Descrição" : "Description";
+String get parameterABMFieldTitleError => languageStatus == 0 ? "Você deve inserir uma descrição" : "You must enter a description";
+String get parameterABMFieldAdditionalHint => languageStatus == 0 ? "O que é o texto adicional?" : "What is the additional text?";
+String get parameterABMFieldAdditionalLabel => languageStatus == 0 ? "Texto adicional" : "Additional Text";
+String get parameterABMFieldAdditionalError => languageStatus == 0 ? "Você deve inserir texto adicional" : "You must enter additional text";
 
-String get customerFooterCaption => languageStatus == 0 ? "No somos una institución gubernamental" : "We are not a governmental institution";
+String get customerFooterCaption => languageStatus == 0 ? "Não somos uma instituição governamental" : "We are not a governmental institution";
 
-String get administratorHomeTitle => languageStatus == 0 ? "Resumén" : "Summary";
-String get administratorHomePaymentPendients => languageStatus == 0 ? "Pagos Pendientes" : "Pending Payments";
+String get administratorHomeTitle => languageStatus == 0 ? "Resumo" : "Summary";
+String get administratorHomePaymentPendients => languageStatus == 0 ? "Pagamentos Pendentes" : "Pending Payments";
 
-String get userSimpleAddTitle => languageStatus == 0 ? "Nuevo Usuario" : "New User";
+String get userSimpleAddTitle => languageStatus == 0 ? "Novo usuário" : "New User";
 
-String get userSimpleAddFieldNameHint => languageStatus == 0 ? "Nombre" : "Name";
-String get userSimpleAddFieldNameLabel => languageStatus == 0 ? "Nombre:" : "Name:";
-String get userSimpleAddFieldNameError => languageStatus == 0 ? "Ingrese el nombre" : "Enter the name";
+String get userSimpleAddFieldNameHint => languageStatus == 0 ? "Nome" : "Name";
+String get userSimpleAddFieldNameLabel => languageStatus == 0 ? "Nome:" : "Name:";
+String get userSimpleAddFieldNameError => languageStatus == 0 ? "Digite o nome" : "Enter the name";
 
-String get userSimpleAddFieldLastNameHint => languageStatus == 0 ? "Apellido" : "Last Name";
-String get userSimpleAddFieldLastNameLabel => languageStatus == 0 ? "Apellido:" : "Last Name:";
-String get userSimpleAddFieldLastNameError => languageStatus == 0 ? "Ingrese el apellido" : "Enter the last name";
+String get userSimpleAddFieldLastNameHint => languageStatus == 0 ? "Sobrenome" : "Last Name";
+String get userSimpleAddFieldLastNameLabel => languageStatus == 0 ? "Sobrenome:" : "Last Name:";
+String get userSimpleAddFieldLastNameError => languageStatus == 0 ? "Digite o sobrenome" : "Enter the last name";
 
-String get userSimpleAddFieldUsernameHint => languageStatus == 0 ? "Correo electrónico" : "Email";
-String get userSimpleAddFieldUsernameLabel => languageStatus == 0 ? "Correo electrónico:" : "Email:";
-String get userSimpleAddFieldUsernameError => languageStatus == 0 ? "Ingrese el correo electrónico" : "Enter the email address";
+String get userSimpleAddFieldUsernameHint => languageStatus == 0 ? "Email" : "Email";
+String get userSimpleAddFieldUsernameLabel => languageStatus == 0 ? "Email:" : "Email:";
+String get userSimpleAddFieldUsernameError => languageStatus == 0 ? " Digite o endereço de e-mail" : "Enter the email address";
 
-String get userSimpleAddFieldPasswordHint => languageStatus == 0 ? "Contraseña" : "Password";
-String get userSimpleAddFieldPasswordLabel => languageStatus == 0 ? "Contraseña:" : "Password:";
-String get userSimpleAddFieldPasswordError => languageStatus == 0 ? "Ingrese la contraseña" : "Enter the password";
+String get userSimpleAddFieldPasswordHint => languageStatus == 0 ? "Senha" : "Password";
+String get userSimpleAddFieldPasswordLabel => languageStatus == 0 ? "Senha:" : "Password:";
+String get userSimpleAddFieldPasswordError => languageStatus == 0 ? "Digite a senha" : "Enter the password";
 
-String get userSimpleAddNewSaving => languageStatus == 0 ? "Creando usuario" : "Creating user";
-String get userSimpleAddNewSaved => languageStatus == 0 ? "Usuario creado correctamente" : "User created successfully";
-String get userSimpleAddSaveTitle => languageStatus == 0 ? "Crear" : "Create";
+String get userSimpleAddNewSaving => languageStatus == 0 ? "Criando usuário" : "Creating user";
+String get userSimpleAddNewSaved => languageStatus == 0 ? "Usuário criado com sucesso" : "User created successfully";
+String get userSimpleAddSaveTitle => languageStatus == 0 ? "Criar" : "Create";
 
 String get administratorHomeArtistActives => languageStatus == 0 ? "Artistas" : "Artists";
-String get administratorHomeStreamingPlatformUpdates => languageStatus == 0 ? "Subidas" : "Uploads";
+String get administratorHomeStreamingPlatformUpdates => languageStatus == 0 ? "Envios" : "Uploads";
 
 const String albumNewFieldRemixOrVersionHintText =
     "Ingrese EN VIVO o EN ESTUDIO";
 
-String get paymentConfirmResponseMessageTitle => languageStatus == 0 ? "Mensaje" : "Message";
-String get paymentConfirmCloseButtonTitle => languageStatus == 0 ? "Cerrar" : "Close";
+String get paymentConfirmResponseMessageTitle => languageStatus == 0 ? "Mensagem" : "Message";
+String get paymentConfirmCloseButtonTitle => languageStatus == 0 ? "Fechar" : "Close";
 
 
 
 String get showDialogOkCaption => languageStatus == 0 ? "OK" : "OK";
 
 
-String get membershipABMFieldTitleHint => languageStatus == 0 ? "¿Titulo de la membresia?" : "Membership title?";
+String get membershipABMFieldTitleHint => languageStatus == 0 ? "Título de membro?" : "Membership title?";
 String get membershipABMFieldTitleLabel => languageStatus == 0 ? "Título" : "Title";
-String get membershipABMFieldTitleError => languageStatus == 0 ? "Debe ingresar un título" : "You must enter a title";
+String get membershipABMFieldTitleError => languageStatus == 0 ? "Você deve inserir um título" : "You must enter a title";
 
-String get membershipABMFieldDetailHint => languageStatus == 0 ? "¿Detalles?" : "Details?";
-String get membershipABMFieldDetailLabel => languageStatus == 0 ? "Detalles" : "Details";
-String get membershipABMFieldDetailError => languageStatus == 0 ? "Debe ingresar un detalle" : "You must enter details";
+String get membershipABMFieldDetailHint => languageStatus == 0 ? "Detalhes?" : "Details?";
+String get membershipABMFieldDetailLabel => languageStatus == 0 ? "Detalhes" : "Details";
+String get membershipABMFieldDetailError => languageStatus == 0 ? "Você deve inserir detalhes" : "You must enter details";
 
-String get membershipABMFieldPriceHint => languageStatus == 0 ? "¿precio?" : "Price?";
-String get membershipABMFieldPriceLabel => languageStatus == 0 ? "Precio" : "Price";
-String get membershipABMFieldPriceError => languageStatus == 0 ? "Debe ingresar un precio" : "You must enter a price";
+String get membershipABMFieldPriceHint => languageStatus == 0 ? "Preço?" : "Price?";
+String get membershipABMFieldPriceLabel => languageStatus == 0 ? "Preço" : "Price";
+String get membershipABMFieldPriceError => languageStatus == 0 ? "Você deve inserir um preço" : "You must enter a price";
 
-String get membershipABMFieldMaxTracksError => languageStatus == 0 ? "Debe ingresar un máximo de usos" : "You must enter the maximum uses";
+String get membershipABMFieldMaxTracksError => languageStatus == 0 ? "Você deve inserir os usos máximos" : "You must enter the maximum uses";
 
-String get membershipABMFieldIsVisibleLabel => languageStatus == 0 ? "Es visible" : "Is visible";
+String get membershipABMFieldIsVisibleLabel => languageStatus == 0 ? "É visível" : "Is visible";
 
-String get membershipListTitle => languageStatus == 0 ? "Tus membresias" : "Your Memberships";
-String get membershipABMTitle => languageStatus == 0 ? "Membresia" : "Membership";
-String get membershipABMSaveTitle => languageStatus == 0 ? "Guardar" : "Save";
-String get membershipABMNewSaved => languageStatus == 0 ? "Membresia creada correctamente" : "Membership created successfully";
-String get membershipABMModifySaved => languageStatus == 0 ? "Membresia modificada correctamente" : "Membership updated successfully";
-String get membershipABMModifyDelete => languageStatus == 0 ? "Membresia borrada correctamente" : "Membership deleted successfully";
+String get membershipListTitle => languageStatus == 0 ? "Suas Assinaturas" : "Your Memberships";
+String get membershipABMTitle => languageStatus == 0 ? "Associação" : "Membership";
+String get membershipABMSaveTitle => languageStatus == 0 ? "Salvar" : "Save";
+String get membershipABMNewSaved => languageStatus == 0 ? "Associação criada com sucesso" : "Membership created successfully";
+String get membershipABMModifySaved => languageStatus == 0 ? "Associação atualizada com sucesso" : "Membership updated successfully";
+String get membershipABMModifyDelete => languageStatus == 0 ? "Associação excluída com sucesso" : "Membership deleted successfully";
 
-String get membershipSaving => languageStatus == 0 ? "Guardando membresia" : "Saving membership";
+String get membershipSaving => languageStatus == 0 ? "Salvando associação" : "Saving membership";
 
-String get membershipSelectTitle => languageStatus == 0 ? "Seleccionar" : "Select";
-String get membershipSelectNewTitle => languageStatus == 0 ? "Crear cuenta" : "Create Account";
+String get membershipSelectTitle => languageStatus == 0 ? "Selecione" : "Select";
+String get membershipSelectNewTitle => languageStatus == 0 ? "Criar uma conta" : "Create Account";
 
-String get membershipPurchaseTitle => languageStatus == 0 ? "Comprar Planes de suscripción" : "Purchase subscription plans";
+String get membershipPurchaseTitle => languageStatus == 0 ? "Comprar planos de assinatura" : "Purchase subscription plans";
 
-String get membershipPurchaseSaving => languageStatus == 0 ? "Comprando" : "Processing purchase";
-String get membershipPurchasePaymentCardTitle => languageStatus == 0 ? "Tarjeta" : "Card";
+String get membershipPurchaseSaving => languageStatus == 0 ? "Processando compra" : "Processing purchase";
+String get membershipPurchasePaymentCardTitle => languageStatus == 0 ? "Cartão" : "Card";
 String get membershipPurchasePaymentPayPalTitle => languageStatus == 0 ? "Paypal" : "Paypal";
-String get questionTodoSaving => languageStatus == 0 ? "Accediendo" : "Accessing";
+String get questionTodoSaving => languageStatus == 0 ? "Acessando" : "Accessing";
 
 String get paymentViewConfirmateSaved => languageStatus == 0 ? "Compra confirmada" : "Purchase confirmed";
 
-String get userMembershipPurchaseStatusModelValuePendingCaption => languageStatus == 0 ? "Pendiente" : "Pending";
-String get userMembershipPurchaseStatusModelValueEndCaption => languageStatus == 0 ? "Finalizado" : "End";
-String get userMembershipPurchaseStatusModelValueCancelCaption => languageStatus == 0 ? "Cancelado" : "Cancel";
+String get userMembershipPurchaseStatusModelValuePendingCaption => languageStatus == 0 ? "Pendente" : "Pending";
+String get userMembershipPurchaseStatusModelValueEndCaption => languageStatus == 0 ? "Fim" : "End";
+String get userMembershipPurchaseStatusModelValueCancelCaption => languageStatus == 0 ? "Cancelar" : "Cancel";
 
-String get userMembershipPurchasePendingError => languageStatus == 0 ? "Error, esta compra esta finalizada" : "Error, this purchase has ended";
+String get userMembershipPurchasePendingError => languageStatus == 0 ? "Erro, esta compra foi encerrada" : "Error, this purchase has ended";
