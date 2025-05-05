@@ -85,6 +85,6 @@ class MembershipModel {
 
     isAds = fromMembership.isAds;
 
-    creationTime = DateTime.now();
+    creationTime = DateTime.now().add(const Duration(days: 30));
   }
 }

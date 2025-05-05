@@ -139,13 +139,6 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 
   assets:
-    - assets/header_background.png
-    - assets/login_image.png
-    - assets/logo_screen.png
-    - assets/login_background.png
-    - assets/go.png
-    - assets/mdexam.png
-    - assets/image_test.jpg
     - assets/spt.png
     - assets/english.png
     - assets/icons/faq.png

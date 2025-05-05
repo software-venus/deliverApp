@@ -24,17 +24,17 @@ Widget customerBuild(
     List<MembershipModel> memberships,
     List<MembershipModel> membershipOnlyVisibles,
     double factor) {
-  String appSubTitle = "";
+  // String appSubTitle = "";
   bool youTubeShow = false;
   String youTubeID = "";
   bool showMembership = false;
 
   if (homePageState.listParameters.isNotEmpty) {
-    ParameterModel appSubTitleParameter =
-        parameterStringFromKey2ToParameterModel(
-            homePageState.listParameters, "appSubTitle");
+    // ParameterModel appSubTitleParameter =
+    //     parameterStringFromKey2ToParameterModel(
+    //         homePageState.listParameters, "appSubTitle");
 
-    appSubTitle = appSubTitleParameter.additional;
+    // appSubTitle = appSubTitleParameter.additional;
 
     ParameterModel youTubeParameter = parameterStringFromKey2ToParameterModel(
         homePageState.listParameters, "youTube");

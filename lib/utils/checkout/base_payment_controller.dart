@@ -8,7 +8,7 @@ import 'package:entrega/variables/globalvar.dart';
 import "package:universal_html/html.dart" as universal_html;
 
 class BasePaymentController {
-  static String baseUrl = "https://md-exam-app.web.app/#/";
+  static String baseUrl = "https://delivertrackapp.web.app/#/";
 
   void initParameter(List<ParameterModel> parameterList) {}
 
