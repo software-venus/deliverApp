@@ -184,30 +184,6 @@ Widget customerBuild(
           height: 50,
         ),
 
-/* Buttons */
-        homePageState.isLogin
-            ? Column(
-                children: [
-                  Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          questionTitle,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              color: Colors.black87,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ]),
-                ],
-              )
-            : Container(),
-        const SizedBox(
-          height: 50,
-        ),
-
 
 /* Memberships */
         showMembership
