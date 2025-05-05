@@ -92,7 +92,7 @@ Widget membershipBuild(
                             fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        price > 0 ? "US\$ " + price.toString() : "",
+                        price > 0 ? "US\$ " + price.toString() + "/Mon" : "",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.blue,

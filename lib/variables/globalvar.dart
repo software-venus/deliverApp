@@ -166,7 +166,7 @@ String get membershipABMFieldPriceError => languageStatus == 0 ? "Você deve ins
 
 String get membershipABMFieldMaxTracksError => languageStatus == 0 ? "Você deve inserir os usos máximos" : "You must enter the maximum uses";
 
-String get membershipABMFieldIsVisibleLabel => languageStatus == 0 ? "É visível" : "Is visible";
+String get membershipABMFieldIsVisibleLabel => languageStatus == 0 ? "Mostrar anúncios" : "Show Ads";
 
 String get membershipListTitle => languageStatus == 0 ? "Suas Assinaturas" : "Your Memberships";
 String get membershipABMTitle => languageStatus == 0 ? "Associação" : "Membership";
