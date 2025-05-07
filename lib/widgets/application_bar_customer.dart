@@ -1,4 +1,3 @@
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:entrega/pages/home.dart';
 import 'package:entrega/utils/general/sizes_helpers.dart';
 import 'package:entrega/variables/globalvar.dart';
@@ -8,6 +7,7 @@ import 'package:share/share.dart';
 // ignore: must_be_immutable
 class ApplicationBarCustomer extends AppBar {
   HomePageState? homePageState;
+  final Function(String) updateTrackingId;
 
   ApplicationBarCustomer({
     Key? key,
@@ -17,6 +17,7 @@ class ApplicationBarCustomer extends AppBar {
     bool withRefreshWeb = false,
     backgroundColor = primaryColor,
     this.homePageState,
+    required this.updateTrackingId,
   }) : super(
           toolbarHeight: 80,
           elevation: 0,
@@ -44,21 +45,28 @@ class ApplicationBarCustomer extends AppBar {
               ],
             ),
             child: TextField(
+              controller: trackIdController, // Set the controller to the TextField
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 hintText: "Track ID...",
                 border: InputBorder.none,
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    'assets/icons/search.png',
-                    width: 20,
-                    height: 20,
+                  child: GestureDetector(
+                    onTap: () {
+                      updateTrackingId(trackIdController.text); // Directly call the updateTrackingId function
+                    },
+                    child: Image.asset(
+                      'assets/icons/search.png',
+                      width: 20,
+                      height: 20,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
+
           actions: <Widget>[
             withShareButton
                 ? Padding(
@@ -69,18 +77,12 @@ class ApplicationBarCustomer extends AppBar {
                     ),
                   )
                 : Container(),
-            (withRefreshWeb && isWeb())
-                ? Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: GestureDetector(
-                      onTap: () => _onRefresh(homePageState!, context),
-                      child: const Icon(Icons.refresh_rounded),
-                    ),
-                  )
-                : Container(),
           ],
         );
 }
+
+// Define a TextEditingController to manage the TextField input
+TextEditingController trackIdController = TextEditingController();
 
 _onShare(BuildContext context) async {
   final RenderBox box = context.findRenderObject() as RenderBox;
@@ -92,6 +94,6 @@ _onShare(BuildContext context) async {
   );
 }
 
-_onRefresh(HomePageState homePageState, BuildContext context) async {
-  homePageState.globalRefresh();
-}
+
+// When you click the search image, you will assign the value to the global variable
+

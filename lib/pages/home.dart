@@ -93,6 +93,12 @@ class HomePageState extends State<HomePage> {
     setState(() {});
   }
 
+  void updateTrackingId(String newTrackingId) {
+    setState(() {
+      trackingId = newTrackingId;
+    });
+  }
+
   Future<void> loadPreferences() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -253,6 +259,9 @@ class HomePageState extends State<HomePage> {
             title: appName,
             backgroundColor: customBackcolor,
             context: context,
+            withShareButton: false,
+            homePageState: this,
+            updateTrackingId: updateTrackingId,
           ),
           drawer: Menu(
             context: context,
@@ -294,6 +303,7 @@ class HomePageState extends State<HomePage> {
             backgroundColor: primaryColor,
             withRefreshWeb: false,
             homePageState: this,
+            updateTrackingId: updateTrackingId,
           ),
           drawer: Menu(
             context: context,

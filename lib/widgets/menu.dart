@@ -7,6 +7,7 @@ import 'package:entrega/pages/content_view.dart';
 import 'package:entrega/pages/home.dart';
 import 'package:entrega/pages/membership_list.dart';
 import 'package:entrega/pages/subscriptions.dart';
+import 'package:entrega/pages/correiostracking_view.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:entrega/pages/user_login.dart';
 import 'package:entrega/utils/general/reference_Page_State.dart';
@@ -139,19 +140,10 @@ class Menu extends Drawer {
                   text: menuSettingsTitle,
                   textColor: Colors.black,
                   onTap: () {
-                    ParameterModel parameterModel =
-                        parameterStringFromKey2ToParameterModel(
-                            homePageState.listParameters,
-                            "CustomerFrequentQuestions");
                     Navigator.push<void>(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => ContentView(
-                            title: menuSettingsTitle,
-                            body: languageStatus == 0
-                                ? parameterModel.additional
-                                : parameterModel.additionalEn,
-                            isFooterPayment: false),
+                        builder: (BuildContext context) => CorreiosTrackingPage(homePageState: homePageState, dobleClosed: true),
                       ),
                     );
                   },

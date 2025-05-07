@@ -72,7 +72,7 @@ Widget customerBuild(
     params: const YoutubePlayerParams(showFullscreenButton: true),
   );
 
-  return Container(
+  return trackingId=="" ? Container(
       color: customBackcolor,
       child: ListView(children: [
         homePageState.isLogin
@@ -211,8 +211,10 @@ Widget customerBuild(
                             membershipOnlyVisibles, factor)
               ])
             : Container()
-      ]));
+      ])):Container();
 }
+
+
 
 Widget membershipBuildListViewX2(
     HomePageState homePageState,
@@ -405,7 +407,6 @@ Widget membershipBuildListViewX4(
     BuildContext context,
     List<MembershipModel> list,
     double factor) {
-      print(list.length);
   return ListView.builder(
     
     shrinkWrap: true,

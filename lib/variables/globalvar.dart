@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 int languageStatus = 0;
+String trackingId = "";
 const String appName = "TE";
 
 //////////////------------------PT----------------------//////////////////////
