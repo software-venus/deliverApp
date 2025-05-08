@@ -1,12 +1,12 @@
 class TimeStampsModel {
   String key;
-  DateTime infoReceivedDatetime;
-  DateTime inTransitDatetime;
-  DateTime outForDeliveryDatetime;
-  DateTime failedAttemptDatetime;
-  DateTime availableForPickupDatetime;
-  DateTime exceptionDatetime;
-  DateTime deliveredDatetime;
+  DateTime? infoReceivedDatetime;
+  DateTime? inTransitDatetime;
+  DateTime? outForDeliveryDatetime;
+  DateTime? failedAttemptDatetime;
+  DateTime? availableForPickupDatetime;
+  DateTime? exceptionDatetime;
+  DateTime? deliveredDatetime;
 
   TimeStampsModel(
     this.key,
@@ -22,13 +22,13 @@ class TimeStampsModel {
   factory TimeStampsModel.fromJSON(String key, dynamic jsonData) {
     return TimeStampsModel(
       key,
-      jsonData['infoReceivedDatetime'] as DateTime,
-      jsonData['inTransitDatetime'] as DateTime,
-      jsonData['outForDeliveryDatetime'] as DateTime,
-      jsonData['failedAttemptDatetime'] as DateTime,
-      jsonData['availableForPickupDatetime'] as DateTime,
-      jsonData['exceptionDatetime'] as DateTime,
-      jsonData['deliveredDatetime'] as DateTime,
+      jsonData['infoReceivedDatetime'] as DateTime?,
+      jsonData['inTransitDatetime'] as DateTime?,
+      jsonData['outForDeliveryDatetime'] as DateTime?,
+      jsonData['failedAttemptDatetime'] as DateTime?,
+      jsonData['availableForPickupDatetime'] as DateTime?,
+      jsonData['exceptionDatetime'] as DateTime?,
+      jsonData['deliveredDatetime'] as DateTime?,
     );
   }
 

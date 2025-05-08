@@ -5,6 +5,7 @@ import 'package:entrega/models/tracker_model.dart';
 
 class TrackingModel {
   String key;
+  String company;
   TrackerModel tracker;
   RecipientModel recipient;
   List<EventModel> events;
@@ -12,6 +13,7 @@ class TrackingModel {
 
   TrackingModel(
     this.key,
+    this.company,
     this.tracker,
     this.recipient,
     this.events,

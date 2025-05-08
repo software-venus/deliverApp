@@ -1,12 +1,12 @@
 class TrackerModel {
-  String key;
-  String trackerId;
-  String trackingNumber;
-  String shipmentReference;
-  List<String> courierCode;
-  String clientTrackerId;
-  bool isSubscribed;
-  bool isTracked;
+  String? key;
+  String? trackerId;
+  String? trackingNumber;
+  String? shipmentReference;
+  List<dynamic>? courierCode;
+  String? clientTrackerId;
+  bool? isSubscribed;
+  bool? isTracked;
   
 
   DateTime createdAt;
@@ -26,16 +26,16 @@ class TrackerModel {
       String key, dynamic jsonData) {
     return TrackerModel(
         key,
-        jsonData['trackerId'] as String,
-        jsonData['trackingNumber'] as String,
-        jsonData['shipmentReference'] as String,
-        jsonData['courierCode'] as List<String>,
-        jsonData['clientTrackerId'] as String,
+        jsonData['trackerId'] as String?,
+        jsonData['trackingNumber'] as String?,
+        jsonData['shipmentReference'] as String?,
+        jsonData['courierCode'] as List<dynamic>?,
+        jsonData['clientTrackerId'] as String?,
 
-        jsonData['isSubscribed'] as bool,
-        jsonData['isTracked'] as bool,
-        DateTime.fromMicrosecondsSinceEpoch(
-            jsonData['createAt'].microsecondsSinceEpoch));
+        jsonData['isSubscribed'] as bool?,
+        jsonData['isTracked'] as bool?,
+        DateTime.parse(
+            jsonData['createdAt']));
   }
 
   factory TrackerModel.fromJSONWithIdToKey(

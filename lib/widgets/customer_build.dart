@@ -13,13 +13,17 @@ import 'package:entrega/widgets/membership_build.dart';
 import 'package:entrega/widgets/menu.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:translator/translator.dart';
+import 'package:entrega/models/tracking_model.dart';
+// import 'package:entrega/widgets/tracking_build.dart';
 
 Widget customerBuild(
     HomePageState homePageState,
     BuildContext context,
     List<MembershipModel> memberships,
     List<MembershipModel> membershipOnlyVisibles,
-    double factor) {
+    double factor,
+    TrackingModel trackingData
+    ) {
   // String appSubTitle = "";
   bool youTubeShow = false;
   String youTubeID = "";
@@ -72,7 +76,7 @@ Widget customerBuild(
     params: const YoutubePlayerParams(showFullscreenButton: true),
   );
 
-  return trackingId=="" ? Container(
+  return Container(
       color: customBackcolor,
       child: ListView(children: [
         homePageState.isLogin
@@ -180,6 +184,8 @@ Widget customerBuild(
           height: 50,
         ),
 
+        // trackingId!=""?
+        //   TrackingDetailsScreen(trackingModel: trackingData):Container(),
 
 /* Memberships */
         showMembership
@@ -211,7 +217,7 @@ Widget customerBuild(
                             membershipOnlyVisibles, factor)
               ])
             : Container()
-      ])):Container();
+      ]));
 }
 
 

@@ -2,7 +2,12 @@
 // ignore: import_of_legacy_library_into_null_safe, unused_import
 import 'dart:convert';
 // import 'package:appinio_video_player/appinio_video_player.dart';
+import 'package:entrega/models/event_model.dart';
 import 'package:entrega/models/membership_model.dart';
+import 'package:entrega/models/recipient_model.dart';
+import 'package:entrega/models/timestamps.dart';
+import 'package:entrega/models/tracker_model.dart';
+import 'package:entrega/models/tracking_model.dart';
 import 'package:entrega/widgets/application_bar_customer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:entrega/models/parameter_model.dart';
@@ -20,6 +25,8 @@ import 'package:entrega/widgets/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:entrega/variables/globalvar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:entrega/widgets/tracking_build.dart';
 
 enum IdProfiler { undefined, general, customer }
 
@@ -55,6 +62,18 @@ class HomePageState extends State<HomePage> {
   List<ParameterModel> listParameters = [];
   List<MembershipModel> membershipLists = [];
   List<MembershipModel> membershipOnlyVisibleLists = [];
+  TrackerModel tracker= TrackerModel("", "", "", "", [], "", true, true, DateTime.now());
+  List<EventModel> events = [];
+  RecipientModel recipient = RecipientModel("", "", "", "", "", "");
+  TimeStampsModel timeStamps = TimeStampsModel("", DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now());
+  TrackingModel trackingData = TrackingModel(
+    trackingId,
+    "",
+    TrackerModel("", "", "", "", [], "", true, true, DateTime.now()),
+    RecipientModel("", "", "", "", "", ""),
+    [],
+    TimeStampsModel("", DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now())
+  );
 
   void setIsLogin(bool isLogin) {
     this.isLogin = isLogin;
@@ -97,6 +116,42 @@ class HomePageState extends State<HomePage> {
     setState(() {
       trackingId = newTrackingId;
     });
+    shopeeTracking(trackingId);
+  }
+
+  Future<void> shopeeTracking(String trackingId) async {
+    final url = Uri.parse('https://api.ship24.com/public/v1/trackers/search/$trackingId/results');
+
+    final response = await http.get(
+      url,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer apik_YQqFVonJYkz9PVRWmXHXjyNVhHKbyP',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final trackData = data['data']['trackings'][0];
+      print('✅ Tracking data: $data');
+      recipient = RecipientModel.fromJSON(trackingId, trackData['shipment']['recipient']);
+      tracker = TrackerModel.fromJSON(trackingId, trackData['tracker']);
+      // print(tracker.createdAt);
+      timeStamps = TimeStampsModel.fromJSON(trackingId, trackData['statistics']['timestamps']);
+      // print(timeStamps.failedAttemptDatetime);
+      if(trackData['events'].length != 0) {
+        for(var i = 0; i<trackData['events'].lengh; i++){
+          events.add(EventModel.fromJSON(trackData['events'][i]));
+        }
+      }
+      // print(events);
+      setState(() {
+        trackingData=TrackingModel(trackingId, "shopee", tracker, recipient, events, timeStamps);
+      });
+      print("===================${trackingData.tracker.trackerId}===============");
+    } else {
+      print('❌ Failed: ${response.statusCode} - ${response.body}');
+    }
   }
 
   Future<void> loadPreferences() async {
@@ -272,12 +327,13 @@ class HomePageState extends State<HomePage> {
               drawerIsOpen = isOpen;
             });
           },
-          body: customerBuild(
+          body: trackingId.isEmpty? customerBuild(
               this,
               context,
               membershipLists,
               membershipOnlyVisibleLists,
-              factor(context)));
+              factor(context),
+              trackingData):TrackingDetailsScreen(trackingModel: trackingData));
     }
 
 /* Is Administrator */
@@ -314,7 +370,8 @@ class HomePageState extends State<HomePage> {
               context,
               membershipLists,
               membershipOnlyVisibleLists,
-              factor(context),));
+              factor(context),
+              trackingData));
     }
 
 /*  Default Screen */

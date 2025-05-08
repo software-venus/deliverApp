@@ -1,10 +1,10 @@
 class RecipientModel {
   String key;
-  String name;
-  String address;
-  String postCode;
-  String city;
-  String subdivision;
+  String? name;
+  String? address;
+  String? postCode;
+  String? city;
+  String? subdivision;
 
   RecipientModel(
     this.key,
@@ -18,11 +18,11 @@ class RecipientModel {
   factory RecipientModel.fromJSON(String key, dynamic jsonData) {
     return RecipientModel(
       key,
-      jsonData['name'] as String,
-      jsonData['address'] as String,
-      jsonData['postCode'] as String,
-      jsonData['city'] as String,
-      jsonData['subdivision'] as String,
+      jsonData['name'] as String?,
+      jsonData['address'] as String?,
+      jsonData['postCode'] as String?,
+      jsonData['city'] as String?,
+      jsonData['subdivision'] as String?,
     );
   }
 
