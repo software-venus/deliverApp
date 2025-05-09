@@ -150,6 +150,7 @@ flutter:
     - assets/icons/search.png
     - assets/icons/settings.png
     - assets/icons/user.png
+    - assets/icons/trackmap.png
     - assets/logo.png
     - assets/menuhead.png
     - assets/sidebar.jpg

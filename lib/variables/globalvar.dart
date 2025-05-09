@@ -11,6 +11,7 @@ String get menuProfilerCustomerFrequentQuestionsTitle => languageStatus == 0 ? "
 String get menuProfileTitle => languageStatus == 0 ? "Meu perfil" : "My Profile";
 String get menuSubscriptionTitle => languageStatus == 0 ? "Assinaturas" : "Subscriptions";
 String get menuSettingsTitle => languageStatus == 0 ? "Configurações" : "Settings";
+String get menuTrackTitle => languageStatus == 0 ? "Meus rastreamentos" : "My tracks";
 String get menuLanguageTitle => languageStatus == 0 ? "linguagem" : "Language";
 String get menuCPanelTitle => languageStatus == 0 ? "ADMINISTRAÇÃO" : "ADMINISTRATION";
 String get menuCPanelUserLoginTitle => languageStatus == 0 ? "Conecte-se" : "Login";
@@ -93,6 +94,7 @@ const String firebaseCustomUserMembershipPurchaseKey =
 
 const String firebaseCustomParameterKey = "/parameters";
 const String firebaseCustomMembershipKey = "/memberships";
+const String firebaseTracksKey = "/tracks";
 
 //////////////////////
 

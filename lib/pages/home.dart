@@ -19,6 +19,7 @@ import 'package:entrega/utils/list_transforms/parameter_list_transforms.dart'
     as parameterTransforms;
 import 'package:entrega/utils/list_transforms/membership_list_transforms.dart'
     as membershipTransforms;
+import 'package:entrega/utils/firebase/firebase_track.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:entrega/widgets/customer_build.dart';
 import 'package:entrega/widgets/menu.dart';
@@ -27,6 +28,7 @@ import 'package:entrega/variables/globalvar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:entrega/widgets/tracking_build.dart';
+// import 'package:entrega/utils/firebase/firebase_track.dart';
 
 enum IdProfiler { undefined, general, customer }
 
@@ -62,18 +64,21 @@ class HomePageState extends State<HomePage> {
   List<ParameterModel> listParameters = [];
   List<MembershipModel> membershipLists = [];
   List<MembershipModel> membershipOnlyVisibleLists = [];
-  TrackerModel tracker= TrackerModel("", "", "", "", [], "", true, true, DateTime.now());
+  List<TrackingModel> userTracks = [];
+  TrackerModel tracker= TrackerModel("", "", "", "", [], "", null, null, null);
   List<EventModel> events = [];
   RecipientModel recipient = RecipientModel("", "", "", "", "", "");
-  TimeStampsModel timeStamps = TimeStampsModel("", DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now());
+  TimeStampsModel timeStamps = TimeStampsModel("", null, null, null, null, null, null, null);
   TrackingModel trackingData = TrackingModel(
     trackingId,
     "",
-    TrackerModel("", "", "", "", [], "", true, true, DateTime.now()),
+    TrackerModel("", "", "", "", [], "", null, null, null),
     RecipientModel("", "", "", "", "", ""),
     [],
-    TimeStampsModel("", DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now(), DateTime.now())
+    TimeStampsModel("", null, null, null, null, null, null, null)
   );
+
+  var trackData = {};
 
   void setIsLogin(bool isLogin) {
     this.isLogin = isLogin;
@@ -132,7 +137,7 @@ class HomePageState extends State<HomePage> {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      final trackData = data['data']['trackings'][0];
+      trackData = data['data']['trackings'][0];
       print('✅ Tracking data: $data');
       recipient = RecipientModel.fromJSON(trackingId, trackData['shipment']['recipient']);
       tracker = TrackerModel.fromJSON(trackingId, trackData['tracker']);
@@ -146,12 +151,63 @@ class HomePageState extends State<HomePage> {
       }
       // print(events);
       setState(() {
+        trackData = data['data']['trackings'][0];
+        trackData["username"] = loginUsername;
         trackingData=TrackingModel(trackingId, "shopee", tracker, recipient, events, timeStamps);
       });
       print("===================${trackingData.tracker.trackerId}===============");
     } else {
+      setState(() {
+        trackData = {};
+        trackingData = TrackingModel(
+          trackingId,
+          "",
+          TrackerModel("", "", "", "", [], "", null, null, null),
+          RecipientModel("", "", "", "", "", ""),
+          [],
+          TimeStampsModel("", null, null, null, null, null, null, null)
+        );
+        tracker= TrackerModel("", "", "", "", [], "", null, null, null);
+        events = [];
+        recipient = RecipientModel("", "", "", "", "", "");
+        timeStamps = TimeStampsModel("", null, null, null, null, null, null, null);
+      });
+      
       print('❌ Failed: ${response.statusCode} - ${response.body}');
     }
+  }
+
+  void startTracking(TrackingModel trackingModel) {
+    setState(() {
+        trackData["username"] = loginUsername;
+        trackData["trackingNumber"] = trackingId;
+        trackData["company"] = trackingModel.company;
+      });
+    FirebaseTracksHelper().add(trackData).then((result) {
+                                            if (result == null) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                content: Text(
+                                                  "tracks saved successfully",
+                                                  style:
+                                                      const TextStyle(fontSize: 16),
+                                                ),
+                                              ));
+                                              // Navigator.pop(context);
+                                              // widget.parameterListState
+                                              //     .refreshList();
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                content: Text(
+                                                  result,
+                                                  style: const TextStyle(
+                                                      fontSize: 16),
+                                                ),
+                                              ));
+                                            }
+                                          });
+    print("======================${trackData}=========================");
   }
 
   Future<void> loadPreferences() async {
@@ -333,7 +389,7 @@ class HomePageState extends State<HomePage> {
               membershipLists,
               membershipOnlyVisibleLists,
               factor(context),
-              trackingData):TrackingDetailsScreen(trackingModel: trackingData));
+              trackingData):TrackingDetailsScreen(trackingModel: trackingData, homePageState: this, startTracking: startTracking,));
     }
 
 /* Is Administrator */
@@ -365,13 +421,13 @@ class HomePageState extends State<HomePage> {
             context: context,
             homePageState: this,
           ),
-          body: customerBuild(
+          body: trackingId.isEmpty? customerBuild(
               this,
               context,
               membershipLists,
               membershipOnlyVisibleLists,
               factor(context),
-              trackingData));
+              trackingData):TrackingDetailsScreen(trackingModel: trackingData, homePageState: this, startTracking: startTracking,));
     }
 
 /*  Default Screen */

@@ -9,7 +9,7 @@ class TrackerModel {
   bool? isTracked;
   
 
-  DateTime createdAt;
+  DateTime? createdAt;
 
   TrackerModel(
       this.key,

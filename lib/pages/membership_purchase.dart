@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:entrega/models/membership_model.dart';
 import 'package:entrega/models/user_membership_purchase_model.dart';
 import 'package:entrega/pages/home.dart';
-import 'package:entrega/utils/checkout/paypal/v1/paypal_v1_payment_controller.dart';
+// import 'package:entrega/utils/checkout/paypal/v1/paypal_v1_payment_controller.dart';
 import 'package:entrega/utils/checkout/stripe/stripe_payment_controller.dart';
 import 'package:entrega/utils/firebase/firebase_custom_membership.dart';
 import 'package:entrega/utils/fixvalues/user_membership_purchase_status_values.dart';
@@ -165,76 +165,76 @@ class _MembershipPurchaseState extends State<MembershipPurchase> {
                               );
                             }),
                             /* Paypal */
-                            optionBuild(
-                                "",
-                                Icons.paypal,
-                                Colors.deepPurple,
-                                membershipPurchasePaymentPayPalTitle,
-                                factor(context), () {
-                              BuildContext context2 = context;
+//                             optionBuild(
+//                                 "",
+//                                 Icons.paypal,
+//                                 Colors.deepPurple,
+//                                 membershipPurchasePaymentPayPalTitle,
+//                                 factor(context), () {
+//                               BuildContext context2 = context;
 
-//                              if (!isMobile()) {
-//                                if (Navigator.canPop(context)) {
-//                                  Navigator.pop(context);
-//                                }
-//                              }
+// //                              if (!isMobile()) {
+// //                                if (Navigator.canPop(context)) {
+// //                                  Navigator.pop(context);
+// //                                }
+// //                              }
 
-                              UserMembershipPurchaseModel
-                                  userMembershipPurchaseModel =
-                                  UserMembershipPurchaseModel(
-                                      false,
-                                      "",
-                                      widget.homePageState.loginUsername,
-                                      widget.homePageState
-                                          .customerMembershipCurrent,
-                                      widget.toMembership,
-                                      UserMembershipPurchaseModel.unityID(
-                                          widget.homePageState.loginUsername),
-                                      UserMembershipPurchaseStatusValues()
-                                          .userMembershipPurchaseStatusModelPending,
-                                      DateTime.now().toUtc());
+//                               UserMembershipPurchaseModel
+//                                   userMembershipPurchaseModel =
+//                                   UserMembershipPurchaseModel(
+//                                       false,
+//                                       "",
+//                                       widget.homePageState.loginUsername,
+//                                       widget.homePageState
+//                                           .customerMembershipCurrent,
+//                                       widget.toMembership,
+//                                       UserMembershipPurchaseModel.unityID(
+//                                           widget.homePageState.loginUsername),
+//                                       UserMembershipPurchaseStatusValues()
+//                                           .userMembershipPurchaseStatusModelPending,
+//                                       DateTime.now().toUtc());
 
-                              FirebaseCustomMembershipHelper()
-                                  .paypalPrePurchase(
-                                      context: context,
-                                      userMembershipPurchaseModel:
-                                          userMembershipPurchaseModel,
-                                      listParameters:
-                                          widget.homePageState.listParameters,
-                                      onFinished: () async {
-                                        PaypalV1PaymentController
-                                            paypalV1PaymentController =
-                                            PaypalV1PaymentController();
+//                               FirebaseCustomMembershipHelper()
+//                                   .paypalPrePurchase(
+//                                       context: context,
+//                                       userMembershipPurchaseModel:
+//                                           userMembershipPurchaseModel,
+//                                       listParameters:
+//                                           widget.homePageState.listParameters,
+//                                       onFinished: () async {
+//                                         PaypalV1PaymentController
+//                                             paypalV1PaymentController =
+//                                             PaypalV1PaymentController();
 
-                                        await paypalV1PaymentController
-                                            .initParameter(widget
-                                                .homePageState.listParameters);
+//                                         await paypalV1PaymentController
+//                                             .initParameter(widget
+//                                                 .homePageState.listParameters);
 
-                                        await paypalV1PaymentController
-                                            .startUrlPayment(
-                                                context2,
-                                                userMembershipPurchaseModel
-                                                    .username,
-                                                userMembershipPurchaseModel
-                                                    .toMembership.title,
-                                                1,
-                                                userMembershipPurchaseModel
-                                                    .toMembership.price,
-                                                "USD",
-                                                userMembershipPurchaseModel
-                                                    .paymentNumber);
-                                      },
-                                      onError: (String error) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                          content: Text(
-                                            error,
-                                            style:
-                                                const TextStyle(fontSize: 16),
-                                          ),
-                                        ));
-                                      });
-                            }),
+//                                         await paypalV1PaymentController
+//                                             .startUrlPayment(
+//                                                 context2,
+//                                                 userMembershipPurchaseModel
+//                                                     .username,
+//                                                 userMembershipPurchaseModel
+//                                                     .toMembership.title,
+//                                                 1,
+//                                                 userMembershipPurchaseModel
+//                                                     .toMembership.price,
+//                                                 "USD",
+//                                                 userMembershipPurchaseModel
+//                                                     .paymentNumber);
+//                                       },
+//                                       onError: (String error) {
+//                                         ScaffoldMessenger.of(context)
+//                                             .showSnackBar(SnackBar(
+//                                           content: Text(
+//                                             error,
+//                                             style:
+//                                                 const TextStyle(fontSize: 16),
+//                                           ),
+//                                         ));
+//                                       });
+//                             }),
                           ],
                         ),
                       ],

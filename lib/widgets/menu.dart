@@ -143,9 +143,31 @@ class Menu extends Drawer {
                     Navigator.push<void>(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => CorreiosTrackingPage(homePageState: homePageState, dobleClosed: true),
+                        builder: (BuildContext context) => TrackingPage(homePageState: homePageState, dobleClosed: true),
                       ),
                     );
+                  },
+                ),
+
+                createDrawerImageItem(
+                  icon: "assets/icons/trackmap.png",
+                  text: menuTrackTitle,
+                  textColor: Colors.black,
+                  onTap: () {
+                    homePageState.isLogin?
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => TrackingPage(homePageState: homePageState, dobleClosed: true),
+                      ),
+                    ):Navigator.push<void>(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) => UserLogin(
+                              homePageState: homePageState,
+                              dobleClosed: true),
+                        ),
+                      );
                   },
                 ),
 

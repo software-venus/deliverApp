@@ -3,21 +3,21 @@ import 'package:entrega/pages/home.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class CorreiosTrackingPage extends StatefulWidget {
+class TrackingPage extends StatefulWidget {
 
   HomePageState homePageState;
   bool dobleClosed;
 
-  CorreiosTrackingPage({Key? key, required this.homePageState, required this.dobleClosed})
+  TrackingPage({Key? key, required this.homePageState, required this.dobleClosed})
       : super(key: key);
   
   @override
-  State<CorreiosTrackingPage> createState() => _CorreiosTrackingPageState();
+  State<TrackingPage> createState() => _CorreiosTrackingPageState();
 
   
 }
 
-class _CorreiosTrackingPageState extends State<CorreiosTrackingPage> {
+class _CorreiosTrackingPageState extends State<TrackingPage> {
   final trackingCodeController = TextEditingController();
   List<Eventos> events = [];
   String errorMessage = '';
