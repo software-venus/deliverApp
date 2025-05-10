@@ -32,7 +32,6 @@ import 'package:entrega/widgets/tracking_build.dart';
 
 enum IdProfiler { undefined, general, customer }
 
-
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
   IdProfiler idProfiler;
@@ -57,25 +56,24 @@ class HomePageState extends State<HomePage> {
 
   bool drawerIsOpen = false;
 
-
-  MembershipModel customerMembershipCurrent = MembershipModel(
-      false, "", "", "", 0, 0, false, DateTime.now());
+  MembershipModel customerMembershipCurrent =
+      MembershipModel(false, "", "", "", 0, 0, false, DateTime.now());
 
   List<ParameterModel> listParameters = [];
   List<MembershipModel> membershipLists = [];
   List<MembershipModel> membershipOnlyVisibleLists = [];
-  TrackerModel tracker= TrackerModel("", "", "", "", [], "", null, null, null);
+  TrackerModel tracker = TrackerModel("", "", "", "", [], "", null, null, null);
   List<EventModel> events = [];
   RecipientModel recipient = RecipientModel("", "", "", "", "", "");
-  TimeStampsModel timeStamps = TimeStampsModel("", null, null, null, null, null, null, null);
+  TimeStampsModel timeStamps =
+      TimeStampsModel("", null, null, null, null, null, null, null);
   TrackingModel trackingData = TrackingModel(
-    trackingId,
-    "",
-    TrackerModel("", "", "", "", [], "", null, null, null),
-    RecipientModel("", "", "", "", "", ""),
-    [],
-    TimeStampsModel("", null, null, null, null, null, null, null)
-  );
+      trackingId,
+      "",
+      TrackerModel("", "", "", "", [], "", null, null, null),
+      RecipientModel("", "", "", "", "", ""),
+      [],
+      TimeStampsModel("", null, null, null, null, null, null, null));
 
   var trackData = {};
 
@@ -98,8 +96,6 @@ class HomePageState extends State<HomePage> {
   void setLoginIsCustomer(bool loginIsCustomer) {
     this.loginIsCustomer = loginIsCustomer;
   }
-
-  
 
 //  late VideoPlayerController videoPlayercontroller;
 
@@ -124,7 +120,8 @@ class HomePageState extends State<HomePage> {
   }
 
   Future<void> shopeeTracking(String trackingId) async {
-    final url = Uri.parse('https://api.ship24.com/public/v1/trackers/search/$trackingId/results');
+    final url = Uri.parse(
+        'https://api.ship24.com/public/v1/trackers/search/$trackingId/results');
 
     final response = await http.get(
       url,
@@ -138,13 +135,15 @@ class HomePageState extends State<HomePage> {
       final data = json.decode(response.body);
       trackData = data['data']['trackings'][0];
       print('✅ Tracking data: $data');
-      recipient = RecipientModel.fromJSON(trackingId, trackData['shipment']['recipient']);
+      recipient = RecipientModel.fromJSON(
+          trackingId, trackData['shipment']['recipient']);
       tracker = TrackerModel.fromJSON(trackingId, trackData['tracker']);
       // print(tracker.createdAt);
-      timeStamps = TimeStampsModel.fromJSON(trackingId, trackData['statistics']['timestamps']);
+      timeStamps = TimeStampsModel.fromJSON(
+          trackingId, trackData['statistics']['timestamps']);
       // print(timeStamps.failedAttemptDatetime);
-      if(trackData['events'].length != 0) {
-        for(var i = 0; i<trackData['events'].length; i++){
+      if (trackData['events'].length != 0) {
+        for (var i = 0; i < trackData['events'].length; i++) {
           events.add(EventModel.fromJSON(trackData['events'][i]));
         }
       }
@@ -152,60 +151,91 @@ class HomePageState extends State<HomePage> {
       setState(() {
         trackData = data['data']['trackings'][0];
         trackData["username"] = loginUsername;
-        trackingData=TrackingModel(trackingId, "shopee", tracker, recipient, events, timeStamps);
+        trackingData = TrackingModel(
+            trackingId, "shopee", tracker, recipient, events, timeStamps);
       });
-      print("===================${trackingData.tracker.trackerId}===============");
+      print(
+          "===================${trackingData.tracker.trackerId}===============");
     } else {
       setState(() {
         trackData = {};
         trackingData = TrackingModel(
-          trackingId,
-          "",
-          TrackerModel("", "", "", "", [], "", null, null, null),
-          RecipientModel("", "", "", "", "", ""),
-          [],
-          TimeStampsModel("", null, null, null, null, null, null, null)
-        );
-        tracker= TrackerModel("", "", "", "", [], "", null, null, null);
+            trackingId,
+            "",
+            TrackerModel("", "", "", "", [], "", null, null, null),
+            RecipientModel("", "", "", "", "", ""),
+            [],
+            TimeStampsModel("", null, null, null, null, null, null, null));
+        tracker = TrackerModel("", "", "", "", [], "", null, null, null);
         events = [];
         recipient = RecipientModel("", "", "", "", "", "");
-        timeStamps = TimeStampsModel("", null, null, null, null, null, null, null);
+        timeStamps =
+            TimeStampsModel("", null, null, null, null, null, null, null);
       });
-      
+      final errorData = json.decode(response.body);
+      final errorMessage = errorData['errors'][0]['message'].toString();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            errorMessage,
+            style: TextStyle(fontSize: 16),
+          ),
+        ),
+      );
       print('❌ Failed: ${response.statusCode} - ${response.body}');
     }
   }
 
-  void startTracking(TrackingModel trackingModel) {
+  void startTracking(TrackingModel trackingModel) async {
     setState(() {
-        trackData["username"] = loginUsername;
-        trackData["trackingNumber"] = trackingId;
-        trackData["company"] = trackingModel.company;
-      });
+      trackData["username"] = loginUsername;
+      trackData["trackingNumber"] = trackingId;
+      trackData["company"] = trackingModel.company;
+    });
+
+    final firestoreInstance = FirebaseFirestore.instance;
+    final CollectionReference tracks =
+        firestoreInstance.collection(firebaseTracksKey);
+
+    // Step 1: Count documents for this user
+    final querySnapshot =
+        await tracks.where('username', isEqualTo: loginUsername).get();
+
+    final int currentTrackCount = querySnapshot.docs.length;
+
+    // Step 2: Compare with allowed max
+    if (currentTrackCount >= customerMembershipCurrent.maxTracks) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Please upgrade membership",
+            style: TextStyle(fontSize: 16),
+          ),
+        ),
+      );
+      return; // Exit early, do not add
+    }
+
     FirebaseTracksHelper().add(trackData).then((result) {
-                                            if (result == null) {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                content: Text(
-                                                  "tracks saved successfully",
-                                                  style:
-                                                      const TextStyle(fontSize: 16),
-                                                ),
-                                              ));
-                                              // Navigator.pop(context);
-                                              // widget.parameterListState
-                                              //     .refreshList();
-                                            } else {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                content: Text(
-                                                  result,
-                                                  style: const TextStyle(
-                                                      fontSize: 16),
-                                                ),
-                                              ));
-                                            }
-                                          });
+      if (result == null) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            "tracks saved successfully",
+            style: const TextStyle(fontSize: 16),
+          ),
+        ));
+        // Navigator.pop(context);
+        // widget.parameterListState
+        //     .refreshList();
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            result,
+            style: const TextStyle(fontSize: 16),
+          ),
+        ));
+      }
+    });
     print("======================${trackData}=========================");
   }
 
@@ -238,9 +268,7 @@ class HomePageState extends State<HomePage> {
         loginIsCustomer = userModel.isCustomer;
         loginCustomerName = userModel.name;
 
-        if (loginIsAdministrator) {
-
-        }
+        if (loginIsAdministrator) {}
 
         if (loginIsCustomer) {
           loadCustomer();
@@ -291,7 +319,6 @@ class HomePageState extends State<HomePage> {
                 MembershipModel.fromJSON(false, result.id, result.data());
             membershipTransforms.uniquedAdd(membershipLists, newMembership);
 
-
             membershipTransforms.uniquedAdd(
                 membershipOnlyVisibleLists, newMembership);
           });
@@ -320,7 +347,6 @@ class HomePageState extends State<HomePage> {
 
       // Customer Category
 
-
       setState(() {});
     } on FirebaseAuthException catch (e) {
       e.stackTrace;
@@ -330,9 +356,7 @@ class HomePageState extends State<HomePage> {
   refresh() {
     loadPreferences();
 
-    if (loginIsAdministrator) {
-
-    }
+    if (loginIsAdministrator) {}
 
     if (loginIsCustomer) {
       loadCustomer();
@@ -340,9 +364,7 @@ class HomePageState extends State<HomePage> {
   }
 
   globalRefresh() {
-    if (loginIsAdministrator) {
-
-    }
+    if (loginIsAdministrator) {}
 
     if (loginIsCustomer) {
       loadCustomer();
@@ -356,7 +378,6 @@ class HomePageState extends State<HomePage> {
   void setCurrentIndex(int currentIndex) {
     _currentIndex = currentIndex;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -382,13 +403,14 @@ class HomePageState extends State<HomePage> {
               drawerIsOpen = isOpen;
             });
           },
-          body: trackingId.isEmpty? customerBuild(
-              this,
-              context,
-              membershipLists,
-              membershipOnlyVisibleLists,
-              factor(context),
-              trackingData):TrackingDetailsScreen(trackingModel: trackingData, homePageState: this, startTracking: startTracking,));
+          body: trackingId.isEmpty
+              ? customerBuild(this, context, membershipLists,
+                  membershipOnlyVisibleLists, factor(context), trackingData)
+              : TrackingDetailsScreen(
+                  trackingModel: trackingData,
+                  homePageState: this,
+                  startTracking: startTracking,
+                ));
     }
 
 /* Is Administrator */
@@ -420,13 +442,14 @@ class HomePageState extends State<HomePage> {
             context: context,
             homePageState: this,
           ),
-          body: trackingId.isEmpty? customerBuild(
-              this,
-              context,
-              membershipLists,
-              membershipOnlyVisibleLists,
-              factor(context),
-              trackingData):TrackingDetailsScreen(trackingModel: trackingData, homePageState: this, startTracking: startTracking,));
+          body: trackingId.isEmpty
+              ? customerBuild(this, context, membershipLists,
+                  membershipOnlyVisibleLists, factor(context), trackingData)
+              : TrackingDetailsScreen(
+                  trackingModel: trackingData,
+                  homePageState: this,
+                  startTracking: startTracking,
+                ));
     }
 
 /*  Default Screen */

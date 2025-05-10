@@ -18,6 +18,7 @@ class FirebaseTracksHelper {
       // Check if trackingNumber already exists
       final existing = await tracks
           .where('trackingNumber', isEqualTo: trackingNumber)
+          .where("username", isEqualTo: trackData['username'])
           .limit(1)
           .get();
 

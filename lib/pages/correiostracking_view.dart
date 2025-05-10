@@ -35,7 +35,7 @@ class _TrackingPageState extends State<TrackingPage> {
     try {
       final firestoreInstance = FirebaseFirestore.instance;
       CollectionReference tracks = firestoreInstance.collection(firebaseTracksKey);
-      final querySnapshot = await tracks.orderBy("createdAt").get();
+      final querySnapshot = await tracks.where('username', isEqualTo: widget.homePageState.loginUsername).get();
 
       List<TrackingModel> loadedTrackings = [];
 

@@ -44,7 +44,7 @@ class FirebaseCustomUserHelper {
 /* Customer Membership Default */
       if (userModel.isCustomer) {
         MembershipModel defaultMembership = MembershipModel(false, "", "", "",
-            0, 0, false, DateTime.now());
+            0, 3, false, DateTime.now());
         // for (MembershipModel oneMembership in memberships) {
         //   if (oneMembership.isDefault) {
         //     defaultMembership = oneMembership;

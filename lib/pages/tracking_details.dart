@@ -24,6 +24,7 @@ class TrackingDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      appBar: AppBar(title: const Text("Detailed Info")),
       body: SafeArea(
         child: Stack(
           children: [
