@@ -64,7 +64,6 @@ class HomePageState extends State<HomePage> {
   List<ParameterModel> listParameters = [];
   List<MembershipModel> membershipLists = [];
   List<MembershipModel> membershipOnlyVisibleLists = [];
-  List<TrackingModel> userTracks = [];
   TrackerModel tracker= TrackerModel("", "", "", "", [], "", null, null, null);
   List<EventModel> events = [];
   RecipientModel recipient = RecipientModel("", "", "", "", "", "");
@@ -145,7 +144,7 @@ class HomePageState extends State<HomePage> {
       timeStamps = TimeStampsModel.fromJSON(trackingId, trackData['statistics']['timestamps']);
       // print(timeStamps.failedAttemptDatetime);
       if(trackData['events'].length != 0) {
-        for(var i = 0; i<trackData['events'].lengh; i++){
+        for(var i = 0; i<trackData['events'].length; i++){
           events.add(EventModel.fromJSON(trackData['events'][i]));
         }
       }

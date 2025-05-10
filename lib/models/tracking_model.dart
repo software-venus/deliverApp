@@ -20,5 +20,18 @@ class TrackingModel {
     this.timeStamps
   );
 
+  // factory TrackingModel.fromJSON(
+  //     String key, dynamic jsonData) {
+  //   return TrackingModel(
+  //     key,
+  //     jsonData['company'] as String? ?? '',
+  //     TrackerModel.fromJSON('tracker', jsonData['tracker']),
+  //     RecipientModel.fromJSON('recipient', jsonData['recipient']),
+  //     jsonData['events'].length!=0?jsonData['events']
+  //       .map((eventJson) => EventModel.fromJSON(eventJson))
+  //       .toList():[],
+  //     TimeStampsModel.fromJSON('timeStamps', jsonData['timeStamps']));
+  // }
+
   
 }
