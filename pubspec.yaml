@@ -76,6 +76,7 @@ dependencies:
   youtube_player_iframe: ^3.1.0
   multi_dropdown: ^1.0.0
   correios_rastreio: ^3.0.0
+  # google_mobile_ads: ^4.0.0
   # correios_rastreamento: ^1.0.2
 #  flutter_paypal_checkout:
 #  pay: ^1.1.2
@@ -155,6 +156,12 @@ flutter:
     - assets/menuhead.png
     - assets/sidebar.jpg
     - assets/home_image.png
+    - assets/logo_ama.png
+    - assets/logo_corre.png
+    - assets/logo_jadlog.png
+    - assets/logo_mer.png
+    - assets/logo_shop.png
+    - assets/logo_tn.png
 
   # localization:
   #   arb-dir: lib/l10n

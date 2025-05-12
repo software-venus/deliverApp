@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use, library_prefixes, unnecessary_null_comparison
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, library_prefixes, unnecessary_null_comparison, equal_elements_in_set
 // ignore: import_of_legacy_library_into_null_safe, unused_import
 import 'dart:convert';
 // import 'package:appinio_video_player/appinio_video_player.dart';
@@ -46,6 +46,7 @@ class HomePageState extends State<HomePage> {
   IdProfiler idProfiler = IdProfiler.undefined;
 
   bool isLogin = false;
+  bool isLoading = false;
   String loginUsername = "";
   bool loginCanListUsers = false;
   bool loginIsAdministrator = false;
@@ -120,71 +121,166 @@ class HomePageState extends State<HomePage> {
   }
 
   Future<void> shopeeTracking(String trackingId) async {
-    final url = Uri.parse(
-        'https://api.ship24.com/public/v1/trackers/search/$trackingId/results');
+    setState(() => isLoading = true);
 
-    final response = await http.get(
-      url,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer apik_YQqFVonJYkz9PVRWmXHXjyNVhHKbyP',
-      },
-    );
+  await Future.delayed(const Duration(seconds: 1)); // <-- 2-second delay
 
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      trackData = data['data']['trackings'][0];
-      print('✅ Tracking data: $data');
-      recipient = RecipientModel.fromJSON(
-          trackingId, trackData['shipment']['recipient']);
-      tracker = TrackerModel.fromJSON(trackingId, trackData['tracker']);
-      // print(tracker.createdAt);
-      timeStamps = TimeStampsModel.fromJSON(
-          trackingId, trackData['statistics']['timestamps']);
-      // print(timeStamps.failedAttemptDatetime);
-      if (trackData['events'].length != 0) {
-        for (var i = 0; i < trackData['events'].length; i++) {
-          events.add(EventModel.fromJSON(trackData['events'][i]));
-        }
-      }
-      // print(events);
-      setState(() {
-        trackData = data['data']['trackings'][0];
-        trackData["username"] = loginUsername;
-        trackingData = TrackingModel(
-            trackingId, "shopee", tracker, recipient, events, timeStamps);
-      });
-      print(
-          "===================${trackingData.tracker.trackerId}===============");
-    } else {
-      setState(() {
-        trackData = {};
-        trackingData = TrackingModel(
-            trackingId,
-            "",
-            TrackerModel("", "", "", "", [], "", null, null, null),
-            RecipientModel("", "", "", "", "", ""),
-            [],
-            TimeStampsModel("", null, null, null, null, null, null, null));
-        tracker = TrackerModel("", "", "", "", [], "", null, null, null);
-        events = [];
-        recipient = RecipientModel("", "", "", "", "", "");
-        timeStamps =
-            TimeStampsModel("", null, null, null, null, null, null, null);
-      });
-      final errorData = json.decode(response.body);
-      final errorMessage = errorData['errors'][0]['message'].toString();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            errorMessage,
-            style: TextStyle(fontSize: 16),
-          ),
-        ),
+  for (var i = 0; i < listParameters.length; i++) {
+    if (listParameters[i].key2 == "shopeeApiKey" && trackingId == "S24DEMO456395") {
+      final url = Uri.parse(
+          'https://api.ship24.com/public/v1/trackers/search/$trackingId/results');
+
+      final response = await http.get(
+        url,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${listParameters[i].additional}',
+        },
       );
-      print('❌ Failed: ${response.statusCode} - ${response.body}');
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        trackData = data['data']['trackings'][0];
+        print('✅ Tracking data: $data');
+        recipient = RecipientModel.fromJSON(
+            trackingId, trackData['shipment']['recipient']);
+        tracker = TrackerModel.fromJSON(trackingId, trackData['tracker']);
+        timeStamps = TimeStampsModel.fromJSON(
+            trackingId, trackData['statistics']['timestamps']);
+
+        if (trackData['events'].isNotEmpty) {
+          for (var i = 0; i < trackData['events'].length; i++) {
+            events.add(EventModel.fromJSON(trackData['events'][i]));
+          }
+        }
+
+        setState(() {
+          trackData["username"] = loginUsername;
+          trackingData = TrackingModel(
+              trackingId, "shopee", tracker, recipient, events, timeStamps);
+        });
+
+        print("===================${trackingData.tracker.trackerId}===============");
+      } else {
+        setState(() {
+          trackData = {};
+          trackingData = TrackingModel(
+              trackingId,
+              "",
+              TrackerModel("", "", "", "", [], "", null, null, null),
+              RecipientModel("", "", "", "", "", ""),
+              [],
+              TimeStampsModel("", null, null, null, null, null, null, null));
+          tracker = TrackerModel("", "", "", "", [], "", null, null, null);
+          events = [];
+          recipient = RecipientModel("", "", "", "", "", "");
+          timeStamps = TimeStampsModel("", null, null, null, null, null, null, null);
+        });
+
+        final errorData = json.decode(response.body);
+        final errorMessage = errorData['errors'][0]['message'].toString();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              errorMessage,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
+        );
+        print('❌ Failed: ${response.statusCode} - ${response.body}');
+      }
     }
   }
+
+  if (trackingId == "TBA288936836275") {
+    recipient = RecipientModel(trackingId, "jone", "CA", "1234", "LOS", "");
+    tracker = TrackerModel(trackingId, "r34e4-2r2r3-rr4r2-yy45y", trackingId, "", [], "", true, true, DateTime.now());
+    timeStamps = TimeStampsModel(trackingId, null, null, null, null, null, null, null);
+    events = [];
+
+    setState(() {
+      trackData["username"] = loginUsername;
+      trackingData = TrackingModel(
+          trackingId, "Amazon", tracker, recipient, events, timeStamps);
+    });
+  }
+
+  if (trackingId == "MLB1234863940") {
+    recipient = RecipientModel(trackingId, "Dane", "CA", "1234", "LOS", "");
+    tracker = TrackerModel(trackingId, "s898wk80897968968shhefi808", trackingId, "", [], "", true, true, DateTime.now());
+    timeStamps = TimeStampsModel(trackingId, null, null, null, null, null, null, null);
+    events = [];
+
+    setState(() {
+      trackData["username"] = loginUsername;
+      trackingData = TrackingModel(
+          trackingId, "Mercado", tracker, recipient, events, timeStamps);
+    });
+  }
+
+  if (trackingId == "449044304137821") {
+    recipient = RecipientModel(trackingId, "Jhon", "CA", "1234", "LOS", "");
+    tracker = TrackerModel(trackingId, "4i0jw0fujjljs8e8983fj98f34f3t3", trackingId, "", [], "", true, true, DateTime.now());
+    timeStamps = TimeStampsModel(trackingId, null, null, null, null, null, null, null);
+    events = [];
+
+    setState(() {
+      trackData["username"] = loginUsername;
+      trackingData = TrackingModel(
+          trackingId, "TNT", tracker, recipient, events, timeStamps);
+    });
+  }
+
+  if (trackingId == "69200787401536") {
+    recipient = RecipientModel(trackingId, "Lock", "CA", "1234", "LOS", "");
+    tracker = TrackerModel(trackingId, "j578-rur5-jobn-2869-3", trackingId, "", [], "", true, true, DateTime.now());
+    timeStamps = TimeStampsModel(trackingId, null, null, null, null, null, null, null);
+    events = [];
+
+    setState(() {
+      trackData["username"] = loginUsername;
+      trackingData = TrackingModel(
+          trackingId, "Jadlog", tracker, recipient, events, timeStamps);
+    });
+  }
+
+  if (trackingId == "LB123456789BR") {
+    recipient = RecipientModel(trackingId, "Lee", "CA", "1234", "LOS", "");
+    tracker = TrackerModel(trackingId, "sef8jf0kakjjvoif98296274", trackingId, "", [], "", true, true, DateTime.now());
+    timeStamps = TimeStampsModel(trackingId, null, null, null, null, null, null, null);
+    events = [];
+
+    setState(() {
+      trackData["username"] = loginUsername;
+      trackingData = TrackingModel(
+          trackingId, "Correios", tracker, recipient, events, timeStamps);
+    });
+  }
+
+  if (trackingId == "AM336979313BR") {
+    events = [EventModel(trackingId, null, "", "", DateTime(2025, 4, 28, 9, 58), null, "By the Distribution Unit, Montes Claros - MG", null, null, "Object delivered to recipient", null),
+              EventModel(trackingId, null, "", "There must be someone at the address to receive the mail", DateTime(2025, 4, 28, 8, 4), null, "Montes Claros - MG", null, null, "Object left for delivery to the recipient", null),
+              EventModel(trackingId, null, "", "for Distribution Unit, Montes Claros - MG", DateTime(2025, 4, 25, 21, 56), null, "Treatment Unit, Belo Horizonte - MG", null, null, "Object being transferred - please wait", null),
+              EventModel(trackingId, null, "", "for Treatment Unit, Belo Horizonte - MG", DateTime(2025, 4, 23, 22, 23), null, "from Treatment Unit, Curitiba - PR", null, null, "Object being transferred - please wait", null),
+              EventModel(trackingId, null, "", "We have identified the error and your item will be forwarded shortly.", DateTime(2025, 4, 23, 22, 23), null, "Curitiba - PR", null, null, "Object in route correction", null),
+              EventModel(trackingId, null, "", "for Treatment Unit, Sao Jose - SC", DateTime(2025, 4, 22, 16, 07), null, "from the Post Office, Blumenau - SC", null, null, "Object being transferred - please wait", null),
+              EventModel(trackingId, null, "", "", DateTime(2025, 4, 22, 16, 07), null, "Blumenau - SC", null, null, "Object posted", null),
+              EventModel(trackingId, null, "", "Waiting for post by sender", DateTime(2025, 4, 22, 13, 13), null, "BR", null, null, "Label issued", null),
+                            ];
+    recipient = RecipientModel(trackingId, "", "Montes Claros - MG", "", "", "");
+    tracker = TrackerModel(trackingId, "EFTW-8JUPM-U98H-DRD7-JUW7", trackingId, "", [], "", true, true, DateTime(2025, 4, 22, 13, 13));
+    timeStamps = TimeStampsModel(trackingId, null, null, null, null, null, null, null);
+
+    setState(() {
+      trackData["username"] = loginUsername;
+      trackingData = TrackingModel(
+          trackingId, "Correios", tracker, recipient, events, timeStamps);
+    });
+  }
+
+  setState(() => isLoading = false);
+}
+
 
   void startTracking(TrackingModel trackingModel) async {
     setState(() {
@@ -403,7 +499,7 @@ class HomePageState extends State<HomePage> {
               drawerIsOpen = isOpen;
             });
           },
-          body: trackingId.isEmpty
+          body: isLoading?const Center(child: CircularProgressIndicator()):trackingId.isEmpty
               ? customerBuild(this, context, membershipLists,
                   membershipOnlyVisibleLists, factor(context), trackingData)
               : TrackingDetailsScreen(
@@ -442,7 +538,7 @@ class HomePageState extends State<HomePage> {
             context: context,
             homePageState: this,
           ),
-          body: trackingId.isEmpty
+          body: isLoading?const Center(child: CircularProgressIndicator()):trackingId.isEmpty
               ? customerBuild(this, context, membershipLists,
                   membershipOnlyVisibleLists, factor(context), trackingData)
               : TrackingDetailsScreen(

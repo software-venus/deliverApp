@@ -16,9 +16,9 @@ import 'package:entrega/pages/wb_payment_confirm.dart';
 import 'package:entrega/utils/general/sizes_helpers.dart';
 import 'package:entrega/variables/globalvar.dart';
 
-// 👇 Generated localization file (after flutter gen-l10n)
-
 DateTime defaultDateTime = DateTime.utc(1969, 7, 20, 20, 18, 04);
+
+final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,23 +26,27 @@ Future<void> main() async {
   if (isWeb()) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        apiKey : "AIzaSyDy-wZBBYCQPeytgBPjL6ZtI6tsOvto09E" , 
-        authDomain : "delivertrackapp.firebaseapp.com" , 
-        projectId : "delivertrackapp" , 
-        storageBucket : "delivertrackapp.firebasestorage.app" , 
-        messagingSenderId : "443709792692" , 
-        appId : "1:443709792692:web:3b8d76ffb2d2e1bfc152e1" , 
-        measurementId : "G-SEB02BM0PJ" 
+        apiKey: "AIzaSyDy-wZBBYCQPeytgBPjL6ZtI6tsOvto09E",
+        authDomain: "delivertrackapp.firebaseapp.com",
+        projectId: "delivertrackapp",
+        storageBucket: "delivertrackapp.firebasestorage.app",
+        messagingSenderId: "443709792692",
+        appId: "1:443709792692:web:3b8d76ffb2d2e1bfc152e1",
+        measurementId: "G-SEB02BM0PJ",
       ),
     );
   } else {
     await Firebase.initializeApp();
   }
 
+  final prefs = await SharedPreferences.getInstance();
+  bool isDark = prefs.getBool('darkMode') ?? false;
+  themeNotifier.value = isDark ? ThemeMode.dark : ThemeMode.light;
+  isBlack = isDark;
+
   runApp(const App());
 }
 
-// Stateful app so we can change Locale dynamically
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
@@ -70,7 +74,7 @@ class _AppState extends State<App> {
     if (langCode != null) {
       setState(() {
         _locale = Locale(langCode);
-        languageStatus = langCode=="es"?0:1;
+        languageStatus = langCode == "es" ? 0 : 1;
       });
     }
   }
@@ -85,21 +89,28 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: appName,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      locale: _locale,
-      supportedLocales: const [
-        Locale('en'),
-        Locale('es'),
-      ],
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      onGenerateRoute: generateRoute,
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (context, currentTheme, _) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: appName,
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          themeMode: currentTheme,
+          locale: _locale,
+          supportedLocales: const [
+            Locale('en'),
+            Locale('es'),
+          ],
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          onGenerateRoute: generateRoute,
+        );
+      },
     );
   }
 
@@ -124,59 +135,50 @@ class _AppState extends State<App> {
               PaymentPayPalConfirm(queryParameters: queryParameters),
           settings: settings,
         );
-
       case "/payment_success":
         return MaterialPageRoute(
           builder: (context) =>
               PaymentConfirm(queryParameters: queryParameters),
           settings: settings,
         );
-
       case "/payment_cancel":
         return MaterialPageRoute(
           builder: (context) =>
               PaymentCancel(queryParameters: queryParameters),
           settings: settings,
         );
-
       case "/wb_payment_success":
         return MaterialPageRoute(
           builder: (context) =>
               WBPaymentConfirm(queryParameters: queryParameters),
           settings: settings,
         );
-
       case "/wb_payment_cancel":
         return MaterialPageRoute(
           builder: (context) =>
               WBPaymentCancel(queryParameters: queryParameters),
           settings: settings,
         );
-
       case "/UserLostPassword":
         return MaterialPageRoute(
           builder: (context) => const UserLostPassword(),
           settings: settings,
         );
-
       case "/UserList":
         return MaterialPageRoute(
           builder: (context) => const UserList(),
           settings: settings,
         );
-
       case "/ParameterList":
         return MaterialPageRoute(
           builder: (context) => const ParameterList(),
           settings: settings,
         );
-
       case "/Tos":
         return MaterialPageRoute(
           builder: (context) => const Tos(),
           settings: settings,
         );
-
       default:
         return MaterialPageRoute(
           builder: (context) => HomePage(idProfiler: IdProfiler.general),
@@ -186,7 +188,6 @@ class _AppState extends State<App> {
   }
 }
 
-// Query Parameter Classes (same as your original)
 class QueryParameter {
   String key;
   String value;

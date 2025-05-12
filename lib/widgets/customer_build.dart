@@ -14,6 +14,7 @@ import 'package:entrega/widgets/menu.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:translator/translator.dart';
 import 'package:entrega/models/tracking_model.dart';
+// import 'package:entrega/widgets/subscriptions_build.dart';
 // import 'package:entrega/widgets/tracking_build.dart';
 
 Widget customerBuild(
@@ -87,8 +88,8 @@ Widget customerBuild(
                     child: Text(
                       appHomeWelcome + " " + homePageState.loginCustomerName,
                       textAlign: TextAlign.left,
-                      style: const TextStyle(
-                          color: Colors.black87,
+                      style: TextStyle(
+                          color: textDarkWhiteMode,
                           fontSize: 25,
                           fontWeight: FontWeight.w500),
                     )))
@@ -103,7 +104,7 @@ Widget customerBuild(
                       membershipDays(homePageState),
                       textAlign: TextAlign.left,
                       style: const TextStyle(
-                          color: Colors.green,
+                          color: Color.fromARGB(255, 153, 241, 156),
                           fontSize: 15,
                           fontWeight: FontWeight.w500),
                     )))
@@ -115,11 +116,12 @@ Widget customerBuild(
 
 
 /* Image */
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 50), // your margin
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 50), // your margin
           child: SizedBox(
             height: 130,
-            child: Image(image: AssetImage('assets/home_image.png')),
+            child: isBlack?const Image(image: AssetImage('assets/home_image.png'), color:Colors.green,):
+            const Image(image: AssetImage('assets/home_image.png'))
           ),
         ),
 
@@ -133,30 +135,11 @@ Widget customerBuild(
           child: Text(
             appHomeTitle,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-                color: primaryColor, fontSize: 30, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: isBlack?Colors.blue:primaryColor, fontSize: 30, fontWeight: FontWeight.w600),
           ),
         ),
 
-/* SubTitle */
-        // if (!homePageState.isLogin)
-        //   FutureBuilder<String>(
-        //     future: getTranslatedDetail(appSubTitle, languageStatus),
-        //     builder: (context, snapshot) {
-        //       return SizedBox(
-        //         width: displayWidth(context) - 30,
-        //         child: Text(
-        //           snapshot.data ?? '...',
-        //           textAlign: TextAlign.center,
-        //           style: const TextStyle(
-        //             color: Colors.black87,
-        //             fontSize: 25,
-        //             fontWeight: FontWeight.w500,
-        //           ),
-        //         ),
-        //       );
-        //     },
-        //   ),
         !homePageState.isLogin && youTubeShow && !homePageState.drawerIsOpen
             ? Column(
                 children: [
@@ -187,7 +170,12 @@ Widget customerBuild(
         // trackingId!=""?
         //   TrackingDetailsScreen(trackingModel: trackingData):Container(),
 
+        const SizedBox(height: 30),
+        buildCompanyCards(factor),
+        const SizedBox(height: 30),
+
 /* Memberships */
+// subscriptionsbuild(homePageState, context, memberships, membershipOnlyVisibles, factor),
         showMembership
             ? Column(children: [
                 const SizedBox(
@@ -198,8 +186,8 @@ Widget customerBuild(
                   child: Text(
                     appMembershipTitle,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: Colors.black87,
+                    style: TextStyle(
+                        color: isBlack?Colors.white:Colors.black87,
                         fontSize: 25,
                         fontWeight: FontWeight.w500),
                   ),
@@ -604,4 +592,63 @@ void iosPurchaseMembershipController(MembershipModel membershipModel) {
   try {} catch (e) {
     e.toString();
   }
+}
+
+
+Widget buildCompanyCards(double factor) {
+  final List<Map<String, String>> companies = [
+    {"name": "Correios", "image": "assets/logo_corre.png"},
+    {"name": "Jadlog", "image": "assets/logo_jadlog.png"},
+    {"name": "TNT", "image": "assets/logo_tn.png"},
+    {"name": "Mercado Livre", "image": "assets/logo_mer.png"},
+    {"name": "Amazon", "image": "assets/logo_ama.png"},
+    {"name": "Shopee", "image": "assets/logo_shop.png"},
+  ];
+
+  return Column(
+    children: [
+      const SizedBox(height: 20),
+      Text(
+        partnerCompanyTitle,
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+      const SizedBox(height: 16),
+      Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 16,
+        runSpacing: 16,
+        children: companies.map((company) {
+          return SizedBox(
+            width: 150 * factor,
+            child: Card(
+              color: isBlack?const Color.fromARGB(255, 56, 142, 223):const Color.fromARGB(255, 252, 241, 140),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              elevation: 4,
+              child: Padding( 
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 60,
+                      child: Image.asset(
+                        company["image"]!,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      company["name"]!,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    ],
+  );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 int languageStatus = 0;
+bool isBlack = false;
 String trackingId = "";
 const String appName = "TE";
 
@@ -33,7 +34,12 @@ String get abmBackPressedContent => languageStatus == 0 ? "Tem certeza de que de
 String get abmBackPressedNo => languageStatus == 0 ? "Não" : "No";
 String get abmBackPressedYes => languageStatus == 0 ? "Sim" : "Yes";
 String get abmDeleteTitle => languageStatus == 0 ? "Excluir" : "Delete";
-/////////////--------------------PT---------------------////////////////////
+String get partnerCompanyTitle => languageStatus == 0 ? "Nossas operadoras parceiras" : "Our Partner Carriers";
+String get loggedInUser => languageStatus == 0 ? "Usuário logado" : "Logged in user";
+String get darkModeTitle => languageStatus == 0 ? "Modo escuro" : "Dark Mode";
+String get changedPasswordTitle => languageStatus == 0 ? "Alterar a senha" : "Change password";
+String get notificationSettingsTitle => languageStatus == 0 ? "Configurações de notificação" : "Notification settings";
+String get helpSupportTitle => languageStatus == 0 ? "Ajuda e Suporte" : "Help & Support";
 
 String get shareText => languageStatus == 0
     ? "Estoy usando MD Exam para enterarte de lo ultimo de examenes, puedes bajar la app en Google Play o Apple Store"
@@ -41,7 +47,8 @@ String get shareText => languageStatus == 0
 
 const Color primaryColor = Color.fromRGBO(2, 82, 145, 1);
 const Color gridTitleColor = Colors.white;
-const Color customBackcolor = Color.fromRGBO(254, 254, 254, 1);
+Color get customBackcolor => isBlack?const Color.fromARGB(221, 15, 15, 15): Colors.white;
+Color get textDarkWhiteMode => isBlack?Colors.white: Colors.black87;
 const Color customAppBarColor = Color.fromRGBO(10, 38, 202, 1);
 
 String get preferenceIsLogin => "isLogin";

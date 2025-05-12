@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
 import 'package:translator/translator.dart';
+import 'package:entrega/pages/setting_view.dart';
 
 // ignore: must_be_immutable
 class Menu extends Drawer {
@@ -43,7 +44,7 @@ class Menu extends Drawer {
                     ? createDrawerItem(
                         icon: Icons.card_membership_outlined,
                         text: menuProfilerAdministratorMembershipListTitle,
-                        textColor: Colors.black,
+                        textColor: isBlack?Colors.white:Colors.black,
                         onTap: () {
                           Navigator.push<void>(
                             context,
@@ -61,7 +62,7 @@ class Menu extends Drawer {
                     ? createDrawerItem(
                         icon: Icons.panorama_horizontal_select_outlined,
                         text: menuParameterTitle,
-                        textColor: Colors.black,
+                        textColor: isBlack?Colors.white:Colors.black,
                         onTap: () {
                           Navigator.pushNamed(context, "/ParameterList");
                         },
@@ -71,13 +72,13 @@ class Menu extends Drawer {
                 /* Customer */
                 _createDrawerTitle(
                     text: menuProfilerCustomerListTitle,
-                    textColor: Colors.black54),
+                    textColor: isBlack?Colors.white:Colors.black54),
 
                 /* Customer About Us */
                 createDrawerImageItem(
                   icon: "assets/icons/info.png",
                   text: menuProfilerCustomerAboutUsTitle,
-                  textColor: Colors.black,
+                  textColor: isBlack?Colors.white:Colors.black,
                   onTap: () async {
                     ParameterModel parameterModel =
                         parameterStringFromKey2ToParameterModel(
@@ -100,7 +101,7 @@ class Menu extends Drawer {
                 createDrawerImageItem(
                   icon: "assets/icons/faq.png",
                   text: menuProfilerCustomerFrequentQuestionsTitle,
-                  textColor: Colors.black,
+                  textColor: isBlack?Colors.white:Colors.black,
                   onTap: () {
                     ParameterModel parameterModel =
                         parameterStringFromKey2ToParameterModel(
@@ -124,7 +125,7 @@ class Menu extends Drawer {
                 createDrawerImageItem(
                   icon: "assets/icons/money.png",
                   text: menuSubscriptionTitle,
-                  textColor: Colors.black,
+                  textColor: isBlack?Colors.white:Colors.black,
                   onTap: () {
                     Navigator.push<void>(
                       context,
@@ -138,12 +139,12 @@ class Menu extends Drawer {
                 createDrawerImageItem(
                   icon: "assets/icons/settings.png",
                   text: menuSettingsTitle,
-                  textColor: Colors.black,
+                  textColor: isBlack?Colors.white:Colors.black,
                   onTap: () {
                     Navigator.push<void>(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => TrackingPage(homePageState: homePageState, dobleClosed: true),
+                        builder: (BuildContext context) => SettingPage(homePageState: homePageState, dobleClosed: true),
                       ),
                     );
                   },
@@ -152,7 +153,7 @@ class Menu extends Drawer {
                 createDrawerImageItem(
                   icon: "assets/icons/trackmap.png",
                   text: menuTrackTitle,
-                  textColor: Colors.black,
+                  textColor: isBlack?Colors.white:Colors.black,
                   onTap: () {
                     homePageState.isLogin?
                     Navigator.push<void>(
@@ -174,12 +175,12 @@ class Menu extends Drawer {
                 /* CPanel */
                 const Divider(),
                 _createDrawerTitle(
-                    text: menuCPanelTitle, textColor: Colors.black54),
+                    text: menuCPanelTitle, textColor: isBlack?Colors.white:Colors.black54),
                 homePageState.isLogin
                     ? createDrawerItem(
                         icon: Icons.login_rounded,
                         text: homePageState.loginUsername,
-                        textColor: Colors.black,
+                        textColor: isBlack?Colors.white:Colors.black,
                       )
                     : Container(),
 
@@ -187,7 +188,7 @@ class Menu extends Drawer {
                     ? createDrawerItem(
                         icon: Icons.login_rounded,
                         text: menuCPanelUserLoginTitle,
-                        textColor: Colors.black,
+                        textColor: isBlack?Colors.white:Colors.black,
                         onTap: () {
                           Navigator.push<void>(
                             context,
@@ -209,7 +210,7 @@ class Menu extends Drawer {
                     ? createDrawerItem(
                         icon: Icons.people_rounded,
                         text: menuCPanelUserListTitle,
-                        textColor: Colors.black,
+                        textColor: isBlack?Colors.white:Colors.black,
                         onTap: () {
                           Navigator.pushNamed(context, "/UserList");
                         },
@@ -219,7 +220,7 @@ class Menu extends Drawer {
                     ? createDrawerItem(
                         icon: Icons.vpn_key_rounded,
                         text: menuCPanelUserLostPasswordTitle,
-                        textColor: Colors.black,
+                        textColor: isBlack?Colors.white:Colors.black,
                         onTap: () {
                           Navigator.pushNamed(context, "/UserLostPassword");
                         },
@@ -260,7 +261,7 @@ class Menu extends Drawer {
                 createDrawerImageItem(
                   icon: "assets/icons/language.png",
                   text: menuLanguageTitle,
-                  textColor: Colors.black,
+                  textColor: isBlack?Colors.white:Colors.black,
                   onTap: () {},
                 ),
                 const Center(child: LanguageSwitcherButton()),

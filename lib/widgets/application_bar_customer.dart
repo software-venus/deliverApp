@@ -34,7 +34,7 @@ class ApplicationBarCustomer extends AppBar {
             width: displayWidth(context) * 0.5, // 50% of screen width
             height: 40,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: isBlack?Colors.black45:Colors.white,
               borderRadius: BorderRadius.circular(20),
               boxShadow: const [
                 BoxShadow(
